@@ -32,7 +32,7 @@ Let’s consider the three well-known groups of servers. That is the web, the ap
 * Place LBs between the web servers and application servers that run the business/application logic.
 * Place LBs between the application servers and database servers.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-08-21 at 1.54.52 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://github.com/kuweiguge/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-21 at 1.54.52 AM.png" alt=""><figcaption></figcaption></figure>
 
 In reality, load balancers can be potentially used between any two services with multiple instances within the design of a system.
 
