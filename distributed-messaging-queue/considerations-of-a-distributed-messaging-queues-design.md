@@ -25,7 +25,7 @@ With the **best-effort ordering** approach, the system puts the messages in a sp
 
 For example, as shown in the following figure, the producer sends four messages, A, B, C, and D, in the same order as illustrated. Due to network congestion or some other issue, message B is received after message D. Hence, the order of messages is A, C, D, and B at the receiving end. Therefore, in this approach, the messages will be put in the queue in the same order they were received instead of the order in which they were produced on the client side.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 12.49.10 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 12.49.10 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Strict ordering <a href="#strict-ordering-0" id="strict-ordering-0"></a>
 
@@ -90,7 +90,7 @@ Another solution is to serialize the requests using the system’s buffer at bot
 
 Applications might use multiple queues with dedicated producers and consumers to keep the ordering cost per queue under check, although this comes at the cost of more complicated application logic.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 12.50.41 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 12.50.41 AM.png" alt=""><figcaption></figcaption></figure>
 
 In this lesson, we discussed some key considerations and challenges in the design process of a messaging queue and answered the following questions:
 

@@ -15,7 +15,7 @@ To answer all these questions, let’s dive deep into the high-level design and 
 
 In WhatsApp, each active device is connected with a **WebSocket server** via WebSocket protocol. A WebSocket server keeps the connection open with all the active (online) users. Since one server isn’t enough to handle billions of devices, there should be enough servers to handle billions of users. The responsibility of each of these servers is to provide a port to every online user. The mapping between servers, ports, and users is stored in the WebSocket manager that resides on top of a cluster of the data store. In this case, that’s Redis.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.57.12 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.57.12 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Question**
 
@@ -31,7 +31,7 @@ The WebSocket manager is responsible for maintaining a mapping between an active
 
 A WebSocket server also communicates with another service called message service. **Message service** is a repository of messages on top of the Mnesia database cluster. It acts as an interface to the Mnesia database for other services interacting with the databases. It is responsible for storing and retrieving messages from the Mnesia database. It also deletes messages from the Mnesia database after a configurable amount of time. And, it exposes APIs to receive messages by various filters, such as user ID, message ID, and so on.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.58.52 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.58.52 AM.png" alt=""><figcaption></figcaption></figure>
 
 Now, let’s assume that user A wants to send a message to user B. As shown in the above figure, both users are connected to different WebSocket servers. The system performs the following steps to send messages from user A to user B:
 
@@ -67,7 +67,7 @@ Moreover, the sending of media files consists of the following steps:
 
 The following figure demonstrates the components involved in sharing media files over WhatsApp messenger:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.00.56 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 2.00.56 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Support for group messages <a href="#support-for-group-messages" id="support-for-group-messages"></a>
 
@@ -85,7 +85,7 @@ Let’s assume that user A wants to send a message to a group with some unique I
 4. The group message handler communicates with the group service to retrieve data of `Group/A` users.
 5. In the last step, the group message handler follows the same process as a WebSocket server and delivers the message to each user.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.01.57 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 2.01.57 AM.png" alt=""><figcaption></figcaption></figure>
 
 \----------------------------
 
@@ -128,6 +128,6 @@ We’ve just touched the basics here because security is a deep topic. See the W
 
 We discussed the features of our WhatsApp system design. It includes user connection with a server, sending messages and media files, group messages, and end-to-end encryption, individually. The final design of our WhatsApp messenger is as follows:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.03.35 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 2.03.35 AM.png" alt=""><figcaption></figcaption></figure>
 
 In the next lesson, we’ll evaluate our design and look into the non-functional requirements.

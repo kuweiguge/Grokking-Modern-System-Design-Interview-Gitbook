@@ -14,7 +14,7 @@ The functional requirements of our systems are below:
 * **Search**: The users should be able to search for nearby places or places of interest based on their GPS location (longitude, latitude) and/or the name of a place.
 * **Feedback**: The users should be able to add a review about a place. The review can consist of images, text, and a rating.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 12.10.20 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 12.10.20 PM.png" alt=""><figcaption></figcaption></figure>
 
 #### Non-functional requirements <a href="#non-functional-requirements-0" id="non-functional-requirements-0"></a>
 
@@ -37,7 +37,7 @@ Let’s assume that we have:
 
 We need to handle concurrent requests coming from 60 million daily active users. As we did in our discussion in the [back-of-the-envelope](../back-of-the-envelope-calculations/put-back-of-the-envelope-numbers-in-perspective.md) lessons, we assume an RPS of 8,000.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 12.11.18 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 12.11.18 PM.png" alt=""><figcaption></figcaption></figure>
 
 #### Storage estimation <a href="#storage-estimation-0" id="storage-estimation-0"></a>
 
@@ -66,7 +66,7 @@ The following calculater computes the total storage we need:
 | User                   | 264                                   | 178                 | f46.99              |
 | Total Storage Required |                                       |                     | f835.53             |
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 12.11.52 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 12.11.52 PM.png" alt=""><figcaption></figcaption></figure>
 
 #### Bandwidth estimation <a href="#bandwidth-estimation-0" id="bandwidth-estimation-0"></a>
 
@@ -116,7 +116,7 @@ Considering that there are 60 million active daily users, we come to the followi
 | Total Outgoing Bandwidth Required (Kbps)                 | f331200000 |
 | Total Outgoing Bandwidth Required (Gbps)                 | f331.2     |
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 12.12.43 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 12.12.43 PM.png" alt=""><figcaption></figcaption></figure>
 
 * [**Caching**](../distributed-cache/system-design-the-distributed-cache.md): We’ll use the cache to store information about popular places.
 * [**Load balancer**](../load-balancers/introduction-to-load-balancers.md): We’ll use the load balancer to manage the large amount of requests.

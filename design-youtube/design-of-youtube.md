@@ -4,7 +4,7 @@
 
 The high-level design shows how we’ll interconnect the various components we identified in the previous lesson. We have started developing a solution to support the functional and non-functional requirements with this design.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 3.25.39 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.25.39 AM.png" alt=""><figcaption></figcaption></figure>
 
 The workflow for the abstract design is provided below:
 
@@ -37,7 +37,7 @@ Let’s understand the design of APIs in terms of the functionalities we’re pr
 * Like or dislike videos
 * Comment on videos
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 3.27.41 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.27.41 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Upload video <a href="#upload-video-0" id="upload-video-0"></a>
 
@@ -135,7 +135,7 @@ commentVideo(user_id, video_id, comment_text)
 
 Each of the above features in the API design requires support from the database—we’ll need to store the details above in our storage schema to provide services to the API gateway.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 3.30.53 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.30.53 AM.png" alt=""><figcaption></figcaption></figure>
 
 > **Note:** Much of the underlying details regarding database tables that can be mapped to services provided by YouTube have been omitted for simplicity. For example, one video can have different qualities and that is not mentioned in the “Video” table.
 
@@ -162,7 +162,7 @@ Since we highlighted the requirements of smooth streaming, server-level details,
 * **Encoders**: Each uploaded video requires compression and transcoding into various formats. Thumbnail generation service is also obtained from the encoders.
 * **CDN and colocation sites**: CDNs and colocation sites store popular and moderately popular content that is closer to the user for easy access. Colocation centers are used where it’s not possible to invest in a data center facility due to business reasons.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 3.31.30 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.31.30 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Design flow and technology usage <a href="#design-flow-and-technology-usage-0" id="design-flow-and-technology-usage-0"></a>
 
@@ -194,6 +194,6 @@ Each new video uploaded to YouTube will be processed for data extraction. We can
 
 Each of the JSON files can be referred to as a document. Next, keywords will be extracted from the documents and stored in a key-value store. The _key_ in the key-value store will hold all the keywords searched by the users, while the _value_ in the key-value store will contain the occurrence of each key, its frequency, and the location of the occurrence in the different documents. When a user searches for a keyword, the videos with the most relevant keywords will be returned.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 3.32.07 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.32.07 AM.png" alt=""><figcaption></figcaption></figure>
 
 The approach above is simplistic, and the relevance of keywords is not the only factor affecting search in YouTube. In reality, a number of other factors will matter. The processing engine will improve the search results by filtering and ranking videos. It will make use of other factors like view count, the watch time of videos, and the context, along with the history of the user, to improve search results.

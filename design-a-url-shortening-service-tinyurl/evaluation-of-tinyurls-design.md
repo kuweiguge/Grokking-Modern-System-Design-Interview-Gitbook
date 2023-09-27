@@ -16,7 +16,7 @@ Our design uses **global server load balancing (GSLB)** to handle our system tra
 
 We also apply a limit on the requests from clients to secure the intrinsic points of failures. To protect the system against DoS attacks, we use rate limiters between the client and web servers to limit each user’s resource allocation. This will ensure a good and smooth traffic influx and mitigate the exploitation of system resources.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.11.15 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.11.15 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Scalability <a href="#scalability-0" id="scalability-0"></a>
 

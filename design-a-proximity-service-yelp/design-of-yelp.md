@@ -126,7 +126,7 @@ Size = 8 + 256 = 264 bytes 
 
 > **Note:** The `INT` in the following schema contains an 8-Byte ID that we generate using the unique ID generator.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 12.14.23 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 12.14.23 PM.png" alt=""><figcaption></figcaption></figure>
 
 ### Design <a href="#design-0" id="design-0"></a>
 
@@ -146,7 +146,7 @@ These are the components of our system:
   * **Key-value stores**: We’ll need to fetch the places in a segment efficiently. For that, we store the list of places against a segment ID in a key-value store to minimize searching time. We also save the QuadTree information in the key-value store, by storing the QuadTree data against a unique ID.
 * **Load balancer**: A load balancer distributes users’ incoming requests to all the servers uniformly.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 12.15.05 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 12.15.05 PM.png" alt=""><figcaption></figcaption></figure>
 
 #### Workflow <a href="#workflow-0" id="workflow-0"></a>
 

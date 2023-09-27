@@ -51,7 +51,7 @@ Let’s estimate the storage required for our system:
 
 Let’s assume we need around 1,000 Bytes to store each rider’s information, including ID, name, email, and so on, when the rider registers in our application. To store the 500 million riders, we require 500 GB of storage:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 7.01.43 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 7.01.43 PM.png" alt=""><figcaption></figcaption></figure>
 
 Additionally, if we have around 500,000 new riders registered daily, we’ll need a further 500 MB to store them.
 
@@ -59,7 +59,7 @@ Additionally, if we have around 500,000 new riders registered daily, we’ll nee
 
 Let’s assume we need around 1,000 Bytes to store each driver’s information, including ID, name, email, vehicle type, and so on, when the driver registers in our application. To store the five million drivers, we require 5 GB of storage:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 7.01.55 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 7.01.55 PM.png" alt=""><figcaption></figcaption></figure>
 
 Additionally, if we have around 100,00 new drivers registered daily, we’ll need around 100 MB to store them.
 
@@ -86,13 +86,13 @@ Let’s calculate the total storage required for Uber in a single day:
 | Storage required for new drivers daily (MB per day)             | 100   |
 | Total storage (GB per day)                                      | f2.78 |
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 7.02.25 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 7.02.25 PM.png" alt=""><figcaption></figcaption></figure>
 
 > **Note:** We can adjust the values in the table to see how the estimations change.
 
 #### Bandwidth estimation <a href="#bandwidth-estimation-0" id="bandwidth-estimation-0"></a>
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 7.02.48 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 7.02.48 PM.png" alt=""><figcaption></figcaption></figure>
 
 **Bandwidth Requirements**
 
@@ -105,7 +105,7 @@ Let’s calculate the total storage required for Uber in a single day:
 | Bandwidth for drivers (Megabits per second)      | f114    |
 | Total bandwidth (Megabits per second)            | f114.19 |
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 7.03.05 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 7.03.05 PM.png" alt=""><figcaption></figcaption></figure>
 
 > **Note:** We can adjust the values in the table to see how the requirements change.
 
@@ -115,7 +115,7 @@ We’ve ignored the bandwidth from the Uber service to users because it was very
 
 We need to handle concurrent requests coming from 20 million daily active users. We’ll use the following formula to estimate a pragmatic number of servers. We established this formula in the [Back-of-the-envelope Calculations](../back-of-the-envelope-calculations/put-back-of-the-envelope-numbers-in-perspective.md) chapter:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 7.03.49 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 7.03.49 PM.png" alt=""><figcaption></figcaption></figure>
 
 **Estimating the Number of Servers**
 
@@ -130,7 +130,7 @@ We need to handle concurrent requests coming from 20 million daily active users.
 
 The design of Uber utilizes the following building blocks:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 7.04.04 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 7.04.04 PM.png" alt=""><figcaption></figcaption></figure>
 
 * [**Databases**](../databases/introduction-to-databases.md) store the metadata of riders, drivers, and trips.
 * [**A cache**](../content-delivery-network-cdn/introduction-to-a-cdn.md) stores the most requested data for quick responses.

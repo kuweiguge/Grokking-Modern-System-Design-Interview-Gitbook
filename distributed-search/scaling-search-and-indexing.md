@@ -35,7 +35,7 @@ We’ll use these technologies to redesign our distributed indexing and searchin
 
 The illustration below depicts the generation and transfer of an inverted index between an indexer and a searcher node:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 2.27.38 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 2.27.38 AM.png" alt=""><figcaption></figcaption></figure>
 
 In the above illustration, a single node is shown for each indexing and searching operation. But, in reality, there would be an N number of nodes in the indexing phase, one node per partition (set of documents), that produces inverted indices. The inverted index is stored in the form of binary files on the nodes’ local storage. Caching these blob files will result in performance improvement. These binary files are also pushed to a distributed storage. In the case of a hardware failure, a new searcher or indexer machine is added, and a copy of the data is retrieved from the distributed storage.
 
@@ -66,7 +66,7 @@ Note that the Reducers cannot start as long as the Mappers are working. This mea
 
 The slides below depict a simplified setup of how MapReduce can be used to generate an inverted index:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 2.28.42 AM (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 2.28.42 AM (1).png" alt=""><figcaption></figcaption></figure>
 
 To keep it simple, we have just shown two indicators for each term in the above illustration: the list of documents in which the term appears and the list of the frequency of the term in each document (refer to [Indexing](indexing-in-a-distributed-search.md) for details).
 

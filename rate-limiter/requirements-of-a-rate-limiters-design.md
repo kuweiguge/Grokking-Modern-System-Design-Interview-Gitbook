@@ -44,11 +44,11 @@ There are three different ways to place the rate limiter.
 1. **On the client side:** It is easy to place the rate limiter on the client side. However, this strategy is not safe because it can easily be tampered with by malicious activity. Moreover, the configuration on the client side is also difficult to apply in this approach.
 2. **On the server side:** As shown in the following figure, the rate limiter is placed on the server-side. In this approach, a server receives a request that is passed through the rate limiter that resides on the server.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.18.00 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.18.00 AM.png" alt=""><figcaption></figcaption></figure>
 
 3. **As middleware:** In this strategy, the rate limiter acts as middleware, throttling requests to API servers as shown in the following figure.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.18.21 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.18.21 AM.png" alt=""><figcaption></figcaption></figure>
 
 Placing a rate limiter is dependent on a number of factors and is a subjective decision, based on the organization’s technology stack, engineering resources, priorities, plan, goals, and so on.
 
@@ -88,7 +88,7 @@ To rate limit the incoming requests, we have two different choices to place the 
 
 The design of the rate limiter utilizes the following building blocks that we discussed in the initial chapters.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.19.30 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.19.30 AM.png" alt=""><figcaption></figcaption></figure>
 
 * [**Databases**](https://www.educative.io/collection/page/10370001/4941429335392256/4901035478351872) are used to store rules defined by a service provider and metadata of users using the service.
 * [**Caches**](https://www.educative.io/collection/page/10370001/4941429335392256/5053577315221504) are used to cache the rules and users’ data for frequent access.

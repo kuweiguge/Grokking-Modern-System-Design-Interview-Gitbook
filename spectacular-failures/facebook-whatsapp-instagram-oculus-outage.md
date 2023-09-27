@@ -18,15 +18,15 @@ The following sequence of events led to the outage of Facebook and its accompani
 
 The slides below depict the events in pictorial form.
 
-![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.44.41 AM.png>)
+![](<../.gitbook/assets/Screenshot 2023-09-06 at 2.44.41 AM.png>)
 
-![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.44.53 AM.png>)
+![](<../.gitbook/assets/Screenshot 2023-09-06 at 2.44.53 AM.png>)
 
-![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.45.05 AM.png>)
+![](<../.gitbook/assets/Screenshot 2023-09-06 at 2.45.05 AM.png>)
 
-![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.45.15 AM.png>)
+![](<../.gitbook/assets/Screenshot 2023-09-06 at 2.45.15 AM.png>)
 
-![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.45.23 AM.png>)
+![](<../.gitbook/assets/Screenshot 2023-09-06 at 2.45.23 AM.png>)
 
 ### Analysis <a href="#analysis-0" id="analysis-0"></a>
 

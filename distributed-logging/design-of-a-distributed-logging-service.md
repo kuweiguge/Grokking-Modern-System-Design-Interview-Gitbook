@@ -30,7 +30,7 @@ The design of a distributed logging system will utilize the following building b
 * [**Pub-sub system**](https://www.educative.io/pageeditor/10370001/4941429335392256/4996814243889152): We’ll use a pub-sub- system to handle the huge size of logs.
 * [**Distributed search**](https://www.educative.io/pageeditor/10370001/4941429335392256/5400897294696448): We’ll use distributed search to query the logs efficiently.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 2.37.44 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 2.37.44 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### API design <a href="#api-design-0" id="api-design-0"></a>
 
@@ -76,7 +76,7 @@ In addition to the building blocks, let’s list the major components of our sys
 
 The design for this method looks like this:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 2.38.44 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 2.38.44 AM.png" alt=""><figcaption></figcaption></figure>
 
 There are millions of servers in a distributed system, and using a single log accumulator severely affects scalability. Let’s learn how we’ll scale our system.
 
@@ -100,7 +100,7 @@ We use the pub-sub system to cater to our scalability issue. Now, each server ha
 
 To fulfill another requirement of low latency, we don’t want the logging to affect the performance of other processes, so we send the logs asynchronously via a low-priority thread. By doing this, our system does not interfere with the performance of others and ensures availability.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 2.38.44 AM (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 2.38.44 AM (1).png" alt=""><figcaption></figcaption></figure>
 
 We should be mindful that data can be lost in the process of logging huge amounts of messages. There is a trade-off between user-perceived latency and the guarantee that log data persists. For lower latency, log services often keep data in RAM and persist them asynchronously. Additionally, we can minimize data loss by adding redundant log accumulators to handle growing concurrent users.
 
@@ -122,7 +122,7 @@ On the other hand, for multi-tenancy, we need a separate instance of pub-sub per
 
 All servers in a data center push the logs to a pub-sub system. Since we use a horizontally-scalable pub-sub system, it is possible to manage huge amounts of logs. We may use multiple instances of the pub-sub per data center. It makes our system scalable, and we can avoid bottlenecks. Then, the pub-sub system pushes the data to the blob storage.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 2.40.58 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 2.40.58 AM.png" alt=""><figcaption></figcaption></figure>
 
 The data does not reside in pub-sub forever and gets deleted after a few days before being stored in archival storage. However, we can utilize the data while it is available in the pub-sub system. The following services will work on the pub-sub data:
 
@@ -132,7 +132,7 @@ The data does not reside in pub-sub forever and gets deleted after a few days be
 
 The updated design is given below:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 2.41.24 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 2.41.24 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Question**
 
@@ -148,7 +148,7 @@ In our design, we have identified another component called the **expiration chec
 
 Moreover, our components log indexer and visualizer work on the blob storage to provide a good searching experience to the end user. We can see the final design of the logging service below:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 2.42.03 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 2.42.03 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Question**
 

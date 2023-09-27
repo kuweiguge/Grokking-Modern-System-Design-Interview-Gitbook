@@ -20,7 +20,7 @@ We solved the above problems by dividing the world into small segments. Each sma
 
 Lazy loading reduces initial load time by reducing the amount of content to load, saves bandwidth by delivering content to users when needed, and preserves server and client resources by rendering only some of the content.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 12.03.22 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 12.03.22 PM.png" alt=""><figcaption></figcaption></figure>
 
 ### Scalability <a href="#scalability-0" id="scalability-0"></a>
 

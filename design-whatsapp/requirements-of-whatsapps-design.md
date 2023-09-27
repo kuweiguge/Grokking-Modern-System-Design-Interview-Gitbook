@@ -20,7 +20,7 @@ Our design of the WhatsApp messenger should meet the following requirements.
 * **Security**: The system must be secure via end-to-end encryption. The end-to-end encryption ensures that only the two communicating parties can see the content of messages. Nobody in between, not even WhatsApp, should have access.
 * **Scalability:** The system should be highly scalable to support an ever-increasing number of users and messages per day.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.41.30 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.41.30 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### Resource estimation <a href="#resource-estimation-0" id="resource-estimation-0"></a>
 
@@ -30,11 +30,11 @@ WhatsApp is the most used messaging application across the globe. According to W
 
 As there are more than 100 billion messages shared per day over WhatsApp, let’s estimate the storage capacity based on this figure. Assume that each message takes 100 Bytes on average. Moreover, the WhatsApp servers keep the messages only for 30 days. So, if the user doesn’t get connected to the server within these days, the messages will be permanently deleted from the server.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.42.01 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.42.01 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Bandwidth estimation <a href="#bandwidth-estimation-0" id="bandwidth-estimation-0"></a>
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.43.00 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.43.00 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### High-level Estimates
 
@@ -54,7 +54,7 @@ WhatsApp handles around 10 million connections on a single server, which seems q
 
 Let’s move to the estimation of the number of servers:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.44.33 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.44.33 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Try it out <a href="#try-it-out-0" id="try-it-out-0"></a>
 
@@ -75,7 +75,7 @@ Let’s analyze how the number of messages per day affects the storage and bandw
 
 The design of WhatsApp utilizes the following building blocks that have also been discussed in the initial chapters:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.45.25 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.45.25 AM.png" alt=""><figcaption></figcaption></figure>
 
 * [**Databases**](../databases/introduction-to-databases.md) are required to store users’ and groups’ metadata.
 * [**Blob storage**](../blob-store/system-design-a-blob-store.md) is used to store multimedia content shared in messages.

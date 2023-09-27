@@ -8,23 +8,23 @@ Let’s consider a scenario where a user uploads a video, `intro-to-system-desig
 
 In this scenario, service 3 fails due to some error, and service 2 makes an entry in the database X. The database X crashes, and the request to fetch a video is routed to database Y. The user wants to play the video `intro-to-system-design`, but it will give an error of “Video not found…”
 
-![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-02 at 11.52.06 PM.png>)
+![](<../.gitbook/assets/Screenshot 2023-09-02 at 11.52.06 PM.png>)
 
-![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-02 at 11.52.23 PM.png>)
+![](<../.gitbook/assets/Screenshot 2023-09-02 at 11.52.23 PM.png>)
 
-![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-02 at 11.52.40 PM.png>)
+![](<../.gitbook/assets/Screenshot 2023-09-02 at 11.52.40 PM.png>)
 
-![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-02 at 11.52.56 PM.png>)
+![](<../.gitbook/assets/Screenshot 2023-09-02 at 11.52.56 PM.png>)
 
-![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-02 at 11.53.08 PM.png>)
+![](<../.gitbook/assets/Screenshot 2023-09-02 at 11.53.08 PM.png>)
 
-![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-02 at 11.53.18 PM.png>)
+![](<../.gitbook/assets/Screenshot 2023-09-02 at 11.53.18 PM.png>)
 
-![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-02 at 11.53.32 PM.png>)
+![](<../.gitbook/assets/Screenshot 2023-09-02 at 11.53.32 PM.png>)
 
-![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-02 at 11.53.47 PM.png>)
+![](<../.gitbook/assets/Screenshot 2023-09-02 at 11.53.47 PM.png>)
 
-![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-02 at 11.53.59 PM.png>)
+![](<../.gitbook/assets/Screenshot 2023-09-02 at 11.53.59 PM.png>)
 
 The example above is relatively simple. In reality, complex problems are encountered since we have many data centers across the globe, and each has millions of servers. Due to a decreasing human administrators to servers ratio, it’s often not feasible to manually find the problems. Having a monitoring system reduces operational costs and encourages an automated way to detect failures.
 
@@ -36,7 +36,7 @@ The IT infrastructure is spread widely around the globe. The illustration below 
 
 According to Amazon, on December 7, 2021, “At 7:30 AM PST, an automated activity to scale capacity of one of the AWS services hosted in the main AWS network triggered an unexpected behavior from a large number of clients inside the internal network. This resulted in a large surge of connection activity that overwhelmed the networking devices between the internal network and the main AWS network, resulting in communication delays between these networks. These delays increased latency and errors for services communicating between these networks, resulting in even more connection attempts and retries. This led to persistent congestion and performance issues on the devices connecting the two networks.” According to one estimate, the outage cost of Amazon was $66,240 per minute.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-02 at 11.54.27 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.54.27 PM.png" alt=""><figcaption></figcaption></figure>
 
 #### Types of monitoring <a href="#types-of-monitoring-0" id="types-of-monitoring-0"></a>
 
@@ -44,9 +44,9 @@ Let’s consider an example to understand the types of errors we want to monitor
 
 How do the Educative developers find out that a learner is facing this error?
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-02 at 11.54.58 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.54.58 PM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-02 at 11.55.15 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.55.15 PM.png" alt=""><figcaption></figcaption></figure>
 
 Now, what if a learner makes a request and it never reaches the servers of Educative. How will Educative know that a learner is facing an issue?
 

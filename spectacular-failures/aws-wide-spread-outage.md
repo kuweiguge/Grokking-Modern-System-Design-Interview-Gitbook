@@ -21,19 +21,19 @@ Outages like the one above remind us of famous Lamport’s quip: “A distribute
 
 The following slides show the series of events that led to the outage.
 
-![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.48.19 AM.png>)
+![](<../.gitbook/assets/Screenshot 2023-09-06 at 2.48.19 AM.png>)
 
-![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.48.30 AM.png>)
+![](<../.gitbook/assets/Screenshot 2023-09-06 at 2.48.30 AM.png>)
 
-![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.48.40 AM.png>)
+![](<../.gitbook/assets/Screenshot 2023-09-06 at 2.48.40 AM.png>)
 
-![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.48.50 AM.png>)
+![](<../.gitbook/assets/Screenshot 2023-09-06 at 2.48.50 AM.png>)
 
-![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.49.00 AM.png>)
+![](<../.gitbook/assets/Screenshot 2023-09-06 at 2.49.00 AM.png>)
 
-![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.49.09 AM.png>)
+![](<../.gitbook/assets/Screenshot 2023-09-06 at 2.49.09 AM.png>)
 
-![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.49.19 AM.png>)
+![](<../.gitbook/assets/Screenshot 2023-09-06 at 2.49.19 AM.png>)
 
 ### Analysis <a href="#analysis-0" id="analysis-0"></a>
 

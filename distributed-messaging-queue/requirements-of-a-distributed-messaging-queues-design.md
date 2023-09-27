@@ -29,7 +29,7 @@ Before we embark on our journey to map out the design of a distributed messaging
 
 However, several aspects restrain us from using the single-server messaging queue in today’s distributed systems paradigm. For example, it becomes unavailable to cooperating processes, producers and consumers, in the event of hardware or network failures. Moreover, performance takes a major hit as contention on the lock increases. Furthermore, it is neither scalable nor durable.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 12.44.59 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 12.44.59 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Question**
 
@@ -48,7 +48,7 @@ To extend the design of a single-server messaging queue to a distributed messagi
 
 The design of a distributed messaging queue utilizes the following building blocks:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 12.45.17 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 12.45.17 AM.png" alt=""><figcaption></figcaption></figure>
 
 * [**Database(s)**](https://www.educative.io/collection/page/10370001/4941429335392256/4901035478351872) will be required to store the metadata of queues and users.
 * [**Caches**](https://www.educative.io/collection/page/10370001/4941429335392256/5053577315221504) are important to keep frequently accessed data, whether it be data pertaining to users or queues metadata.

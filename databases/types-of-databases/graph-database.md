@@ -4,7 +4,7 @@
 
 Graph databases are a part of the NoSQL family. They store data in nodes/vertices and edges in the form of relationships. Each node in a graph database represents an entity, it can be a person, a place, a business, etc., and the edge represents the relationship between the entities.
 
-<figure><img src="../https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-21 at 4.29.48 AM (3).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-08-21 at 4.29.48 AM (3).png" alt=""><figcaption></figcaption></figure>
 
 But why use a graph database to store relationships when we already have SQL-based relational databases available?
 
@@ -22,7 +22,7 @@ Graph data model fits best for modelling real-world use cases where entities hav
 
 Facebook built its graph search feature using the graph data structure and the associated algorithms. The core feature of social networks today is to map the relationships between their users. And these relationships are multi-dimensional; besides just mapping friendships, these networks also map links between users and their favourite restaurants, cuisines, sports teams, etc.
 
-<figure><img src="../https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-21 at 4.30.08 AM (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-08-21 at 4.30.08 AM (2).png" alt=""><figcaption></figcaption></figure>
 
 Empowered by these relationships, these networks can recommend users where to: dine, travel, be friends with, and so on.
 
@@ -46,7 +46,7 @@ Besides mapping user relationships etc., in social networks, graphs also represe
 
 In Google Maps, nodes represent cities, and the edges are the roads between these cities. The nodes could further represent places in a city, intersections, and even houses. The entire application is one big map that heavily uses graph theory to find the shortest distance between the two places.
 
-<figure><img src="../https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-21 at 4.30.34 AM (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2023-08-21 at 4.30.34 AM (1).png" alt=""><figcaption></figcaption></figure>
 
 The same goes for flight networks where each node represents an airport and the edges flights between them.
 

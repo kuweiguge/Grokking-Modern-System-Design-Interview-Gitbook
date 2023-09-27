@@ -25,7 +25,7 @@ Choosing an unreasonable number for such calculations can lead to a flawed desig
 
 **Data centers** don’t have a single type of server. Enterprise solutions use commodity hardware to save cost and develop scalable solutions. Below, we discuss the types of servers that are commonly used within a data center to handle different workloads.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-20 at 10.09.11 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-08-20 at 10.09.11 PM.png" alt=""><figcaption></figcaption></figure>
 
 #### Web servers <a href="#web-servers" id="web-servers"></a>
 
@@ -121,17 +121,17 @@ Let’s do the computation for each type of request.
 
 **CPU bound:** A simple formula used to calculate the RPS for CPU-bound requests is:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-20 at 10.10.52 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-08-20 at 10.10.52 PM.png" alt=""><figcaption></figcaption></figure>
 
 In this calculation, we use these terms:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-20 at 10.11.19 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-08-20 at 10.11.19 PM.png" alt=""><figcaption></figcaption></figure>
 
 The rationale for the calculation shown above is that we can visualize one second as a box and we calculate how many mini-boxes (tasks) can fit inside the big box—that is, the number of tasks that can be completed in one second by a number of CPUs. So, a higher number of CPUs/threads will result in a higher RPS.
 
 **Memory-bound requests:** For memory-bound requests, we use the following formula:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-20 at 10.11.39 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-08-20 at 10.11.39 PM.png" alt=""><figcaption></figcaption></figure>
 
 Continuing our box analogy from the explanation of CPU-bound processes, here we first calculate the number of boxes there are (how many memory-bound processes a server can host) and then how many mini-boxes (tasks) we can fit in each of the bigger boxes.
 

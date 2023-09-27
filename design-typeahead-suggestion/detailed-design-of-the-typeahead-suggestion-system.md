@@ -7,7 +7,7 @@ Let’s go over the flow and interaction of the components shown in the illustra
 * A suggestion service
 * An assembler
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.24.57 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 2.24.57 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Suggestion service <a href="#suggestion-service-0" id="suggestion-service-0"></a>
 

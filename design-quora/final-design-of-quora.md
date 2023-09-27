@@ -21,7 +21,7 @@ Let’s understand the improvements in our design:
 
 We combine the web and application servers within a single powerful machine that can handle all the processes at once. This technique eliminates the network I/O and the latency introduced due to the network hops required between the manager, worker, and routing library processes. The illustration below provides an abstract view of the updated web server architecture:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 5.17.58 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 5.17.58 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Vertical sharding of MySQL <a href="#vertical-sharding-of-mysql-0" id="vertical-sharding-of-mysql-0"></a>
 
@@ -34,7 +34,7 @@ The goal is to improve performance and reduce the load due to an increasing numb
 
 Therefore, we are able to co-locate related data and reduce traffic on hot data. The illustration below depicts vertical sharding at Quora.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 5.18.26 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 5.18.26 AM.png" alt=""><figcaption></figcaption></figure>
 
 After we complete the partitioning, we require two types of mappings or metadata to complete our scaling process:
 
@@ -68,7 +68,7 @@ It is desirable to use a faster programming language like C++ to develop the fea
 
 Features like comments, upvotes, and downvotes require frequent page updates from the client side. **Polling** is a technique where the client (browser) frequently requests the server for new updates. The server may or may not have any updates but still responds to the client. Therefore, the server may get uselessly overburdened. To resolve this issue, Quora uses a technique called **long polling**, where if a client requests for an update, the server may not respond for as long as 60 seconds if there are no updates. However, if there is an update, the server will reply immediately and allow the client to make new requests.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 5.19.06 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 5.19.06 AM.png" alt=""><figcaption></figcaption></figure>
 
 Lastly, Memcached can employ `multiget()` to obtain multiple keys from the cache shards to reduce the retrieval latency of multiple keys.
 

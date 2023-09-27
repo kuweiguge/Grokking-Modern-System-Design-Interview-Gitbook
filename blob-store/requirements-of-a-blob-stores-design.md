@@ -10,7 +10,7 @@ Here are the functional requirements of the design of a blob store:
 
 * **Create a container**: The users should be able to create containers in order to group blobs. For example, if an application wants to store user-specific data, it should be able to store blobs for different user accounts in different containers. Additionally, a user may want to group video blobs and separate them from a group of image blobs. A single blob store user can create many containers, and each container can have many blobs, as shown in the following illustration. For the sake of simplicity, we assume that we can’t create a container inside a container.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.44.05 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.44.05 AM.png" alt=""><figcaption></figcaption></figure>
 
 * **Put data:** The blob store should allow users to upload blobs to the created containers.
 * **Get data:** The system should generate a URL for the uploaded blob, so that the user can access that blob later through this URL.
@@ -19,7 +19,7 @@ Here are the functional requirements of the design of a blob store:
 * **Delete a container:** The users should be able to delete a container and all the blobs inside it.
 * **List containers:** The system should allow the users to list all the containers under a specific account.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.44.26 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.44.26 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Non-functional requirements <a href="#non-functional-requirements-0" id="non-functional-requirements-0"></a>
 
@@ -32,7 +32,7 @@ Here are the non-functional requirements of a blob store system:
 * **Reliability:** Since failures are a norm in distributed systems, our design should detect and recover from failures promptly.
 * **Consistency:** The system should be strongly consistent. Different users should see the same view of a blob.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.44.52 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.44.52 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### Resource estimation <a href="#resource-estimation-0" id="resource-estimation-0"></a>
 
@@ -51,13 +51,13 @@ Let’s estimate the total number of servers, storage, and bandwidth required by
 
 From our assumptions, we use the number of daily active users (DAUs) and queries a blob store server can handle per second. The number of servers that we require is calculated using the formula given below:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.45.22 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.45.22 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Storage estimation <a href="#storage-estimation-0" id="storage-estimation-0"></a>
 
 Considering the assumptions written above, we use the formula given below to compute the total storage required by YouTube in one day:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.46.13 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.46.13 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Total Storage Required to Store Videos and Thumbnails Uploaded Per Day on YouTube**
 
@@ -71,7 +71,7 @@ Let’s estimate the bandwidth required for uploading data to and retrieving dat
 
 **Incoming traffic**: To estimate the bandwidth required for incoming traffic, we consider the total data uploaded per day, which indirectly means the total storage needed per day that we calculated above. The amount of data transferred to the servers per second can be computed using the following formula:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.46.37 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.46.37 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Bandwidth Required for Uploading Videos on YouTube**
 
@@ -81,7 +81,7 @@ Let’s estimate the bandwidth required for uploading data to and retrieving dat
 
 **Outgoing traffic**: Since the blob store is a read-intensive store, most of the bandwidth is required for outgoing traffic. Considering the aforementioned assumptions, we calculate the bandwidth required for outgoing traffic using the following formula:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.46.53 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.46.53 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Bandwidth Required for Downloading Videos on YouTube**
 
@@ -89,13 +89,13 @@ Let’s estimate the bandwidth required for uploading data to and retrieving dat
 | --------------------------- | ------------------------ | -------------- | ------------------------- |
 | 5000000                     | 20                       | 50             | f462.96                   |
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.47.24 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.47.24 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### Building blocks we will use <a href="#building-blocks-we-will-use-0" id="building-blocks-we-will-use-0"></a>
 
 We use the following building blocks in the design of our blob store system:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.47.45 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.47.45 AM.png" alt=""><figcaption></figcaption></figure>
 
 * [**Rate Limiter:**](https://www.educative.io/collection/page/10370001/4941429335392256/4770834422169600) A rate limiter is required to control the users’ interaction with the system.
 * [**Load balancer:**](https://www.educative.io/collection/page/10370001/4941429335392256/4521972679049216) A load balancer is needed to distribute the request load onto different servers.

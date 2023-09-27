@@ -12,7 +12,7 @@ description: Learn about availability, how to measure it, and its importance.
 
 Mathematically, availability, `A`, is a ratio. The higher the `A` value, the better. We can also write this up as a formula:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-20 at 4.38.20 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-08-20 at 4.38.20 AM.png" alt=""><figcaption></figcaption></figure>
 
 We measure availability as a number of nines. The following table shows how much downtime is permitted when we’re using a given number of nines.
 
