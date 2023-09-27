@@ -16,7 +16,7 @@ We’ve utilized the following set of components to complete our design:
 
 The illustration below provides a depiction of how different components and building blocks coordinate to provide the service.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 2.33.43 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.33.43 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Question 1**
 

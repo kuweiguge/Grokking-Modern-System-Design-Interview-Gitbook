@@ -8,7 +8,7 @@ To expose the functionality of our service, we can use REST APIs for the followi
 * Redirecting a short URL
 * Deleting a short URL
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.56.25 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 12.56.25 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Shortening a URL <a href="#shortening-a-url-0" id="shortening-a-url-0"></a>
 
@@ -109,7 +109,7 @@ We built a sequencer in our building blocks section to generate 64-bit unique _n
 
 Take a look at the diagram below to understand how the overall short URL generation unit will work.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.57.17 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 12.57.17 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Other building blocks**: Beside the elements mentioned above, we’ll also incorporate other building blocks like load balancers, cache, and rate limiters.
 
@@ -147,7 +147,7 @@ Now let’s consider the case of custom short URLs. Since the user is providing 
 
 Let’s assume there are `n` already generated short URLs in the database. The probability that the user-provided custom short URL will be similar to an already existing one can be given by:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.58.42 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 12.58.42 AM.png" alt=""><figcaption></figcaption></figure>
 
 With growing `n`, the collision probability would increase, ranging from 0 when `n=0` and 1 when `n=total number of combinations`.
 
@@ -157,7 +157,7 @@ With growing `n`, the collision probability would increase, ranging from 0 when 
 
 A simple design diagram of the URL shortening system is given below.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.59.10 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 12.59.10 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Workflow <a href="#workflow-0" id="workflow-0"></a>
 
@@ -204,15 +204,15 @@ Both of these approaches ensure smooth traffic handling and mitigate the risk of
 
 The illustration below depicts how URL shortening, redirection, and deletion work.
 
-![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.01.56 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.01.56 AM.png>)
 
-![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.02.16 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.02.16 AM.png>)
 
-![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.02.34 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.02.34 AM.png>)
 
-![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.03.13 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.03.13 AM.png>)
 
-![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.02.53 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.02.53 AM.png>)
 
 
 

@@ -8,7 +8,7 @@ However, with the advent of multi-model databases, we can leverage different dat
 
 Multi-model databases support multiple data models like the graph, document-oriented, relational, etc. They also avert the need for managing multiple persistence technologies in a single service. They reduce the operational complexity by notches. With multi-model databases, we can leverage different data models via a single API.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 4.21.04 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-21 at 4.21.04 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### Popular multi-model databases <a href="#popular-multi-model-databases" id="popular-multi-model-databases"></a>
 

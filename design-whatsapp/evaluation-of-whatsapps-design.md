@@ -48,7 +48,7 @@ Low latency is an essential factor in system design that provides a real-time ex
 
 We might wonder where the trade-off is. Often, communication involves multimedia. Encrypting them in near real-time on the sender device and decrypting on the receiver side can be taxing for the devices, causing latency. The process is illustrated in the following figure:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 2.06.08 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.06.08 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### Summary <a href="#summary-0" id="summary-0"></a>
 

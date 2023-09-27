@@ -38,7 +38,7 @@ Several well-known strategies are used to evict data from the cache. The most we
 
 Other strategies like first in, first out (FIFO) also exist. The choice of each of these algorithms depends on the system the cache is being developed for.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 12.27.44 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 12.27.44 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### Cache invalidation <a href="#cache-invalidation-0" id="cache-invalidation-0"></a>
 
@@ -96,7 +96,7 @@ The advantages of using dedicated cache servers are the following:
 
 Apart from the advantages above, working as a standalone caching service enables other microservices to benefit from them—for example, Cache as a Service. In that case, the caching system will have to be aware of different applications so that their data doesn’t collide.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 12.28.43 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 12.28.43 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Co-located cache**
 
@@ -104,7 +104,7 @@ The co-located cache embeds cache and service functionality within the same host
 
 The main advantage of this strategy is the reduction in CAPEX and OPEX of extra hardware. Furthermore, with the scaling of one service, automatic scaling of the other service is obtained. However, the failure of one machine will result in the loss of both services simultaneously.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 12.29.02 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 12.29.02 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### Cache client <a href="#cache-client-0" id="cache-client-0"></a>
 

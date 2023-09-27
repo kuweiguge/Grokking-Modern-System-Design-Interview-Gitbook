@@ -27,7 +27,7 @@ We’ll use the following components in our design:
 
 The illustration below shows how the above components are connected.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 11.48.31 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 11.48.31 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Workflow <a href="#workflow-0" id="workflow-0"></a>
 

@@ -6,7 +6,7 @@ A **web crawler** is an Internet bot that systematically scours the world wide w
 
 This is the first step that’s performed by search engines; the stored data is used for indexing and ranking purposes. This specific design problem is limited to web crawlers and doesn’t include explanations of the later stages of indexing and ranking in the search engines.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.12.30 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.12.30 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Additional benefits <a href="#additional-benefits-0" id="additional-benefits-0"></a>
 

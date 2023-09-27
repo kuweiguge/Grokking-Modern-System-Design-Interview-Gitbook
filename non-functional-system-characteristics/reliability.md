@@ -10,7 +10,7 @@ description: Learn about reliability, how to measure it, and its importance.
 
 We often use **mean time between failures (MTBF)** and **mean time to repair (MTTR)** as metrics to measure `R`.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-20 at 4.41.49 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-20 at 4.41.49 AM.png" alt=""><figcaption></figcaption></figure>
 
 (We strive for a higher MTBF value and a lower MTTR value.)
 
@@ -27,4 +27,4 @@ Reliability (`R`) and availability (`A`) are two distinct concepts, but they are
 * high `A`, low `R`
 * high `A`, high `R` (desirable)
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-20 at 4.42.33 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-20 at 4.42.33 AM.png" alt=""><figcaption></figcaption></figure>

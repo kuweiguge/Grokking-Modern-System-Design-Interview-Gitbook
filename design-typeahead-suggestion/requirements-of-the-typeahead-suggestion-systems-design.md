@@ -22,7 +22,7 @@ As was stated earlier, the typeahead feature is used to enhance the user experie
 
 Assuming that out of the 3.5 billion queries per day, two billion queries are unique and need to be stored. Let’s also assume that each query consists of 15 characters on average, and each character takes 2 Bytes of storage. According to this formulation, we would require the following:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 2.10.05 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.10.05 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Bandwidth estimation <a href="#bandwidth-estimation-0" id="bandwidth-estimation-0"></a>
 
@@ -30,13 +30,13 @@ Assuming that out of the 3.5 billion queries per day, two billion queries are un
 
 Keeping this in mind, the total number of reading requests of characters per day would be as follows:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 2.10.46 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.10.46 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Number of servers estimation <a href="#number-of-servers-estimation-0" id="number-of-servers-estimation-0"></a>
 
 Our system will receive 607,000 requests per second concurrently. Therefore, we need to have many servers installed to avoid burdening a single server. Let’s assume that a single server can handle 8,000 queries per second. So, we require around 76 servers to handle 607,000 queries.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 2.11.14 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.11.14 AM.png" alt=""><figcaption></figcaption></figure>
 
 In the table below, adjust the values to see how the resource estimations change.
 
@@ -56,7 +56,7 @@ In the table below, adjust the values to see how the resource estimations change
 
 The design of the typeahead suggestion system consists of the following building blocks that have been discussed in the initial chapters of the course:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 2.12.51 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.12.51 AM.png" alt=""><figcaption></figcaption></figure>
 
 * [**Databases**](../databases/introduction-to-databases.md) are required to keep the data related to the queries’ prefixes.
 * [**Load balancers**](../load-balancers/introduction-to-load-balancers.md) are required to disseminate incoming queries among a number of active servers.

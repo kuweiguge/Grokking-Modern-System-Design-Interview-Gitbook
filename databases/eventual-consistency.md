@@ -30,7 +30,7 @@ Because of the geographical distance between the two continents, the user in _Am
 
 However, when they refresh their web page after a few seconds, the like counter value gets updated to 101. The data was initially inconsistent but eventually became consistent across all the server nodes deployed around the world. This is what eventual consistency is. Eventually, the data became consistent.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 4.25.31 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-21 at 4.25.31 AM.png" alt=""><figcaption></figcaption></figure>
 
 Let’s take it one step further. What if, at the same time, both the users in _Japan_ and _America_ like the tweet and a user in another geographic zone, say _Europe_, sees the tweet?
 

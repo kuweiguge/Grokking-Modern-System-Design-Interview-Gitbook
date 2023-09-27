@@ -14,7 +14,7 @@ So, in general, the big components of our system are:
 * **Resources:** The task is executed on these components.
 * **Scheduler**: A scheduler performs processes between clients and resources and decides which task should get resources first.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 2.48.22 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 2.48.22 AM.png" alt=""><figcaption></figcaption></figure>
 
 As shown in the above illustration, it is necessary to put the incoming tasks into a **queue**. It is because of the following reasons:
 
@@ -37,7 +37,7 @@ When a task comes for scheduling, it should contain the following information wi
 
 The design of the task scheduler is shown in the following illustration:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 2.48.47 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 2.48.47 AM.png" alt=""><figcaption></figcaption></figure>
 
 * **Clients**: The clients of the cloud providers are individuals or organizations from small to large businesses who want to execute their tasks.
 * **Rate limiter**: The resources available for a client depend on the cost they pay. It is important to limit the number of tasks for the reliability of our service. For instance, �X number of tasks per hour are allowed to enter the system. Others will get a message like “Limit exceeded” instead of accepting the task and responding late. A rate limiter limits the number of tasks the client schedules based on its subscription. If the limit is exceeded, it returns an error message to the client that the rate limit has been exceeded.

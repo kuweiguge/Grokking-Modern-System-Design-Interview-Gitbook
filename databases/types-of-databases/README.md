@@ -64,7 +64,7 @@ Relational databases guarantee the state of data is consistent at any time. The 
 
 **Impedance mismatch** is the difference between the relational model and the in-memory data structures. The relational model organizes data into a tabular structure with relations and tuples. SQL operation on this structured data yields relations aligned with relational algebra. However, it has some limitations. In particular, the values in a table take simple values that can’t be a structure or a list. The case is different for in-memory, where a complex data structure can be stored. To make the complex structures compatible with the relations, we would need a translation of the data in light of relational algebra. So, the impedance mismatch requires translation between two representations, as denoted in the following figure:
 
-<figure><img src="../https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 3.58.11 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-21 at 3.58.11 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### Why non-relational (NoSQL) databases? <a href="#why-non-relational-nosql-databases" id="why-non-relational-nosql-databases"></a>
 
@@ -82,7 +82,7 @@ NoSQL databases are divided into various categories based on the nature of the o
 
 Various types of NoSQL databases are described below:
 
-<figure><img src="../https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 3.58.31 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-21 at 3.58.31 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Key-value database**
 
@@ -92,7 +92,7 @@ Various types of NoSQL databases are described below:
 
 The following figure shows an example of a key-value database. The `Product ID` and `Type` of the item are collectively considered as the primary key. This is considered as a key for this key-value database. Moreover, the schema for storing the item attributes is defined based on the nature of the item and the number of attributes it possesses.
 
-<figure><img src="../https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 3.59.29 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-21 at 3.59.29 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Document database**
 
@@ -102,7 +102,7 @@ A **document database** is designed to store and retrieve documents in formats l
 
 The following example shows data stored in a JSON document. This data is about a person. Various attributes are stored in the file, including `id`, `name`, `email`, and so on.
 
-<figure><img src="../https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 3.49.07 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-21 at 3.49.07 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Graph database**
 
@@ -110,7 +110,7 @@ The following example shows data stored in a JSON document. This data is about a
 
 In the following figure, some data is stored using a graph data structure in nodes connected to each other via edges representing relationships between nodes. Each node has some properties, like `Name`, `ID`, and `Age`. The node having `ID: 2` has the `Name` of `James` and `Age` of `29` years.
 
-<figure><img src="../https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 3.59.59 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-21 at 3.59.59 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Use case**: Graph databases can be used in social applications and provide interesting facts and figures among different kinds of users and their activities. The focus of graph databases is to store data and pave the way to drive analyses and decisions based on relationships between entities. The nature of graph databases makes them suitable for various applications, such as data regulation and privacy, machine learning research, financial services-based applications, and many more.
 
@@ -122,7 +122,7 @@ In the following figure, some data is stored using a graph data structure in nod
 
 The following figure shows an example of a columnar database, where data is stored in a column-oriented format. This is unlike relational databases, which store data in a row-oriented fashion:
 
-<figure><img src="../https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 4.00.38 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-21 at 4.00.38 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Drawbacks of NoSQL databases <a href="#drawbacks-of-nosql-databases" id="drawbacks-of-nosql-databases"></a>
 

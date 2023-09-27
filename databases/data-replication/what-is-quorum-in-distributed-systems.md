@@ -22,11 +22,11 @@ Let’s suppose we have three replicas of the database. The quorum in such an in
 
 **Selecting quorum number**
 
-<figure><img src="../https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 4.51.18 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-21 at 4.51.18 AM.png" alt=""><figcaption></figcaption></figure>
 
 Similarly, if there are five replicas in a cluster and three of them acknowledge, the operation can be committed as the majority is working. Anything less than three replicas will result in the failure of the cluster.
 
-<figure><img src="../https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 4.51.54 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-21 at 4.51.54 AM.png" alt=""><figcaption></figcaption></figure>
 
 A quorum can be achieved only when the nodes adhere to the methodology w+r>n where w is the minimum nodes for write operations, r is the minimum nodes for read operations, and n is the total number of nodes in a cluster.
 

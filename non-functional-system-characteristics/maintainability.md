@@ -26,7 +26,7 @@ Maintainability
 
 We use (mean time to repair) MTTR as the metric to measure `M`.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-20 at 4.42.58 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-20 at 4.42.58 AM.png" alt=""><figcaption></figcaption></figure>
 
 In other words, MTTR is the average amount of time required to repair and restore a failed component. Our goal is to have as low a value of MTTR as possible.
 

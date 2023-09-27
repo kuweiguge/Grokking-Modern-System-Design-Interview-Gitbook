@@ -10,7 +10,7 @@ We will continue the same eventual consistency example from the previous lesson.
 
 This means that, at one point in time, only one user can update the tweet like counter.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 4.26.21 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-21 at 4.26.21 AM.png" alt=""><figcaption></figcaption></figure>
 
 Once the user in Japan updates the like counter from 100 to 101. The value gets replicated globally across all nodes. Once all the nodes reach a consensus, the locks get lifted.
 

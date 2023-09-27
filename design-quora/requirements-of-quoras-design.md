@@ -21,7 +21,7 @@ A user should be able to perform the following functionalities:
 * **Availability**: The system should have high availability. This applies to cases where servers receive a large number of concurrent requests.
 * **Performance**: The system should provide a smooth experience to the user without a noticeable delay.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 5.06.15 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 5.06.15 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### Resource estimation <a href="#resource-estimation-0" id="resource-estimation-0"></a>
 
@@ -37,7 +37,7 @@ In this section, we’ll make an estimate about the resource requirements for Qu
 
 Let’s estimate our requests per second (RPS) for our design. If there are an average of 300 million daily active users and each user can generate 20 requests per day, then the total number of requests in a day will be:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 5.06.49 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 5.06.49 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Estimating RPS**
 
@@ -48,7 +48,7 @@ Let’s estimate our requests per second (RPS) for our design. If there are an a
 
 We already established in the [back-of-the-envelope calculations](../back-of-the-envelope-calculations/put-back-of-the-envelope-numbers-in-perspective.md) chapter that we’ll use the following formula to estimate a pragmatic number of servers:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 5.07.37 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 5.07.37 AM.png" alt=""><figcaption></figcaption></figure>
 
 > Therefore, the total number of servers required to facilitate 300 million users generating an average of 69,500 requests per second will be 37,500.
 
@@ -75,13 +75,13 @@ Let’s keep in mind our assumption that 15% of questions have images and 5% hav
 
 See Detailed Calculations
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 5.09.28 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 5.09.28 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Bandwidth estimation <a href="#bandwidth-estimation-0" id="bandwidth-estimation-0"></a>
 
 The bandwidth estimate requires the calculation of incoming and outgoing data through the network.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 5.10.16 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 5.10.16 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Bandwidth Requirements Estimation Calculator**
 
@@ -97,9 +97,9 @@ The bandwidth estimate requires the calculation of incoming and outgoing data th
 
 Detailed Calculations
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 5.11.13 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 5.11.13 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 5.11.57 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 5.11.57 AM.png" alt=""><figcaption></figcaption></figure>
 
 * [**Load balancers**](../load-balancers/introduction-to-load-balancers.md) will be used to divide the traffic load among the service hosts.
 * [**Databases**](../databases/introduction-to-databases.md) are essential for storing all sorts of data, such as user questions and answers, comments, and likes and dislikes. Also, user data will be stored in the databases. We may use different types of databases to store different data.

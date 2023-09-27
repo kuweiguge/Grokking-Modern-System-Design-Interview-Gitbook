@@ -11,7 +11,7 @@ Primarily, the newsfeed system is responsible for the following two tasks:
 
 Let’s move to the high-level design of our newsfeed system. It consists of the above two essential parts, shown in the following figure:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.17.16 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 12.17.16 AM.png" alt=""><figcaption></figcaption></figure>
 
 Let’s discuss the main components shown in the high-level design:
 
@@ -73,7 +73,7 @@ The database relations for the newsfeed system are as follows:
 * **Feed\_item:** The data about posts created by users is stored in this relation.
 * **Media:** The information about the media content is stored in this relation.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.18.23 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 12.18.23 AM.png" alt=""><figcaption></figcaption></figure>
 
 We use a graph database to store relationships between users, friends, and followers. For this purpose, we follow the property graph model. We can think of a graph database consisting of two relational tables:
 
@@ -84,11 +84,11 @@ Therefore, we follow a relational schema for the graph store, as shown in the fo
 
 An alternative representation of a **User** can be shown in the graph database below. Where the `Users_ID` remains the same and attributes are stored in a JSON file format.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.18.56 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 12.18.56 AM.png" alt=""><figcaption></figcaption></figure>
 
 The following figure demonstrates how graph can be represented using the relational schema:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.19.58 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 12.19.58 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### Detailed design <a href="#detailed-design-0" id="detailed-design-0"></a>
 
@@ -116,7 +116,7 @@ The following steps are performed in sequence to generate a newsfeed for Alice:
 
 The process is illustrated in the following figure:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.20.28 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 12.20.28 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Question**
 
@@ -144,7 +144,7 @@ Suppose if our service receives billions of requests at once and the system star
 
 \----------------
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.22.20 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 12.22.20 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Question**
 
@@ -167,7 +167,7 @@ In our design, the **newsfeed ranking service** consists of these algorithms wor
 
 The ranking system considers all the above points to predict relevant and important posts for a user.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.23.17 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 12.23.17 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Posts ranking and newsfeed construction <a href="#posts-ranking-and-newsfeed-construction-0" id="posts-ranking-and-newsfeed-construction-0"></a>
 
@@ -181,7 +181,7 @@ The post database contains posts published by different users. Assume that there
 
 The following figure shows the top 4 posts published on Bob’s timeline:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.24.40 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 12.24.40 AM.png" alt=""><figcaption></figcaption></figure>
 
 Newsfeed ranking with various machine learning and ranking algorithms is a computationally intensive task. In our design, the **ranking service** ranks posts and constructs newsfeeds. This service consists of big-data processing systems that might utilize specialized hardware like graphics processing units (GPUs) and tensor processing units (TPUs).
 
@@ -195,6 +195,6 @@ Newsfeed ranking with various machine learning and ranking algorithms is a compu
 
 The following figure combines all the services related to the detailed design of the newsfeed system:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.25.30 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 12.25.30 AM.png" alt=""><figcaption></figcaption></figure>
 
 In this lesson, we discussed the design of the newsfeed system, its database schema, and the newsfeed ranking system. In the next lesson, we’ll evaluate our system’s requirements.

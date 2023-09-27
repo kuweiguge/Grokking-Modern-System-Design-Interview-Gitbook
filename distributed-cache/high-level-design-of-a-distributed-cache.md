@@ -13,7 +13,7 @@ The following are the functional requirements:
 * **Insert data:** The user of a distributed cache system must be able to insert an entry to the cache.
 * **Retrieve data:** The user should be able to retrieve data corresponding to a specific key.
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 12.29.49 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 12.29.49 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Non-functional requirements <a href="#non-functional-requirements-0" id="non-functional-requirements-0"></a>
 
@@ -104,7 +104,7 @@ Apart from the details in the sections above, optimizing the time-to-live (TTL) 
 
 The following figure depicts our high-level design:
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 12.31.22 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 12.31.22 AM.png" alt=""><figcaption></figcaption></figure>
 
 The main components in this high-level design are the following:
 
