@@ -3385,7 +3385,7 @@
 <li><strong>History</strong>: The user should be able to see the history of collaboration on the document.</li>
 </ul>
 <p>A real-world document editor also has to have functions like document creation, deletion, and managing user access. We focus on the core functionalities listed above, but we also discuss the possibility of other functionalities in the lessons ahead.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.29.57 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 2.29.57 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="non-functional-requirements-">Non-functional Requirements <a href="#non-functional-requirements-0" id="non-functional-requirements-0"></a></h4>
 <ul>
@@ -3453,14 +3453,14 @@
 </tbody>
 </table>
 <p>See Detailed Calculations</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.30.32 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 2.30.32 AM.png" alt=""><figcaption></figcaption></figure>
 
 <blockquote>
 <p><strong>Note:</strong> Although our functional requirements state that we should keep a history of documents, we didn&#x2019;t include storage requirements for historical data for the sake of brevity.</p>
 </blockquote>
 <h4 id="bandwidth-estimation-">Bandwidth estimation <a href="#bandwidth-estimation-0" id="bandwidth-estimation-0"></a></h4>
 <p><strong>Incoming traffic</strong>: Assuming that 32 TB of data are uploaded per day to the network of a collaborative editing service, the network requirement for incoming traffic will be the following:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.31.11 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 2.31.11 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Outgoing traffic</strong>: To estimate outgoing traffic bandwidth, we&#x2019;ll assume the number of documents viewed by a user each day. Let&#x2019;s consider that a typical user views five documents per day. Then, the following calculations apply:</p>
 <blockquote>
@@ -3513,11 +3513,11 @@
 </tbody>
 </table>
 <p>See Detailed Calculations</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.31.44 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 2.31.44 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="number-of-servers-estimation-">Number of servers estimation <a href="#number-of-servers-estimation-0" id="number-of-servers-estimation-0"></a></h4>
 <p>Let&#x2019;s assume that one user is able to generate 100 requests per day. Keeping in mind the number of daily active users, the number of requests per second (RPS) will be the following:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.31.59 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 2.31.59 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Number of RPS</strong></p>
 <table>
@@ -3543,7 +3543,7 @@
 </table>
 <p>We discussed in the <a href="../back-of-the-envelope-calculations/put-back-of-the-envelope-numbers-in-perspective.html">Back of the Envelope lesson</a> that RPS isn&#x2019;t sufficient information to calculate the number of servers. We&#x2019;ll use the following approximation for server count.</p>
 <p>To estimate the number of servers required to fulfill the requests of 80 million users, we simply divide the number of users by the number of requests a server can handle. In the &#x201C;Back of the Envelope&#x201D; lesson, we discussed that our reference server can handle 8,000 requests per second. So, we see the following:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.32.53 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 2.32.53 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h3 id="building-blocks-we-will-use-">Building blocks we will use <a href="#building-blocks-we-will-use-0" id="building-blocks-we-will-use-0"></a></h3>
 <p>We&#x2019;ll use the following building blocks in designing the collaborative document editing service.</p>
@@ -3600,7 +3600,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Requirements of Google Docs’ Design","level":"1.37.2","depth":2,"next":{"title":"Design of Google Docs","level":"1.37.3","depth":2,"path":"design-a-collaborative-document-editing-service-google-docs/design-of-google-docs.md","ref":"design-a-collaborative-document-editing-service-google-docs/design-of-google-docs.md","articles":[]},"previous":{"title":"System Design: Google Docs","level":"1.37.1","depth":2,"path":"design-a-collaborative-document-editing-service-google-docs/system-design-google-docs.md","ref":"design-a-collaborative-document-editing-service-google-docs/system-design-google-docs.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-a-collaborative-document-editing-service-google-docs/requirements-of-google-docs-design.md","mtime":"2023-09-27T05:28:14.731Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:28:51.183Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Requirements of Google Docs’ Design","level":"1.37.2","depth":2,"next":{"title":"Design of Google Docs","level":"1.37.3","depth":2,"path":"design-a-collaborative-document-editing-service-google-docs/design-of-google-docs.md","ref":"design-a-collaborative-document-editing-service-google-docs/design-of-google-docs.md","articles":[]},"previous":{"title":"System Design: Google Docs","level":"1.37.1","depth":2,"path":"design-a-collaborative-document-editing-service-google-docs/system-design-google-docs.md","ref":"design-a-collaborative-document-editing-service-google-docs/system-design-google-docs.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-a-collaborative-document-editing-service-google-docs/requirements-of-google-docs-design.md","mtime":"2023-09-27T05:42:27.621Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:43:09.994Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

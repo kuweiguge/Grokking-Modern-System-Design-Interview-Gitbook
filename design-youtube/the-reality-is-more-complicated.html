@@ -3385,10 +3385,10 @@
 <h3 id="encode-">Encode <a href="#encode-1" id="encode-1"></a></h3>
 <p>Until now, we&#x2019;ve considered encoding one video with different encoding schemes. However, if we encode videos on a per-shot basis, we&#x2019;ll divide the video into smaller time frames and encode them individually. We can divide videos into shorter time frames and refer to them as segments. Each segment will be encoded using multiple encoding schemes to generate different files called chunks. The choice of encoding scheme for a segment will be based on the detail within the segment to get optimized quality with lesser storage requirements. Eventually, each shot will be encoded into multiple chunk sizes depending on the segment&#x2019;s content and encoding scheme used. As we divide the raw video into segments, we&#x2019;ll see its advantages during the deployment and delivery phase.</p>
 <p>Let&#x2019;s understand how the per-segment encoding will work. For any video with dynamic colors and high depth, we&#x2019;ll encode it differently from a video with fewer colors. This means that a not-so-dynamic segment will be encoded such that it&#x2019;s compressed more to save additional storage space. Eventually, we&#x2019;ll have to transfer smaller file sizes and save bandwidth during the deployment and streaming phases.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 3.44.16 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.44.16 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>Using the strategy above, we&#x2019;ll have to encode individual shots of a video in various formats. However, the alternative to this would be storing an entire video (using no segmenting) after encoding it in various formats. If we encode on a per-shot basis, we would be able to optimally reduce the size of the entire video by doing the encoding on a granular level. We can also encode audio in various formats to optimally allow streaming for various clients like TVs, mobile phones, and desktop machines. Specifically, for services like Netflix, audio encoding is more useful because audios are offered in various languages.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 3.44.43 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.44.43 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h3 id="deploy-">Deploy <a href="#deploy-0" id="deploy-0"></a></h3>
 <p>As discussed in our design and evaluation sections, we have to bring the content closer to the user. This has three main advantages:</p>
@@ -3398,7 +3398,7 @@
 <li>Internet service providers (ISPs) will have spare bandwidth.</li>
 </ol>
 <p>So, instead of streaming from our data centers directly, we can deploy chunks of popular videos in CDNs and point of presence (PoPs) of ISPs. In places where there is no collaboration possible with the ISPs, our content can be placed in internet exchange point (IXPs). We can put content in IXPs that will not only be closer to users, but can also be helpful in filling the cache of ISP PoPs.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 3.45.05 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.45.05 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>We should keep in mind that the caching at the ISP or IXP is performed only for the popular content or moderately popular content because of limited storage capacity. Since our per-shot encoding scheme saves storage space, we&#x2019;ll be able to serve out more content using the cache infrastructure closer to end users.</p>
 <p>Additionally, we can have two types of storage at the origin servers:</p>
@@ -3417,16 +3417,16 @@
 <li><strong>Ranking</strong>: The ranking phase rates videos based on their features and according to the user&#x2019;s interests and history. Hundreds of videos are filtered and ranked down to a few dozen videos during this phase.</li>
 </ol>
 <p>YouTube employs machine learning<em>(Covington, Paul, Jay Adams, and Emre Sargin. &#x201C;Deep neural networks for youtube recommendations.&#x201D; Proceedings of the 10th ACM conference on recommender systems. 2016.)</em> technology in both phases to provide recommendations to users.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 3.46.34 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.46.34 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Question 1</strong></p>
 <p>Previously, we said that popular content is sent to ISPs, IXPs, and CDNs. We&#x2019;ve now discussed YouTube&#x2019;s feature that recommends content. What is the difference between popular and recommended content on YouTube?</p>
 <p>Recommendations are specific to users&#x2019; profiles and interests, whereas popular content is recognized on a regional or global basis. It is possible to present popular content to the general audience.</p>
 <p><strong>Question 2</strong></p>
 <p>Can you provide some formulaic representation of how the YouTube algorithm for popular content would work?</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 3.48.09 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.48.09 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 3.48.40 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.48.40 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Question 3</strong></p>
 <p>In reference to Question 2, how often do you think that the approximation calculation for whether content is popular will be made? On each click, like, or comment?</p>
@@ -3440,12 +3440,12 @@
 <h3 id="deliver-">Deliver <a href="#deliver-0" id="deliver-0"></a></h3>
 <p>Let&#x2019;s see how the end user gets the content on their device. Since we have the chunks of videos already deployed near users, we redirect users to the nearest available chunks. As shown below, whenever a user requests content that YouTube has recognized as popular, YouTube redirects the user to the nearest CDN.</p>
 <p>However, in the case of non-popular content, the user is served from colocation sites or YouTube&#x2019;s data center where the content is stored initially. We have already learned how YouTube can reduce latency times by having distributed caches at different design layers.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 3.49.47 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.49.47 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="adaptive-streaming-">Adaptive streaming <a href="#adaptive-streaming-0" id="adaptive-streaming-0"></a></h4>
 <p>While the content is being served, the bandwidth of the user is also being monitored at all times. Since the video is divided into chunks of different qualities, each of the same time frame, the chunks are provided to clients based on changing network conditions.</p>
 <p>As shown below, when the bandwidth is high, a higher quality chunk is sent to the client and vice versa.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 3.50.19 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.50.19 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>The adaptive bitrate algorithm depends on the following four parameters:</p>
 <ol>
@@ -3454,7 +3454,7 @@
 <li>Encoding techniques used.</li>
 <li>The buffer space at the client [source].</li>
 </ol>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 3.50.51 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.50.51 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h3 id="potential-follow-up-questions-">Potential follow-up questions <a href="#potential-follow-up-questions-0" id="potential-follow-up-questions-0"></a></h3>
 <p>There can be many different aspects of the system design of YouTube as there is more depth in the subject area. Therefore, many questions can arise. Some questions and directions toward their answers are as follows:</p>
@@ -3530,7 +3530,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"The Reality Is More Complicated","level":"1.25.5","depth":2,"next":{"title":"Quiz on YouTube's Design","level":"1.25.6","depth":2,"path":"design-youtube/quiz-on-youtubes-design.md","ref":"design-youtube/quiz-on-youtubes-design.md","articles":[]},"previous":{"title":"Evaluation of YouTube's Design","level":"1.25.4","depth":2,"path":"design-youtube/evaluation-of-youtubes-design.md","ref":"design-youtube/evaluation-of-youtubes-design.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-youtube/the-reality-is-more-complicated.md","mtime":"2023-09-27T05:28:14.735Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:28:51.183Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"The Reality Is More Complicated","level":"1.25.5","depth":2,"next":{"title":"Quiz on YouTube's Design","level":"1.25.6","depth":2,"path":"design-youtube/quiz-on-youtubes-design.md","ref":"design-youtube/quiz-on-youtubes-design.md","articles":[]},"previous":{"title":"Evaluation of YouTube's Design","level":"1.25.4","depth":2,"path":"design-youtube/evaluation-of-youtubes-design.md","ref":"design-youtube/evaluation-of-youtubes-design.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-youtube/the-reality-is-more-complicated.md","mtime":"2023-09-27T05:42:27.629Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:43:09.994Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

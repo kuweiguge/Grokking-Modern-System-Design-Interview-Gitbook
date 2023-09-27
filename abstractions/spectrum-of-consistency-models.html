@@ -3382,24 +3382,24 @@
 <li><em>Weakest consistency</em></li>
 </ul>
 <p>There are consistency models that lie between these two ends, some of which are shown in the following illustration:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-20 at 4.12.12 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-08-20 at 4.12.12 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>There is a difference between consistency in <em>ACID</em> <em>properties</em> and consistency in the <a href="https://www.educative.io/answers/what-is-the-cap-theorem" target="_blank"><em>CAP theorem</em></a>.</p>
 <p>Database rules are at the heart of <strong>ACID consistency</strong>. If a schema specifies that a value must be unique, a consistent system will ensure that the value is unique throughout all actions. If a foreign key indicates that deleting one row will also delete associated rows, a consistent system ensures that the state can&#x2019;t contain related rows once the base row has been destroyed.</p>
 <p><strong>CAP consistency</strong> guarantees that, in a distributed system, every replica of the same logical value has the same precise value at all times. It&#x2019;s worth noting that this is a logical rather than a physical guarantee. Due to the speed of light, replicating numbers throughout a cluster may take some time. By preventing clients from accessing different values at separate nodes, the cluster can nevertheless give a logical picture.</p>
 <h3 id="eventual-consistency-">Eventual consistency <a href="#eventual-consistency" id="eventual-consistency"></a></h3>
 <p><strong>Eventual consistency</strong> is the weakest consistency model. The applications that don&#x2019;t have strict ordering requirements and don&#x2019;t require reads to return the latest write choose this model. Eventual consistency ensures that all the replicas will eventually return the same value to the read request, but the returned value isn&#x2019;t meant to be the latest value. However, the value will finally reach its latest state.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-20 at 4.21.54 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-08-20 at 4.21.54 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-20 at 4.22.36 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-08-20 at 4.22.36 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-20 at 4.23.04 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-08-20 at 4.23.04 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-20 at 4.23.29 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-08-20 at 4.23.29 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-20 at 4.23.46 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-08-20 at 4.23.46 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-20 at 4.24.03 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-08-20 at 4.24.03 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>Eventual consistency ensures <strong>high availability</strong>.</p>
 <p><strong>Example</strong></p>
@@ -3410,7 +3410,7 @@
 <h3 id="causal-consistency-">Causal consistency <a href="#causal-consistency" id="causal-consistency"></a></h3>
 <p><strong>Causal consistency</strong> works by categorizing operations into dependent and independent operations. <strong>Dependent operations</strong> are also called causally-related operations. Causal consistency preserves the order of the causally-related operations.</p>
 <p>In the following illustration, process P1 writes a value <em>a</em> at location <em>x</em>. For P2 to write the value <em>b</em> at location <em>y</em>, it first needs to calculate <em>b</em>. Since <em>b=x+5</em>, the read operation on <em>x</em> should be performed before writing <em>b</em> on location <em>y</em>. That&#x2019;s why <em>read(x)a</em> and <em>write(y)b</em> are causally related.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-20 at 4.24.22 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-08-20 at 4.24.22 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>This model doesn&#x2019;t ensure ordering for the operations that are not causally related. These operations can be seen in different possible orders.</p>
 <p>Causal consistency is weaker overall, but stronger than the eventual consistency model. It&#x2019;s used to prevent non-intuitive behaviors.</p>
@@ -3426,23 +3426,23 @@
 <h3 id="strict-consistency-aka-linearizability-">Strict consistency aka linearizability <a href="#strict-consistency-aka-linearizability" id="strict-consistency-aka-linearizability"></a></h3>
 <p>A <strong>strict consistency</strong> or <strong>linearizability</strong> is the strongest consistency model. This model ensures that a read request from any replicas will get the latest write value. Once the client receives the acknowledgment that the write operation has been performed, other clients can read that value.</p>
 <p>Linearizability is challenging to achieve in a distributed system. Some of the reasons for such challenges are variable network delays and failures. The following slides show depicts how variable network delays make it possible for different parties to see different values.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-20 at 4.30.29 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-08-20 at 4.30.29 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-20 at 4.31.17 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-08-20 at 4.31.17 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-20 at 4.31.44 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-08-20 at 4.31.44 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-20 at 4.32.06 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-08-20 at 4.32.06 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-20 at 4.32.28 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-08-20 at 4.32.28 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-20 at 4.32.55 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-08-20 at 4.32.55 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-20 at 4.33.15 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-08-20 at 4.33.15 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-20 at 4.33.34 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-08-20 at 4.33.34 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-08-20 at 4.33.34 AM (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-08-20 at 4.33.34 AM (1).png" alt=""><figcaption></figcaption></figure>
 
 <p>Usually, synchronous replication is one of the ingredients for achieving strong consistency, though it in itself is not sufficient. We might need consensus algorithms such as Paxos and Raft to achieve strong consistency.</p>
 <p>Linearizability affects the system&#x2019;s availability, which is why it&#x2019;s not always used. Applications with strong consistency requirements use techniques like <strong>quorum-based replication</strong> to increase the system&#x2019;s availability.</p>
@@ -3498,7 +3498,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"description":"Learn about consistency models and see which model suits the requirements of our application.","title":"Spectrum of Consistency Models","level":"1.2.3","depth":2,"next":{"title":"The Spectrum of Failure Models","level":"1.2.4","depth":2,"path":"abstractions/the-spectrum-of-failure-models.md","ref":"abstractions/the-spectrum-of-failure-models.md","articles":[]},"previous":{"title":"Network Abstractions: Remote Procedure Calls","level":"1.2.2","depth":2,"path":"abstractions/network-abstractions-remote-procedure-calls.md","ref":"abstractions/network-abstractions-remote-procedure-calls.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"abstractions/spectrum-of-consistency-models.md","mtime":"2023-09-27T05:28:14.727Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:28:51.183Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"description":"Learn about consistency models and see which model suits the requirements of our application.","title":"Spectrum of Consistency Models","level":"1.2.3","depth":2,"next":{"title":"The Spectrum of Failure Models","level":"1.2.4","depth":2,"path":"abstractions/the-spectrum-of-failure-models.md","ref":"abstractions/the-spectrum-of-failure-models.md","articles":[]},"previous":{"title":"Network Abstractions: Remote Procedure Calls","level":"1.2.2","depth":2,"path":"abstractions/network-abstractions-remote-procedure-calls.md","ref":"abstractions/network-abstractions-remote-procedure-calls.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"abstractions/spectrum-of-consistency-models.md","mtime":"2023-09-27T05:42:27.617Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:43:09.994Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

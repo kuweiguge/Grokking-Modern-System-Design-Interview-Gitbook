@@ -3388,9 +3388,9 @@
 </ul>
 <p><strong>Question 1</strong></p>
 <p>Can we estimate the size of the priority queue? What are the pros and cons of a centralized and distributed priority queue.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.27.50 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.27.50 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.28.13 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.28.13 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>Having a single queue is beneficial for the deduplication of redundant links and better for the overall crawler resources. We&#x2019;ll handle the recrawling priority and frequency another way, as explained in the next sections, for which we need the distribution mechanism.</p>
 <p><strong>Question 2</strong></p>
@@ -3427,7 +3427,7 @@
 </ol>
 </li>
 </ul>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.28.13 AM (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.28.13 AM (1).png" alt=""><figcaption></figcaption></figure>
 
 <ul>
 <li><p><strong>Extractor</strong>: Once the HTML fetcher gets the web page, the next step is to extract two things from the webpage: URLs and the content. The extractor sends the extracted URLs directly and the content with the <strong>document input stream (DIS)</strong> to the duplicate eliminator. DIS is a cache that&#x2019;s used to store the extracted document, so that other components can access and process it. Over here, we can use Redis as our cache choice because of its advanced data structure functionality.</p>
@@ -3435,7 +3435,7 @@
 </li>
 <li><strong>Duplicate eliminator</strong>: Since the web is all interconnected, the probability of two different URLs referring to the same web page or different URLs referring to various web pages having the same content is evident. The crawler needs a component to perform a dedup test to eliminate the risk of exploiting resources by storing and processing the same content twice. The duplicate eliminator calculates the checksum value of each extracted URL and compares it against the URLs checksum data store. If found, it discards the extracted URL. Otherwise, it adds a new entry to the database with the calculated checksum value.</li>
 </ul>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.30.26 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.30.26 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>The duplicate eliminator repeats the same process with the extracted content and adds the new webpage&#x2019;s checksum value in the document checksum data store for future matchings.</p>
 <p>Our proposed design for the duplicate eliminator can be made robust against these two issues:</p>
@@ -3447,7 +3447,7 @@
 </li>
 </ol>
 <p>The following illustration shows the pictorial representation of the overall web crawler design:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.30.46 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.30.46 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="workflow-">Workflow <a href="#workflow-0" id="workflow-0"></a></h4>
 <ol>
@@ -3478,13 +3478,13 @@ The implementation of the URL frontier&#x2014;dequeuing the URLs from a FIFO pri
 <p><strong>Note:</strong> Because of multiple instances of each service and microservices architecture, our design can make use of client-side load balancing (see <a href="../design-twitter/client-side-load-balancer-for-twitter.html">Client-side Load Balancer for Twitter</a>).</p>
 </blockquote>
 <p>The following slideshow gives a detailed overview of the web crawler workflow:</p>
-<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.34.06 AM.png" alt=""></p>
-<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.34.17 AM.png" alt=""></p>
-<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.34.29 AM.png" alt=""></p>
-<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.34.40 AM.png" alt=""></p>
-<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.34.56 AM.png" alt=""></p>
-<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.35.09 AM.png" alt=""></p>
-<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.35.19 AM.png" alt=""></p>
+<p><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.34.06 AM.png" alt=""></p>
+<p><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.34.17 AM.png" alt=""></p>
+<p><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.34.29 AM.png" alt=""></p>
+<p><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.34.40 AM.png" alt=""></p>
+<p><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.34.56 AM.png" alt=""></p>
+<p><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.35.09 AM.png" alt=""></p>
+<p><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.35.19 AM.png" alt=""></p>
 <p><strong>Question</strong></p>
 <p>How frequently does the crawler need to re-crawl?</p>
 <p>Since crawling is not a one-time activity, the crawler needs to plan its default revisits with a suitable frequency. Let&#x2019;s define this frequency of revisits as two weeks. The crawler revisits all the standard priority URLs every two weeks. Once the crawler visits a URL, it re-appends the same URL into the URL frontier with a default next visit time that&#x2019;s equal to two weeks.</p>
@@ -3534,7 +3534,7 @@ The implementation of the URL frontier&#x2014;dequeuing the URLs from a FIFO pri
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Design of a Web Crawler","level":"1.34.3","depth":2,"next":{"title":"Design Improvements of a Web Crawler","level":"1.34.4","depth":2,"path":"design-a-web-crawler/design-improvements-of-a-web-crawler.md","ref":"design-a-web-crawler/design-improvements-of-a-web-crawler.md","articles":[]},"previous":{"title":"Requirements of a Web Crawler's Design","level":"1.34.2","depth":2,"path":"design-a-web-crawler/requirements-of-a-web-crawlers-design.md","ref":"design-a-web-crawler/requirements-of-a-web-crawlers-design.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-a-web-crawler/design-of-a-web-crawler.md","mtime":"2023-09-27T05:28:14.731Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:28:51.183Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Design of a Web Crawler","level":"1.34.3","depth":2,"next":{"title":"Design Improvements of a Web Crawler","level":"1.34.4","depth":2,"path":"design-a-web-crawler/design-improvements-of-a-web-crawler.md","ref":"design-a-web-crawler/design-improvements-of-a-web-crawler.md","articles":[]},"previous":{"title":"Requirements of a Web Crawler's Design","level":"1.34.2","depth":2,"path":"design-a-web-crawler/requirements-of-a-web-crawlers-design.md","ref":"design-a-web-crawler/requirements-of-a-web-crawlers-design.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-a-web-crawler/design-of-a-web-crawler.md","mtime":"2023-09-27T05:42:27.625Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:43:09.994Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

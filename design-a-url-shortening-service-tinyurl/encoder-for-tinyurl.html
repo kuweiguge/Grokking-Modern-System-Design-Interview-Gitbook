@@ -3575,16 +3575,16 @@
 <p><strong>Note:</strong> Both the base-10 numeric IDs and base-64 alphanumeric IDs have 64-bits, as per our sequencer design.</p>
 </blockquote>
 <p>Let&apos;s see the example above with the help of the following illustration.</p>
-<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.05.08 AM.png" alt=""></p>
+<p><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.05.08 AM.png" alt=""></p>
 <h3 id="converting-base-58-to-base-10-">Converting base-58 to base-10 <a href="#converting-base-58-to-base-10-0" id="converting-base-58-to-base-10-0"></a></h3>
 <p>The decoding process holds equal importance as the encoding process, as we used a decoder in case of custom short URLs generation, as explained in the <a href="design-and-deployment-of-tinyurl.html">design lesson</a>.</p>
 <p><strong>Process</strong>: The process of converting a base-58 number into a base-10 number is also straightforward. We just need to multiply each character index (value column from the table above) by the number of 58s that position holds, and add all the individual multiplication results.</p>
 <p><strong>Example</strong>: Let&apos;s reverse engineer the example above to see how decoding works.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.05.48 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.05.48 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>This is the same unique ID of base-10 from the previous example.</p>
 <p>Let&apos;s see the example above with the help of the following illustration.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.06.06 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.06.06 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h3 id="the-scope-of-the-short-url-generator-">The scope of the short URL generator <a href="#the-scope-of-the-short-url-generator-0" id="the-scope-of-the-short-url-generator-0"></a></h3>
 <p>The short URL generator is the backbone of our URL shortening service. The output of this short URL generator depends on the design-imposed limitations, as given below:</p>
@@ -3594,7 +3594,7 @@
 <li>The minimum default length of the generated short URL should be six characters.</li>
 </ul>
 <p>These limitations define the scope of our short URL generator. We can define the scope, as shown below:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.07.05 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.07.05 AM.png" alt=""><figcaption></figcaption></figure>
 
 <blockquote>
 <p><strong>Maximum digits</strong>: The calculations above show that the maximum digits in the sequencer generated ID will be 20 and consequently, the maximum number of characters in the encoded short URL will be 11.&#x2003;&#x2003;</p>
@@ -3617,16 +3617,16 @@
 <p><strong>Question 2</strong></p>
 <p>What should the short URL be for the sequencer&#x2019;s largest number?</p>
 <p>Hide Answer</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.07.55 AM (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.07.55 AM (1).png" alt=""><figcaption></figcaption></figure>
 
 <p>----------------------</p>
 <h3 id="the-sequencers-lifetime-">The sequencer&apos;s lifetime <a href="#the-sequencers-lifetime-0" id="the-sequencers-lifetime-0"></a></h3>
 <p>The number of years that our sequencer can provide us with unique IDs depends on two factors:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.10.29 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.10.29 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p> <a href="requirements-of-tinyurls-design.html"><em>Requirements</em></a></p>
 <p>So, taking the above two factors into consideration, we can calculate the expected life of our sequencer.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.09.16 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.09.16 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Life expectancy for sequencer</strong></p>
 <table>
@@ -3696,7 +3696,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Encoder for TinyURL","level":"1.33.4","depth":2,"next":{"title":"Evaluation of TinyURL's Design","level":"1.33.5","depth":2,"path":"design-a-url-shortening-service-tinyurl/evaluation-of-tinyurls-design.md","ref":"design-a-url-shortening-service-tinyurl/evaluation-of-tinyurls-design.md","articles":[]},"previous":{"title":"Design and Deployment of TinyURL","level":"1.33.3","depth":2,"path":"design-a-url-shortening-service-tinyurl/design-and-deployment-of-tinyurl.md","ref":"design-a-url-shortening-service-tinyurl/design-and-deployment-of-tinyurl.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-a-url-shortening-service-tinyurl/encoder-for-tinyurl.md","mtime":"2023-09-27T05:28:14.731Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:28:51.183Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Encoder for TinyURL","level":"1.33.4","depth":2,"next":{"title":"Evaluation of TinyURL's Design","level":"1.33.5","depth":2,"path":"design-a-url-shortening-service-tinyurl/evaluation-of-tinyurls-design.md","ref":"design-a-url-shortening-service-tinyurl/evaluation-of-tinyurls-design.md","articles":[]},"previous":{"title":"Design and Deployment of TinyURL","level":"1.33.3","depth":2,"path":"design-a-url-shortening-service-tinyurl/design-and-deployment-of-tinyurl.md","ref":"design-a-url-shortening-service-tinyurl/design-and-deployment-of-tinyurl.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-a-url-shortening-service-tinyurl/encoder-for-tinyurl.md","mtime":"2023-09-27T05:42:27.625Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:43:09.994Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

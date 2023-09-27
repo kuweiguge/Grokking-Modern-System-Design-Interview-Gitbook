@@ -3391,16 +3391,16 @@
 <li><strong>Security</strong>: The system must be secure via end-to-end encryption. The end-to-end encryption ensures that only the two communicating parties can see the content of messages. Nobody in between, not even WhatsApp, should have access.</li>
 <li><strong>Scalability:</strong> The system should be highly scalable to support an ever-increasing number of users and messages per day.</li>
 </ul>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.41.30 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.41.30 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h3 id="resource-estimation-">Resource estimation <a href="#resource-estimation-0" id="resource-estimation-0"></a></h3>
 <p>WhatsApp is the most used messaging application across the globe. According to WhatsApp, it supports more than two billion users around the world who share more than 100 billion messages each day. We need to estimate the storage capacity, bandwidth, and number of servers to support such an enormous number of users and messages.</p>
 <h4 id="storage-estimation-">Storage estimation <a href="#storage-estimation-0" id="storage-estimation-0"></a></h4>
 <p>As there are more than 100 billion messages shared per day over WhatsApp, let&#x2019;s estimate the storage capacity based on this figure. Assume that each message takes 100 Bytes on average. Moreover, the WhatsApp servers keep the messages only for 30 days. So, if the user doesn&#x2019;t get connected to the server within these days, the messages will be permanently deleted from the server.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.42.01 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.42.01 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="bandwidth-estimation-">Bandwidth estimation <a href="#bandwidth-estimation-0" id="bandwidth-estimation-0"></a></h4>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.43.00 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.43.00 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h3 id="high-level-estimates">High-level Estimates</h3>
 <table>
@@ -3439,7 +3439,7 @@
 <p><strong>Note:</strong> We can often optimize a general-purpose server for special tasks by careful performance engineering of the full software stack.</p>
 </blockquote>
 <p>Let&#x2019;s move to the estimation of the number of servers:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.44.33 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.44.33 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="try-it-out-">Try it out <a href="#try-it-out-0" id="try-it-out-0"></a></h4>
 <p>Let&#x2019;s analyze how the number of messages per day affects the storage and bandwidth requirements. For this purpose, we can change values in the following table to compute the estimates:</p>
@@ -3479,7 +3479,7 @@
 </table>
 <h3 id="building-blocks-we-will-use-">Building blocks we will use <a href="#building-blocks-we-will-use-0" id="building-blocks-we-will-use-0"></a></h3>
 <p>The design of WhatsApp utilizes the following building blocks that have also been discussed in the initial chapters:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.45.25 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.45.25 AM.png" alt=""><figcaption></figcaption></figure>
 
 <ul>
 <li><a href="../databases/introduction-to-databases.html"><strong>Databases</strong></a> are required to store users&#x2019; and groups&#x2019; metadata.</li>
@@ -3533,7 +3533,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Requirements of WhatsApp’s Design","level":"1.35.2","depth":2,"next":{"title":"High-level Design of WhatsApp","level":"1.35.3","depth":2,"path":"design-whatsapp/high-level-design-of-whatsapp.md","ref":"design-whatsapp/high-level-design-of-whatsapp.md","articles":[]},"previous":{"title":"System Design: WhatsApp","level":"1.35.1","depth":2,"path":"design-whatsapp/system-design-whatsapp.md","ref":"design-whatsapp/system-design-whatsapp.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-whatsapp/requirements-of-whatsapps-design.md","mtime":"2023-09-27T05:28:14.735Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:28:51.183Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Requirements of WhatsApp’s Design","level":"1.35.2","depth":2,"next":{"title":"High-level Design of WhatsApp","level":"1.35.3","depth":2,"path":"design-whatsapp/high-level-design-of-whatsapp.md","ref":"design-whatsapp/high-level-design-of-whatsapp.md","articles":[]},"previous":{"title":"System Design: WhatsApp","level":"1.35.1","depth":2,"path":"design-whatsapp/system-design-whatsapp.md","ref":"design-whatsapp/system-design-whatsapp.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-whatsapp/requirements-of-whatsapps-design.md","mtime":"2023-09-27T05:42:27.629Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:43:09.994Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

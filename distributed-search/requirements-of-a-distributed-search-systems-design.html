@@ -3380,7 +3380,7 @@
 <ul>
 <li><strong>Search</strong>: Users should get relevant content based on their search queries.</li>
 </ul>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 2.12.08 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 2.12.08 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="non-functional-requirements-">Non-functional requirements <a href="#non-functional-requirements-0" id="non-functional-requirements-0"></a></h4>
 <p>Here are the non-functional requirements of a distributed search system:</p>
@@ -3390,7 +3390,7 @@
 <li><strong>Fast search on big data</strong>: The user should get the results quickly, no matter how much content they are searching.</li>
 <li><strong>Reduced cost</strong>: The overall cost of building a search system should be less.</li>
 </ul>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 2.12.31 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 2.12.31 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h3 id="resource-estimation-">Resource estimation <a href="#resource-estimation-0" id="resource-estimation-0"></a></h3>
 <p>Let&#x2019;s estimate the total number of servers, storage, and bandwidth that is required by the distributed search system. We&#x2019;ll calculate these numbers using an example of a YouTube search.</p>
@@ -3401,10 +3401,10 @@
 <li>The number of requests a single server can handle is 1,000.</li>
 </ul>
 <p>The number of servers required is calculated using this formula:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 2.13.01 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 2.13.01 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>If three million users are searching concurrently, three million search requests are being generated at one time. A single server handles 1,000 requests at a time. Dividing three million by 1,000 gives us 3,000 servers.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 2.13.15 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 2.13.15 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="storage-estimation-">Storage estimation <a href="#storage-estimation-0" id="storage-estimation-0"></a></h4>
 <p>Each video&#x2019;s metadata is stored in a separate JSON document. Each document is uniquely identified by the video ID. This metadata contains the title of the video, its description, the channel name, and a transcript. We assume the following numbers for estimating the storage required to index one video:</p>
@@ -3414,7 +3414,7 @@
 <li>The amount of storage space required to add one term into the index table is 100 Bytes.</li>
 </ul>
 <p>The following formula is used to compute the storage required to index one video:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 2.14.23 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 2.14.23 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Total Storage Required to Index One Video on YouTube</strong></p>
 <table>
@@ -3436,7 +3436,7 @@
 </tbody>
 </table>
 <p>In the table above, we calculate the storage required to index one video. We have already seen that the total storage required per video is 300 KB. Assuming that, on average, the number of videos uploaded per day on YouTube is 6,000, let&#x2019;s calculate the total storage required to index the videos uploaded per day. The following formula is used to compute the storage required to index the videos uploaded to YouTube in one day:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 2.14.50 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 2.14.50 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Total Storage Required to Index Videos per Day on YouTube</strong></p>
 <table>
@@ -3456,11 +3456,11 @@
 </tbody>
 </table>
 <p>The total storage required to index 6,000 videos uploaded per day on YouTube is 1.8 GB. This storage requirement is just an estimation for YouTube. The storage need will increase if we provide a distributed search system as a service to multiple tenants.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 2.15.36 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 2.15.36 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="bandwidth-estimation-">Bandwidth estimation <a href="#bandwidth-estimation-0" id="bandwidth-estimation-0"></a></h4>
 <p>The data is transferred between the user and the server on each search request. We estimate the bandwidth required for the incoming traffic on the server and the outgoing traffic from the server. Here is the formula to calculate the required bandwidth:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 2.16.04 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 2.16.04 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Incoming traffic</strong></p>
 <p>To estimate the incoming traffic bandwidth, we assume the following numbers:</p>
@@ -3511,7 +3511,7 @@
 </tr>
 </tbody>
 </table>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 2.16.38 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 2.16.38 AM.png" alt=""><figcaption></figcaption></figure>
 
 <blockquote>
 <p><strong>Note:</strong> The bandwidth requirements are relatively modest because we are assuming text results. Many search services can return small thumbnails and other media to enhance the search page. The bandwidth needs per page are intentionally low so that the service can provide near real-time results to the client.</p>
@@ -3563,7 +3563,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Requirements of a Distributed Search System's Design","level":"1.20.2","depth":2,"next":{"title":"Indexing in a Distributed Search","level":"1.20.3","depth":2,"path":"distributed-search/indexing-in-a-distributed-search.md","ref":"distributed-search/indexing-in-a-distributed-search.md","articles":[]},"previous":{"title":"System Design: The Distributed Search","level":"1.20.1","depth":2,"path":"distributed-search/system-design-the-distributed-search.md","ref":"distributed-search/system-design-the-distributed-search.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"distributed-search/requirements-of-a-distributed-search-systems-design.md","mtime":"2023-09-27T05:28:14.739Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:28:51.183Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Requirements of a Distributed Search System's Design","level":"1.20.2","depth":2,"next":{"title":"Indexing in a Distributed Search","level":"1.20.3","depth":2,"path":"distributed-search/indexing-in-a-distributed-search.md","ref":"distributed-search/indexing-in-a-distributed-search.md","articles":[]},"previous":{"title":"System Design: The Distributed Search","level":"1.20.1","depth":2,"path":"distributed-search/system-design-the-distributed-search.md","ref":"distributed-search/system-design-the-distributed-search.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"distributed-search/requirements-of-a-distributed-search-systems-design.md","mtime":"2023-09-27T05:42:27.633Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:43:09.994Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -3393,16 +3393,16 @@
 <li>If there are N incoming requests and the bucket has a lower number of tokens, then the number of requests accepted equals the number of available tokens in the bucket.</li>
 </ol>
 <p>The following illustration represents the working of the token bucket algorithm.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.28.09 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.28.09 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>The following illustration demonstrates how token consumption and rate-limiting logic work. In this example, the capacity of the bucket is three, and it is refilled at a rate of three tokens per minute.</p>
-<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.28.56 AM.png" alt=""></p>
-<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.29.12 AM.png" alt=""></p>
-<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.29.24 AM.png" alt=""></p>
-<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.29.35 AM.png" alt=""></p>
+<p><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.28.56 AM.png" alt=""></p>
+<p><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.29.12 AM.png" alt=""></p>
+<p><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.29.24 AM.png" alt=""></p>
+<p><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.29.35 AM.png" alt=""></p>
 <p><strong>Essential parameters</strong></p>
 <p>We require the following essential parameters to implement the token bucket algorithm:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.29.50 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.29.50 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Advantages</strong></p>
 <ul>
@@ -3421,18 +3421,18 @@
 <p>In the illustration below, three tokens have been accumulated at the end of the first minute. At the same time, a burst of requests arrives and consumes all three tokens, leaving the bucket empty. At the end of 1.331.33 minutes (at a refill rate of 0.330.33), a new token is added to the bucket. Simultaneously, a new request arrives and consumes the token.</p>
 <p>However, if we consider the duration from 0.660.66 to 1.331.33 minutes, we&#x2019;ll see that a total of four tokens have been consumed.</p>
 <p>This example shows that the token bucket can surpass the limit at the edges.</p>
-<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.30.33 AM.png" alt=""></p>
+<p><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.30.33 AM.png" alt=""></p>
 <p>-----------</p>
 <h4 id="the-leaking-bucket-algorithm-">The leaking bucket algorithm <a href="#the-leaking-bucket-algorithm-0" id="the-leaking-bucket-algorithm-0"></a></h4>
 <p>The <strong>leaking bucket algorithm</strong> is a variant of the token bucket algorithm with slight modifications. Instead of using tokens, the leaking bucket algorithm uses a bucket to contain incoming requests and processes them at a constant outgoing rate. This algorithm uses the analogy of a water bucket leaking at a constant rate. Similarly, in this algorithm, the requests arrive at a variable rate. The algorithm process these requests at a constant rate in a first-in-first-out (FIFO) order.</p>
 <p>Let&#x2019;s look at how the leaking bucket algorithm works in the illustration below:</p>
-<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.30.53 AM.png" alt=""></p>
+<p><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.30.53 AM.png" alt=""></p>
 <p><strong>Essential parameters</strong></p>
 <p>The leaking bucket algorithm requires the following parameters.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.29.50 AM (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.29.50 AM (2).png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Advantages</strong></p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.31.44 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.31.44 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Disadvantages</strong></p>
 <ul>
@@ -3442,14 +3442,14 @@
 <h4 id="fixed-window-counter-algorithm-">Fixed window counter algorithm <a href="#fixed-window-counter-algorithm-0" id="fixed-window-counter-algorithm-0"></a></h4>
 <p>This algorithm divides the time into fixed intervals called <strong>windows</strong> and assigns a counter to each window. When a specific window receives a request, the counter is incremented by one. Once the counter reaches its limit, new requests are discarded in that window.</p>
 <p>As shown in the below figure, a dotted line represents the limit in each window. If the counter is lower than the limit, forward the request; otherwise, discard the request.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.32.11 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.32.11 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>There is a significant problem with this algorithm. A burst of traffic greater than the allowed requests can occur at the edges of the window. In the below figure, the system allows a maximum of ten requests per minute. However, the number of requests in the one-minute window from 01:30 to 02:30 is 20, which is greater than the allowed number of requests.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.32.32 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.32.32 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Essential parameters</strong></p>
 <p>The fixed window counter algorithm requires the following parameters:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.32.53 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.32.53 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Advantages</strong></p>
 <ul>
@@ -3464,13 +3464,13 @@
 <p>The <strong>sliding window log algorithm</strong> keeps track of each incoming request. When a request arrives, its arrival time is stored in a hash map, usually known as the log. The logs are sorted based on the time stamps of incoming requests. The requests are allowed depending on the size of the log and arrival time.</p>
 <p>The main advantage of this algorithm is that it doesn&#x2019;t suffer from the edge conditions, as compared to the <strong>fixed window counter</strong> algorithm.</p>
 <p>Let&#x2019;s understand how the sliding window log algorithm works in the illustration below. Assume that we have a maximum rate limit of two requests in a minute.</p>
-<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.33.55 AM.png" alt=""></p>
-<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.34.08 AM.png" alt=""></p>
-<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.34.22 AM.png" alt=""></p>
-<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.34.36 AM.png" alt=""></p>
+<p><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.33.55 AM.png" alt=""></p>
+<p><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.34.08 AM.png" alt=""></p>
+<p><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.34.22 AM.png" alt=""></p>
+<p><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.34.36 AM.png" alt=""></p>
 <p><strong>Essential parameters</strong></p>
 <p>The following parameters are required to implement the sliding window log algorithm:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.34.52 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.34.52 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Advantages</strong></p>
 <ul>
@@ -3482,14 +3482,14 @@
 </ul>
 <h4 id="sliding-window-counter-algorithm-">Sliding window counter algorithm <a href="#sliding-window-counter-algorithm-0" id="sliding-window-counter-algorithm-0"></a></h4>
 <p>Unlike the previously fixed window algorithm, the <strong>sliding window counter algorithm</strong> doesn&#x2019;t limit the requests based on fixed time units. This algorithm takes into account both the fixed window counter and sliding window log algorithms to make the flow of requests more smooth. Let&#x2019;s look at the flow of the algorithm in the below figure.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.35.14 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.35.14 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>In the above figure, we&#x2019;ve 88 requests in the previous window while 12 in the current window. We&#x2019;ve set the rate limit to 100 requests per minute. Further, the rolling window overlaps 15 seconds with the current window. Now assume that a new request arrives at 02:15. We&#x2019;ll decide which request to accept or reject using the mathematical formulation:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.35.57 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.35.57 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Essential parameters</strong></p>
 <p>This algorithm is relatively more complex than the other algorithms described above. It requires the following parameters:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.36.32 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.36.32 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Advantages</strong></p>
 <ul>
@@ -3592,7 +3592,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Rate Limiter Algorithms","level":"1.18.4","depth":2,"next":{"title":"Quiz on the Rate Limiter’s Design","level":"1.18.5","depth":2,"path":"rate-limiter/quiz-on-the-rate-limiters-design.md","ref":"rate-limiter/quiz-on-the-rate-limiters-design.md","articles":[]},"previous":{"title":"Design of a Rate Limiter","level":"1.18.3","depth":2,"path":"rate-limiter/design-of-a-rate-limiter.md","ref":"rate-limiter/design-of-a-rate-limiter.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"rate-limiter/rate-limiter-algorithms.md","mtime":"2023-09-27T05:28:14.739Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:28:51.183Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Rate Limiter Algorithms","level":"1.18.4","depth":2,"next":{"title":"Quiz on the Rate Limiter’s Design","level":"1.18.5","depth":2,"path":"rate-limiter/quiz-on-the-rate-limiters-design.md","ref":"rate-limiter/quiz-on-the-rate-limiters-design.md","articles":[]},"previous":{"title":"Design of a Rate Limiter","level":"1.18.3","depth":2,"path":"rate-limiter/design-of-a-rate-limiter.md","ref":"rate-limiter/design-of-a-rate-limiter.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"rate-limiter/rate-limiter-algorithms.md","mtime":"2023-09-27T05:42:27.633Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:43:09.994Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
