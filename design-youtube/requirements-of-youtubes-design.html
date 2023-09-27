@@ -3393,7 +3393,7 @@
 <li><strong>Good performance</strong>: A smooth streaming experience leads to better performance overall.</li>
 <li><strong>Reliability</strong>: Content uploaded to the system should not be lost or damaged.</li>
 </ul>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 3.18.02 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 3.18.02 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>We don&#x2019;t require strong consistency for YouTube&#x2019;s design. Consider an example where a creator uploads a video. Not all users subscribed to the creator&#x2019;s channel should immediately get the notification for uploaded content.</p>
 <p>To summarize, the functional requirements are the features and functionalities that the user will get, whereas the non-functional requirements are the expectations in terms of performance from the system.</p>
@@ -3417,7 +3417,7 @@
 <h4 id="storage-estimation-">Storage estimation <a href="#storage-estimation-1" id="storage-estimation-1"></a></h4>
 <p>To find the storage needs of YouTube, we have to estimate the total number of videos and the length of each video uploaded to YouTube per minute. Let&#x2019;s consider that 500 hours worth of content is uploaded to YouTube in one minute. Since each video of 30 MB is 5 minutes long, we require 305530&#x200B; = 6 MB to store 1 minute of video.</p>
 <p>Let&#x2019;s put this in a formula by assuming the following:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 3.18.44 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 3.18.44 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>Below is a calculator to help us estimate our required resources. We&#x2019;ll look first at the storage required to persist 500 hours of content uploaded per minute, where each minute of video costs 6 MBs to store:</p>
 <p><strong>Storage Required for Storing Content per Minute on YouTube</strong></p>
@@ -3442,16 +3442,16 @@
 <p>Tip</p>
 <p>Try changing the values of <strong>Hours</strong> and <strong>MB per minute</strong> to see their impact on storage space requirements.</p>
 <p>The numbers mentioned above correspond to the compressed version of videos. However, we need to transcode videos into various formats for reasons that we will see in the coming lessons. Therefore, we&#x2019;ll require more storage space than the one estimated above.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 3.19.43 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 3.19.43 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Question</strong></p>
 <p>Assuming YouTube stores videos in five different qualities and the average size of a one-minute video is 6 MB, what would the estimated storage requirements per minute be?</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 3.20.19 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 3.20.19 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="bandwidth-estimation-">Bandwidth estimation <a href="#bandwidth-estimation-0" id="bandwidth-estimation-0"></a></h4>
 <p>A lot of data transfer will be performed for streaming and uploading videos to YouTube. This is why we need to calculate our bandwidth estimation too. Assume the <code>upload:view</code> ratio is <code>1:300</code>&#x2014;that is, for each uploaded video, we have 300 video views per second. We&#x2019;ll also have to keep in mind that when a video is uploaded, it is not in compressed format, while viewed videos can be of different qualities. Let&#x2019;s estimate the bandwidth required for uploading the videos.</p>
 <p>We assume:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 3.21.01 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 3.21.01 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>The Bandwidth Required for Uploading Videos to YouTube</strong></p>
 <table>
@@ -3473,21 +3473,21 @@
 </tbody>
 </table>
 <p>Show Detailed Calculations</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 3.21.21 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 3.21.21 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Question</strong></p>
 <p>If 200 Gbps of bandwidth is required for satisfying uploading needs, how much bandwidth would be required to stream videos? Assume each minute of video requires 10 MB of bandwidth on average.</p>
 <p><strong>Hint</strong>: The <code>upload:view</code> ratio is provided.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 3.22.13 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 3.22.13 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 3.23.52 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 3.23.52 AM.png" alt=""><figcaption></figcaption></figure>
 
 <blockquote>
 <p><strong>Note:</strong> In a real-world scenario, YouTube&#x2019;s design requires storage for thumbnails, users&#x2019; data, video metadata, users&#x2019; channel information, and so on. Since the storage requirement for these data sets will not be significant compared to video files, we ignore it for simplicity&#x2019;s sake.</p>
 </blockquote>
 <h3 id="building-blocks-we-will-use-">Building blocks we will use <a href="#building-blocks-we-will-use-0" id="building-blocks-we-will-use-0"></a></h3>
 <p>Now that we have completed the resource estimations, let&#x2019;s identify the building blocks that will be an integral part of our design for the YouTube system. The key building blocks are given below:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 3.24.33 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 3.24.33 AM.png" alt=""><figcaption></figcaption></figure>
 
 <ul>
 <li><a href="https://www.educative.io/collection/page/10370001/4941429335392256/4901035478351872" target="_blank"><strong>Databases</strong></a> are required to store the metadata of videos, thumbnails, comments, and user-related information.</li>
@@ -3543,7 +3543,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Requirements of YouTube's Design","level":"1.25.2","depth":2,"next":{"title":"Design of YouTube","level":"1.25.3","depth":2,"path":"design-youtube/design-of-youtube.md","ref":"design-youtube/design-of-youtube.md","articles":[]},"previous":{"title":"System Design: YouTube","level":"1.25.1","depth":2,"path":"design-youtube/system-design-youtube.md","ref":"design-youtube/system-design-youtube.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-youtube/requirements-of-youtubes-design.md","mtime":"2023-09-27T05:12:52.219Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:13:42.952Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Requirements of YouTube's Design","level":"1.25.2","depth":2,"next":{"title":"Design of YouTube","level":"1.25.3","depth":2,"path":"design-youtube/design-of-youtube.md","ref":"design-youtube/design-of-youtube.md","articles":[]},"previous":{"title":"System Design: YouTube","level":"1.25.1","depth":2,"path":"design-youtube/system-design-youtube.md","ref":"design-youtube/system-design-youtube.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-youtube/requirements-of-youtubes-design.md","mtime":"2023-09-27T05:28:14.735Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:28:51.183Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

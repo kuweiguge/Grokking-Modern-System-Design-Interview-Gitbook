@@ -3405,7 +3405,7 @@
 </ol>
 <p>Hence, randomly assigning unique IDs deprives the attackers of such system insights, which are needed for enumerating and compromising the user&#x2019;s private data.</p>
 <p>----------------</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.52.44 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 12.52.44 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h3 id="resource-estimation-">Resource estimation <a href="#resource-estimation-0" id="resource-estimation-0"></a></h3>
 <p>It&#x2019;s better to have realistic estimations at the start. For instance, we might need to change them in the future based on the design modifications. Let&#x2019;s make some assumptions to complete our estimation.</p>
@@ -3419,7 +3419,7 @@
 </ul>
 <h4 id="storage-estimation-">Storage estimation <a href="#storage-estimation-1" id="storage-estimation-1"></a></h4>
 <p>Since entries are saved for a time period of 5 years and there are a total of 200 million entries per month, the total entries will be approximately 12 billion.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.53.17 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 12.53.17 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>URL Shortening Service Storage Estimation Calculator</strong></p>
 <table>
@@ -3453,18 +3453,18 @@
 </tr>
 </tbody>
 </table>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.53.35 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 12.53.35 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="query-rate-estimation-">Query rate estimation <a href="#query-rate-estimation-0" id="query-rate-estimation-0"></a></h4>
 <p>Based on the estimations above, we can expect 20 billion redirection requests per month.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.54.02 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 12.54.02 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="bandwidth-estimation-">Bandwidth estimation <a href="#bandwidth-estimation-1" id="bandwidth-estimation-1"></a></h4>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.54.29 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 12.54.29 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="memory-estimation-">Memory estimation <a href="#memory-estimation-0" id="memory-estimation-0"></a></h4>
 <p>We need memory estimates in case we want to cache some of the frequently accessed URL redirection requests. Let&#x2019;s assume a split of 80-20 in the incoming requests. 20 percent of redirection requests generate 80 percent of the traffic.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.54.52 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 12.54.52 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>URL Shortening Service Estimates Calculator</strong></p>
 <table>
@@ -3515,7 +3515,7 @@
 </table>
 <h4 id="number-of-servers-estimation-">Number of servers estimation <a href="#number-of-servers-estimation-0" id="number-of-servers-estimation-0"></a></h4>
 <p>We adopt the same approximation discussed in the <a href="../back-of-the-envelope-calculations/put-back-of-the-envelope-numbers-in-perspective.html">back-of-the-envelope calculations</a> to calculate the number of servers needed: the number of daily active users and the daily user handling limit of a server are the two main factors in depicting the total number of servers required. According to the approximation, we need to divide the Daily Active Users (DAU) by 8000 to calculate the approximated number of servers.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.55.21 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 12.55.21 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="summarizing-estimation-">Summarizing estimation <a href="#summarizing-estimation-0" id="summarizing-estimation-0"></a></h4>
 <p>Based on the assumption above, the following table summarizes our estimations:</p>
@@ -3559,7 +3559,7 @@
 </table>
 <h3 id="building-blocks-we-will-use-">Building blocks we will use <a href="#building-blocks-we-will-use-0" id="building-blocks-we-will-use-0"></a></h3>
 <p>With the estimations done, we can identify the key building blocks in our design. Such a list is given below:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.55.45 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 12.55.45 AM.png" alt=""><figcaption></figcaption></figure>
 
 <ul>
 <li><a href="../databases/introduction-to-databases.html"><strong>Database(s)</strong></a> will be needed to store the mapping of long URLs and the corresponding short URLs.</li>
@@ -3616,7 +3616,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Requirements of TinyURL's Design","level":"1.33.2","depth":2,"next":{"title":"Design and Deployment of TinyURL","level":"1.33.3","depth":2,"path":"design-a-url-shortening-service-tinyurl/design-and-deployment-of-tinyurl.md","ref":"design-a-url-shortening-service-tinyurl/design-and-deployment-of-tinyurl.md","articles":[]},"previous":{"title":"System Design: TinyURL","level":"1.33.1","depth":2,"path":"design-a-url-shortening-service-tinyurl/system-design-tinyurl.md","ref":"design-a-url-shortening-service-tinyurl/system-design-tinyurl.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-a-url-shortening-service-tinyurl/requirements-of-tinyurls-design.md","mtime":"2023-09-27T05:12:52.211Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:13:42.952Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Requirements of TinyURL's Design","level":"1.33.2","depth":2,"next":{"title":"Design and Deployment of TinyURL","level":"1.33.3","depth":2,"path":"design-a-url-shortening-service-tinyurl/design-and-deployment-of-tinyurl.md","ref":"design-a-url-shortening-service-tinyurl/design-and-deployment-of-tinyurl.md","articles":[]},"previous":{"title":"System Design: TinyURL","level":"1.33.1","depth":2,"path":"design-a-url-shortening-service-tinyurl/system-design-tinyurl.md","ref":"design-a-url-shortening-service-tinyurl/system-design-tinyurl.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-a-url-shortening-service-tinyurl/requirements-of-tinyurls-design.md","mtime":"2023-09-27T05:28:14.731Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:28:51.183Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

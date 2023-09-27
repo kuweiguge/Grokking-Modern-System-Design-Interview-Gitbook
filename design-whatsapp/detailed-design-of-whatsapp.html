@@ -3384,7 +3384,7 @@
 <p>To answer all these questions, let&#x2019;s dive deep into the high-level design and explore each component in detail. Let&#x2019;s start with how users make connections with the chat servers.</p>
 <h4 id="connection-with-a-websocket-server-">Connection with a WebSocket server <a href="#connection-with-a-websocket-server-0" id="connection-with-a-websocket-server-0"></a></h4>
 <p>In WhatsApp, each active device is connected with a <strong>WebSocket server</strong> via WebSocket protocol. A WebSocket server keeps the connection open with all the active (online) users. Since one server isn&#x2019;t enough to handle billions of devices, there should be enough servers to handle billions of users. The responsibility of each of these servers is to provide a port to every online user. The mapping between servers, ports, and users is stored in the WebSocket manager that resides on top of a cluster of the data store. In this case, that&#x2019;s Redis.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.57.12 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.57.12 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Question</strong></p>
 <p>Why is WebSocket preferred over HTTP(S) protocol for client-server communication?</p>
@@ -3393,7 +3393,7 @@
 <h4 id="send-or-receive-messages-">Send or receive messages <a href="#send-or-receive-messages-0" id="send-or-receive-messages-0"></a></h4>
 <p>The WebSocket manager is responsible for maintaining a mapping between an active user and a port assigned to the user. Whenever a user is connected to another WebSocket server, this information will be updated in the data store.</p>
 <p>A WebSocket server also communicates with another service called message service. <strong>Message service</strong> is a repository of messages on top of the Mnesia database cluster. It acts as an interface to the Mnesia database for other services interacting with the databases. It is responsible for storing and retrieving messages from the Mnesia database. It also deletes messages from the Mnesia database after a configurable amount of time. And, it exposes APIs to receive messages by various filters, such as user ID, message ID, and so on.</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.58.52 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 1.58.52 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>Now, let&#x2019;s assume that user A wants to send a message to user B. As shown in the above figure, both users are connected to different WebSocket servers. The system performs the following steps to send messages from user A to user B:</p>
 <ol>
@@ -3422,7 +3422,7 @@
 <li>The content is loaded onto a CDN if the asset service receives a large number of requests for some particular content.</li>
 </ol>
 <p>The following figure demonstrates the components involved in sharing media files over WhatsApp messenger:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 2.00.56 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.00.56 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="support-for-group-messages-">Support for group messages <a href="#support-for-group-messages" id="support-for-group-messages"></a></h4>
 <p>WebSocket servers don&#x2019;t keep track of groups because they only track active users. However, some users could be online and others could be offline in a group. For group messages, the following three main components are responsible for delivering messages to each user in a group:</p>
@@ -3439,7 +3439,7 @@
 <li>The group message handler communicates with the group service to retrieve data of <code>Group/A</code> users.</li>
 <li>In the last step, the group message handler follows the same process as a WebSocket server and delivers the message to each user.</li>
 </ol>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 2.01.57 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.01.57 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>----------------------------</p>
 <p>Optional: How encryption and decryption work in WhatsApp?</p>
@@ -3466,7 +3466,7 @@
 <p>-----------------</p>
 <h3 id="put-everything-together-">Put everything together <a href="#put-everything-together-0" id="put-everything-together-0"></a></h3>
 <p>We discussed the features of our WhatsApp system design. It includes user connection with a server, sending messages and media files, group messages, and end-to-end encryption, individually. The final design of our WhatsApp messenger is as follows:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 2.03.35 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-06 at 2.03.35 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>In the next lesson, we&#x2019;ll evaluate our design and look into the non-functional requirements.</p>
 
@@ -3512,7 +3512,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Detailed Design of WhatsApp","level":"1.35.4","depth":2,"next":{"title":"Evaluation of WhatsApp’s Design","level":"1.35.5","depth":2,"path":"design-whatsapp/evaluation-of-whatsapps-design.md","ref":"design-whatsapp/evaluation-of-whatsapps-design.md","articles":[]},"previous":{"title":"High-level Design of WhatsApp","level":"1.35.3","depth":2,"path":"design-whatsapp/high-level-design-of-whatsapp.md","ref":"design-whatsapp/high-level-design-of-whatsapp.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-whatsapp/detailed-design-of-whatsapp.md","mtime":"2023-09-27T05:12:52.215Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:13:42.952Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Detailed Design of WhatsApp","level":"1.35.4","depth":2,"next":{"title":"Evaluation of WhatsApp’s Design","level":"1.35.5","depth":2,"path":"design-whatsapp/evaluation-of-whatsapps-design.md","ref":"design-whatsapp/evaluation-of-whatsapps-design.md","articles":[]},"previous":{"title":"High-level Design of WhatsApp","level":"1.35.3","depth":2,"path":"design-whatsapp/high-level-design-of-whatsapp.md","ref":"design-whatsapp/high-level-design-of-whatsapp.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-whatsapp/detailed-design-of-whatsapp.md","mtime":"2023-09-27T05:28:14.735Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:28:51.183Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

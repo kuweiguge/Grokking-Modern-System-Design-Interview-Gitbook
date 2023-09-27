@@ -3380,7 +3380,7 @@
 <ul>
 <li><strong>Create a container</strong>: The users should be able to create containers in order to group blobs. For example, if an application wants to store user-specific data, it should be able to store blobs for different user accounts in different containers. Additionally, a user may want to group video blobs and separate them from a group of image blobs. A single blob store user can create many containers, and each container can have many blobs, as shown in the following illustration. For the sake of simplicity, we assume that we can&#x2019;t create a container inside a container.</li>
 </ul>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.44.05 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.44.05 AM.png" alt=""><figcaption></figcaption></figure>
 
 <ul>
 <li><strong>Put data:</strong> The blob store should allow users to upload blobs to the created containers.</li>
@@ -3390,7 +3390,7 @@
 <li><strong>Delete a container:</strong> The users should be able to delete a container and all the blobs inside it.</li>
 <li><strong>List containers:</strong> The system should allow the users to list all the containers under a specific account.</li>
 </ul>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.44.26 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.44.26 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="non-functional-requirements-">Non-functional requirements <a href="#non-functional-requirements-0" id="non-functional-requirements-0"></a></h4>
 <p>Here are the non-functional requirements of a blob store system:</p>
@@ -3402,7 +3402,7 @@
 <li><strong>Reliability:</strong> Since failures are a norm in distributed systems, our design should detect and recover from failures promptly.</li>
 <li><strong>Consistency:</strong> The system should be strongly consistent. Different users should see the same view of a blob.</li>
 </ul>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.44.52 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.44.52 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h3 id="resource-estimation-">Resource estimation <a href="#resource-estimation-0" id="resource-estimation-0"></a></h3>
 <p>Let&#x2019;s estimate the total number of servers, storage, and bandwidth required by a blob storage system. Because blobs can have all sorts of data, mentioning all of those types of data in our estimation may not be practical. Therefore, we&#x2019;ll use YouTube as an example, which stores videos and thumbnails on the blob store. Furthermore, we&#x2019;ll make the following assumptions to complete our estimations.</p>
@@ -3417,11 +3417,11 @@
 </ul>
 <h4 id="number-of-servers-estimation-">Number of servers estimation <a href="#number-of-servers-estimation-1" id="number-of-servers-estimation-1"></a></h4>
 <p>From our assumptions, we use the number of daily active users (DAUs) and queries a blob store server can handle per second. The number of servers that we require is calculated using the formula given below:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.45.22 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.45.22 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="storage-estimation-">Storage estimation <a href="#storage-estimation-0" id="storage-estimation-0"></a></h4>
 <p>Considering the assumptions written above, we use the formula given below to compute the total storage required by YouTube in one day:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.46.13 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.46.13 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Total Storage Required to Store Videos and Thumbnails Uploaded Per Day on YouTube</strong></p>
 <table>
@@ -3445,7 +3445,7 @@
 <h4 id="bandwidth-estimation-">Bandwidth estimation <a href="#bandwidth-estimation-0" id="bandwidth-estimation-0"></a></h4>
 <p>Let&#x2019;s estimate the bandwidth required for uploading data to and retrieving data from the blob store.</p>
 <p><strong>Incoming traffic</strong>: To estimate the bandwidth required for incoming traffic, we consider the total data uploaded per day, which indirectly means the total storage needed per day that we calculated above. The amount of data transferred to the servers per second can be computed using the following formula:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.46.37 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.46.37 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Bandwidth Required for Uploading Videos on YouTube</strong></p>
 <table>
@@ -3465,7 +3465,7 @@
 </tbody>
 </table>
 <p><strong>Outgoing traffic</strong>: Since the blob store is a read-intensive store, most of the bandwidth is required for outgoing traffic. Considering the aforementioned assumptions, we calculate the bandwidth required for outgoing traffic using the following formula:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.46.53 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.46.53 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Bandwidth Required for Downloading Videos on YouTube</strong></p>
 <table>
@@ -3486,11 +3486,11 @@
 </tr>
 </tbody>
 </table>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.47.24 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.47.24 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h3 id="building-blocks-we-will-use-">Building blocks we will use <a href="#building-blocks-we-will-use-0" id="building-blocks-we-will-use-0"></a></h3>
 <p>We use the following building blocks in the design of our blob store system:</p>
-<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.47.45 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/.gitbook/assets/Screenshot 2023-09-03 at 1.47.45 AM.png" alt=""><figcaption></figcaption></figure>
 
 <ul>
 <li><a href="https://www.educative.io/collection/page/10370001/4941429335392256/4770834422169600" target="_blank"><strong>Rate Limiter:</strong></a> A rate limiter is required to control the users&#x2019; interaction with the system.</li>
@@ -3542,7 +3542,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Requirements of a Blob Store's Design","level":"1.19.2","depth":2,"next":{"title":"Design of a Blob Store","level":"1.19.3","depth":2,"path":"blob-store/design-of-a-blob-store.md","ref":"blob-store/design-of-a-blob-store.md","articles":[]},"previous":{"title":"System Design: A Blob Store","level":"1.19.1","depth":2,"path":"blob-store/system-design-a-blob-store.md","ref":"blob-store/system-design-a-blob-store.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"blob-store/requirements-of-a-blob-stores-design.md","mtime":"2023-09-27T05:12:52.207Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:13:42.952Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Requirements of a Blob Store's Design","level":"1.19.2","depth":2,"next":{"title":"Design of a Blob Store","level":"1.19.3","depth":2,"path":"blob-store/design-of-a-blob-store.md","ref":"blob-store/design-of-a-blob-store.md","articles":[]},"previous":{"title":"System Design: A Blob Store","level":"1.19.1","depth":2,"path":"blob-store/system-design-a-blob-store.md","ref":"blob-store/system-design-a-blob-store.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"blob-store/requirements-of-a-blob-stores-design.md","mtime":"2023-09-27T05:28:14.727Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:28:51.183Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
