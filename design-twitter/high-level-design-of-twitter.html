@@ -1,0 +1,3662 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>High-level Design of Twitter · Grokking Modern System Design Interview</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="changhanxie">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-page-toc/page-toc.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-code/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="detailed-design-of-twitter.html" />
+    
+    
+    <link rel="prev" href="requirements-of-twitters-design.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+    
+        
+        <li>
+            <a href="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook" target="_blank" class="custom-link">github</a>
+        </li>
+    
+    
+
+    
+    <li class="divider"></li>
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    System Design Interviews
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.1.1" data-path="../system-design-interviews/what-is-a-system-design-interview.html">
+            
+                <a href="../system-design-interviews/what-is-a-system-design-interview.html">
+            
+                    
+                    What Is a System Design Interview?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.2" data-path="../system-design-interviews/how-to-prepare-for-success.html">
+            
+                <a href="../system-design-interviews/how-to-prepare-for-success.html">
+            
+                    
+                    How to Prepare for Success
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.1.3" data-path="../system-design-interviews/how-to-perform-well.html">
+            
+                <a href="../system-design-interviews/how-to-perform-well.html">
+            
+                    
+                    How to Perform Well
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../abstractions/">
+            
+                <a href="../abstractions/">
+            
+                    
+                    Abstractions
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.2.1" data-path="../abstractions/why-are-abstractions-important.html">
+            
+                <a href="../abstractions/why-are-abstractions-important.html">
+            
+                    
+                    Why Are Abstractions Important?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.2" data-path="../abstractions/network-abstractions-remote-procedure-calls.html">
+            
+                <a href="../abstractions/network-abstractions-remote-procedure-calls.html">
+            
+                    
+                    Network Abstractions: Remote Procedure Calls
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.3" data-path="../abstractions/spectrum-of-consistency-models.html">
+            
+                <a href="../abstractions/spectrum-of-consistency-models.html">
+            
+                    
+                    Spectrum of Consistency Models
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2.4" data-path="../abstractions/the-spectrum-of-failure-models.html">
+            
+                <a href="../abstractions/the-spectrum-of-failure-models.html">
+            
+                    
+                    The Spectrum of Failure Models
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../non-functional-system-characteristics/">
+            
+                <a href="../non-functional-system-characteristics/">
+            
+                    
+                    Non-functional System Characteristics
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../non-functional-system-characteristics/availability.html">
+            
+                <a href="../non-functional-system-characteristics/availability.html">
+            
+                    
+                    Availability
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../non-functional-system-characteristics/reliability.html">
+            
+                <a href="../non-functional-system-characteristics/reliability.html">
+            
+                    
+                    Reliability
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../non-functional-system-characteristics/scalability.html">
+            
+                <a href="../non-functional-system-characteristics/scalability.html">
+            
+                    
+                    Scalability
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="../non-functional-system-characteristics/maintainability.html">
+            
+                <a href="../non-functional-system-characteristics/maintainability.html">
+            
+                    
+                    Maintainability
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="../non-functional-system-characteristics/fault-tolerance.html">
+            
+                <a href="../non-functional-system-characteristics/fault-tolerance.html">
+            
+                    
+                    Fault Tolerance
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" data-path="../back-of-the-envelope-calculations/">
+            
+                <a href="../back-of-the-envelope-calculations/">
+            
+                    
+                    Back-of-the-envelope Calculations
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="../back-of-the-envelope-calculations/put-back-of-the-envelope-numbers-in-perspective.html">
+            
+                <a href="../back-of-the-envelope-calculations/put-back-of-the-envelope-numbers-in-perspective.html">
+            
+                    
+                    Put Back-of-the-envelope Numbers in Perspective
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../back-of-the-envelope-calculations/page-2.html">
+            
+                <a href="../back-of-the-envelope-calculations/page-2.html">
+            
+                    
+                    Examples of Resource Estimation
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../building-blocks.html">
+            
+                <a href="../building-blocks.html">
+            
+                    
+                    Building Blocks
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../building-blocks/introduction-to-building-blocks-for-modern-system-design.html">
+            
+                <a href="../building-blocks/introduction-to-building-blocks-for-modern-system-design.html">
+            
+                    
+                    Introduction to Building Blocks for Modern System Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../domain-name-system.html">
+            
+                <a href="../domain-name-system.html">
+            
+                    
+                    Domain Name System
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../domain-name-system/introduction-to-domain-name-system-dns.html">
+            
+                <a href="../domain-name-system/introduction-to-domain-name-system-dns.html">
+            
+                    
+                    Introduction to Domain Name System (DNS)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6.2" data-path="../domain-name-system/how-the-domain-name-system-works.html">
+            
+                <a href="../domain-name-system/how-the-domain-name-system-works.html">
+            
+                    
+                    How the Domain Name System Works
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../load-balancers.html">
+            
+                <a href="../load-balancers.html">
+            
+                    
+                    Load Balancers
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../load-balancers/introduction-to-load-balancers.html">
+            
+                <a href="../load-balancers/introduction-to-load-balancers.html">
+            
+                    
+                    Introduction to Load Balancers
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.2" data-path="../load-balancers/global-and-local-load-balancing.html">
+            
+                <a href="../load-balancers/global-and-local-load-balancing.html">
+            
+                    
+                    Global and Local Load Balancing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.3" data-path="../load-balancers/advanced-details-of-load-balancers.html">
+            
+                <a href="../load-balancers/advanced-details-of-load-balancers.html">
+            
+                    
+                    Advanced Details of Load Balancers
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" data-path="../databases.html">
+            
+                <a href="../databases.html">
+            
+                    
+                    Databases
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="../databases/introduction-to-databases.html">
+            
+                <a href="../databases/introduction-to-databases.html">
+            
+                    
+                    Introduction to Databases
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2" data-path="../databases/types-of-databases/">
+            
+                <a href="../databases/types-of-databases/">
+            
+                    
+                    Types of Databases
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.2.1" data-path="../databases/types-of-databases/relational-database.html">
+            
+                <a href="../databases/types-of-databases/relational-database.html">
+            
+                    
+                    Relational Database
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2.2" data-path="../databases/types-of-databases/document-oriented-database.html">
+            
+                <a href="../databases/types-of-databases/document-oriented-database.html">
+            
+                    
+                    Document-Oriented Database
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2.3" data-path="../databases/types-of-databases/graph-database.html">
+            
+                <a href="../databases/types-of-databases/graph-database.html">
+            
+                    
+                    Graph Database
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2.4" data-path="../databases/types-of-databases/key-value-database.html">
+            
+                <a href="../databases/types-of-databases/key-value-database.html">
+            
+                    
+                    Key-Value Database
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2.5" data-path="../databases/types-of-databases/time-series-database.html">
+            
+                <a href="../databases/types-of-databases/time-series-database.html">
+            
+                    
+                    Time Series Database
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2.6" data-path="../databases/types-of-databases/wide-column-database.html">
+            
+                <a href="../databases/types-of-databases/wide-column-database.html">
+            
+                    
+                    Wide-Column Database
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3" data-path="../databases/data-replication/">
+            
+                <a href="../databases/data-replication/">
+            
+                    
+                    Data Replication
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.3.1" data-path="../databases/data-replication/what-is-a-quorum.html">
+            
+                <a href="../databases/data-replication/what-is-a-quorum.html">
+            
+                    
+                    What is a quorum?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.3.2" data-path="../databases/data-replication/what-is-quorum-in-distributed-systems.html">
+            
+                <a href="../databases/data-replication/what-is-quorum-in-distributed-systems.html">
+            
+                    
+                    What is quorum in distributed systems?
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.4" data-path="../databases/data-partitioning.html">
+            
+                <a href="../databases/data-partitioning.html">
+            
+                    
+                    Data Partitioning
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.5" data-path="../databases/trade-offs-in-databases.html">
+            
+                <a href="../databases/trade-offs-in-databases.html">
+            
+                    
+                    Trade-offs in Databases
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.6" data-path="../databases/relational-databases.html">
+            
+                <a href="../databases/relational-databases.html">
+            
+                    
+                    Relational Databases
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.7" data-path="../databases/when-should-you-pick-a-relational-database.html">
+            
+                <a href="../databases/when-should-you-pick-a-relational-database.html">
+            
+                    
+                    When should you pick a relational database?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.8" data-path="../databases/nosql-databases-introduction.html">
+            
+                <a href="../databases/nosql-databases-introduction.html">
+            
+                    
+                    NoSQL Databases - Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.9" data-path="../databases/features-of-nosql-databases.html">
+            
+                <a href="../databases/features-of-nosql-databases.html">
+            
+                    
+                    Features of NoSQL Databases
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.10" data-path="../databases/when-to-pick-a-nosql-database.html">
+            
+                <a href="../databases/when-to-pick-a-nosql-database.html">
+            
+                    
+                    When to pick a NoSQL Database?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.11" data-path="../databases/is-nosql-more-performant-than-sql.html">
+            
+                <a href="../databases/is-nosql-more-performant-than-sql.html">
+            
+                    
+                    Is NoSQL More Performant Than SQL?
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.12" data-path="../databases/polyglot-persistence.html">
+            
+                <a href="../databases/polyglot-persistence.html">
+            
+                    
+                    Polyglot Persistence
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.13" data-path="../databases/multi-model-databases.html">
+            
+                <a href="../databases/multi-model-databases.html">
+            
+                    
+                    Multi-Model Databases
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.14" data-path="../databases/eventual-consistency.html">
+            
+                <a href="../databases/eventual-consistency.html">
+            
+                    
+                    Eventual Consistency
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.15" data-path="../databases/strong-consistency.html">
+            
+                <a href="../databases/strong-consistency.html">
+            
+                    
+                    Strong Consistency
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.16" data-path="../databases/cap-theorem.html">
+            
+                <a href="../databases/cap-theorem.html">
+            
+                    
+                    CAP Theorem
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" data-path="../key-value-store/">
+            
+                <a href="../key-value-store/">
+            
+                    
+                    Key-value Store
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../key-value-store/design-of-a-key-value-store.html">
+            
+                <a href="../key-value-store/design-of-a-key-value-store.html">
+            
+                    
+                    Design of a Key-value Store
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.2" data-path="../key-value-store/versioning-data-and-achieving-configurability.html">
+            
+                <a href="../key-value-store/versioning-data-and-achieving-configurability.html">
+            
+                    
+                    Versioning Data and Achieving Configurability
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.3" data-path="../key-value-store/ensure-scalability-and-replication.html">
+            
+                <a href="../key-value-store/ensure-scalability-and-replication.html">
+            
+                    
+                    Ensure Scalability and Replication
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.4" data-path="../key-value-store/enable-fault-tolerance-and-failure-detection.html">
+            
+                <a href="../key-value-store/enable-fault-tolerance-and-failure-detection.html">
+            
+                    
+                    Enable Fault Tolerance and Failure Detection
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9.5" data-path="../key-value-store/system-design-the-key-value-store.html">
+            
+                <a href="../key-value-store/system-design-the-key-value-store.html">
+            
+                    
+                    System Design: The Key-value Store
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10" data-path="../content-delivery-network-cdn/">
+            
+                <a href="../content-delivery-network-cdn/">
+            
+                    
+                    Content Delivery Network (CDN)
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.10.1" data-path="../content-delivery-network-cdn/system-design-the-content-delivery-network-cdn.html">
+            
+                <a href="../content-delivery-network-cdn/system-design-the-content-delivery-network-cdn.html">
+            
+                    
+                    System Design: The Content Delivery Network (CDN)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.2" data-path="../content-delivery-network-cdn/introduction-to-a-cdn.html">
+            
+                <a href="../content-delivery-network-cdn/introduction-to-a-cdn.html">
+            
+                    
+                    Introduction to a CDN
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.3" data-path="../content-delivery-network-cdn/design-of-a-cdn.html">
+            
+                <a href="../content-delivery-network-cdn/design-of-a-cdn.html">
+            
+                    
+                    Design of a CDN
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.4" data-path="../content-delivery-network-cdn/in-depth-investigation-of-cdn-part-1.html">
+            
+                <a href="../content-delivery-network-cdn/in-depth-investigation-of-cdn-part-1.html">
+            
+                    
+                    In-depth Investigation of CDN: Part 1
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.5" data-path="../content-delivery-network-cdn/in-depth-investigation-of-cdn-part-2.html">
+            
+                <a href="../content-delivery-network-cdn/in-depth-investigation-of-cdn-part-2.html">
+            
+                    
+                    In-depth Investigation of CDN: Part 2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.10.6" data-path="../content-delivery-network-cdn/evaluation-of-cdns-design.html">
+            
+                <a href="../content-delivery-network-cdn/evaluation-of-cdns-design.html">
+            
+                    
+                    Evaluation of CDN's Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11" data-path="../sequencer/">
+            
+                <a href="../sequencer/">
+            
+                    
+                    Sequencer
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.11.1" data-path="../sequencer/system-design-sequencer.html">
+            
+                <a href="../sequencer/system-design-sequencer.html">
+            
+                    
+                    System Design: Sequencer
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.2" data-path="../sequencer/design-of-a-unique-id-generator.html">
+            
+                <a href="../sequencer/design-of-a-unique-id-generator.html">
+            
+                    
+                    Design of a Unique ID Generator
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.11.3" data-path="../sequencer/unique-ids-with-causality.html">
+            
+                <a href="../sequencer/unique-ids-with-causality.html">
+            
+                    
+                    Unique IDs with Causality
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12" data-path="../distributed-monitoring/">
+            
+                <a href="../distributed-monitoring/">
+            
+                    
+                    Distributed Monitoring
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.12.1" data-path="../distributed-monitoring/system-design-distributed-monitoring.html">
+            
+                <a href="../distributed-monitoring/system-design-distributed-monitoring.html">
+            
+                    
+                    System Design: Distributed Monitoring
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.2" data-path="../distributed-monitoring/introduction-to-distributed-monitoring.html">
+            
+                <a href="../distributed-monitoring/introduction-to-distributed-monitoring.html">
+            
+                    
+                    Introduction to Distributed Monitoring
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.3" data-path="../distributed-monitoring/prerequisites-of-a-monitoring-system.html">
+            
+                <a href="../distributed-monitoring/prerequisites-of-a-monitoring-system.html">
+            
+                    
+                    Prerequisites of a Monitoring System
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13" data-path="../monitor-server-side-errors/">
+            
+                <a href="../monitor-server-side-errors/">
+            
+                    
+                    Monitor Server-side Errors
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.13.1" data-path="../monitor-server-side-errors/design-of-a-monitoring-system.html">
+            
+                <a href="../monitor-server-side-errors/design-of-a-monitoring-system.html">
+            
+                    
+                    Design of a Monitoring System
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.2" data-path="../monitor-server-side-errors/detailed-design-of-a-monitoring-system.html">
+            
+                <a href="../monitor-server-side-errors/detailed-design-of-a-monitoring-system.html">
+            
+                    
+                    Detailed Design of a Monitoring System
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.13.3" data-path="../monitor-server-side-errors/visualize-data-in-a-monitoring-system.html">
+            
+                <a href="../monitor-server-side-errors/visualize-data-in-a-monitoring-system.html">
+            
+                    
+                    Visualize Data in a Monitoring System
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14" data-path="../monitor-client-side-errors/">
+            
+                <a href="../monitor-client-side-errors/">
+            
+                    
+                    Monitor Client-side Errors
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.14.1" data-path="../monitor-client-side-errors/focus-on-client-side-errors-in-a-monitoring-system.html">
+            
+                <a href="../monitor-client-side-errors/focus-on-client-side-errors-in-a-monitoring-system.html">
+            
+                    
+                    Focus on Client-side Errors in a Monitoring System
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.14.2" data-path="../monitor-client-side-errors/design-of-a-client-side-monitoring-system.html">
+            
+                <a href="../monitor-client-side-errors/design-of-a-client-side-monitoring-system.html">
+            
+                    
+                    Design of a Client-side Monitoring System
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15" data-path="../distributed-cache/">
+            
+                <a href="../distributed-cache/">
+            
+                    
+                    Distributed Cache
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.15.1" data-path="../distributed-cache/system-design-the-distributed-cache.html">
+            
+                <a href="../distributed-cache/system-design-the-distributed-cache.html">
+            
+                    
+                    System Design: The Distributed Cache
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.2" data-path="../distributed-cache/background-of-distributed-cache.html">
+            
+                <a href="../distributed-cache/background-of-distributed-cache.html">
+            
+                    
+                    Background of Distributed Cache
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.3" data-path="../distributed-cache/high-level-design-of-a-distributed-cache.html">
+            
+                <a href="../distributed-cache/high-level-design-of-a-distributed-cache.html">
+            
+                    
+                    High-level Design of a Distributed Cache
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.4" data-path="../distributed-cache/detailed-design-of-a-distributed-cache.html">
+            
+                <a href="../distributed-cache/detailed-design-of-a-distributed-cache.html">
+            
+                    
+                    Detailed Design of a Distributed Cache
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.5" data-path="../distributed-cache/evaluation-of-a-distributed-caches-design.html">
+            
+                <a href="../distributed-cache/evaluation-of-a-distributed-caches-design.html">
+            
+                    
+                    Evaluation of a Distributed Cache's Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.15.6" data-path="../distributed-cache/memcached-versus-redis.html">
+            
+                <a href="../distributed-cache/memcached-versus-redis.html">
+            
+                    
+                    Memcached versus Redis
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16" data-path="../distributed-messaging-queue.html">
+            
+                <a href="../distributed-messaging-queue.html">
+            
+                    
+                    Distributed Messaging Queue
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.16.1" data-path="../distributed-messaging-queue/system-design-the-distributed-messaging-queue.html">
+            
+                <a href="../distributed-messaging-queue/system-design-the-distributed-messaging-queue.html">
+            
+                    
+                    System Design: The Distributed Messaging Queue
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.2" data-path="../distributed-messaging-queue/requirements-of-a-distributed-messaging-queues-design.html">
+            
+                <a href="../distributed-messaging-queue/requirements-of-a-distributed-messaging-queues-design.html">
+            
+                    
+                    Requirements of a Distributed Messaging Queue’s Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.3" data-path="../distributed-messaging-queue/considerations-of-a-distributed-messaging-queues-design.html">
+            
+                <a href="../distributed-messaging-queue/considerations-of-a-distributed-messaging-queues-design.html">
+            
+                    
+                    Considerations of a Distributed Messaging Queue’s Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.4" data-path="../distributed-messaging-queue/design-of-a-distributed-messaging-queue-part-1.html">
+            
+                <a href="../distributed-messaging-queue/design-of-a-distributed-messaging-queue-part-1.html">
+            
+                    
+                    Design of a Distributed Messaging Queue: Part 1
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.5" data-path="../distributed-messaging-queue/design-of-a-distributed-messaging-queue-part-2.html">
+            
+                <a href="../distributed-messaging-queue/design-of-a-distributed-messaging-queue-part-2.html">
+            
+                    
+                    Design of a Distributed Messaging Queue: Part 2
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.6" data-path="../distributed-messaging-queue/evaluation-of-a-distributed-messaging-queues-design.html">
+            
+                <a href="../distributed-messaging-queue/evaluation-of-a-distributed-messaging-queues-design.html">
+            
+                    
+                    Evaluation of a Distributed Messaging Queue’s Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.16.7" data-path="../distributed-messaging-queue/quiz-on-the-distributed-messaging-queues-design.html">
+            
+                <a href="../distributed-messaging-queue/quiz-on-the-distributed-messaging-queues-design.html">
+            
+                    
+                    Quiz on the Distributed Messaging Queue’s Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17" data-path="../pub-sub/">
+            
+                <a href="../pub-sub/">
+            
+                    
+                    Pub-sub
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.17.1" data-path="../pub-sub/system-design-the-pub-sub-abstraction.html">
+            
+                <a href="../pub-sub/system-design-the-pub-sub-abstraction.html">
+            
+                    
+                    System Design: The Pub-sub Abstraction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17.2" data-path="../pub-sub/introduction-to-pub-sub.html">
+            
+                <a href="../pub-sub/introduction-to-pub-sub.html">
+            
+                    
+                    Introduction to Pub-sub
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.17.3" data-path="../pub-sub/design-of-a-pub-sub-system.html">
+            
+                <a href="../pub-sub/design-of-a-pub-sub-system.html">
+            
+                    
+                    Design of a Pub-sub System
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18" data-path="../rate-limiter.html">
+            
+                <a href="../rate-limiter.html">
+            
+                    
+                    Rate Limiter
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.18.1" data-path="../rate-limiter/system-design-the-rate-limiter.html">
+            
+                <a href="../rate-limiter/system-design-the-rate-limiter.html">
+            
+                    
+                    System Design: The Rate Limiter
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18.2" data-path="../rate-limiter/requirements-of-a-rate-limiters-design.html">
+            
+                <a href="../rate-limiter/requirements-of-a-rate-limiters-design.html">
+            
+                    
+                    Requirements of a Rate Limiter’s Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18.3" data-path="../rate-limiter/design-of-a-rate-limiter.html">
+            
+                <a href="../rate-limiter/design-of-a-rate-limiter.html">
+            
+                    
+                    Design of a Rate Limiter
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18.4" data-path="../rate-limiter/rate-limiter-algorithms.html">
+            
+                <a href="../rate-limiter/rate-limiter-algorithms.html">
+            
+                    
+                    Rate Limiter Algorithms
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18.5" data-path="../rate-limiter/quiz-on-the-rate-limiters-design.html">
+            
+                <a href="../rate-limiter/quiz-on-the-rate-limiters-design.html">
+            
+                    
+                    Quiz on the Rate Limiter’s Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19" data-path="../blob-store.html">
+            
+                <a href="../blob-store.html">
+            
+                    
+                    Blob Store
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.19.1" data-path="../blob-store/system-design-a-blob-store.html">
+            
+                <a href="../blob-store/system-design-a-blob-store.html">
+            
+                    
+                    System Design: A Blob Store
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19.2" data-path="../blob-store/requirements-of-a-blob-stores-design.html">
+            
+                <a href="../blob-store/requirements-of-a-blob-stores-design.html">
+            
+                    
+                    Requirements of a Blob Store's Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19.3" data-path="../blob-store/design-of-a-blob-store.html">
+            
+                <a href="../blob-store/design-of-a-blob-store.html">
+            
+                    
+                    Design of a Blob Store
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19.4" data-path="../blob-store/design-considerations-of-a-blob-store.html">
+            
+                <a href="../blob-store/design-considerations-of-a-blob-store.html">
+            
+                    
+                    Design Considerations of a Blob Store
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19.5" data-path="../blob-store/evaluation-of-a-blob-stores-design.html">
+            
+                <a href="../blob-store/evaluation-of-a-blob-stores-design.html">
+            
+                    
+                    Evaluation of a Blob Store's Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.19.6" data-path="../blob-store/quiz-on-the-blob-stores-design.html">
+            
+                <a href="../blob-store/quiz-on-the-blob-stores-design.html">
+            
+                    
+                    Quiz on the Blob Store's Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20" data-path="../distributed-search.html">
+            
+                <a href="../distributed-search.html">
+            
+                    
+                    Distributed Search
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.20.1" data-path="../distributed-search/system-design-the-distributed-search.html">
+            
+                <a href="../distributed-search/system-design-the-distributed-search.html">
+            
+                    
+                    System Design: The Distributed Search
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20.2" data-path="../distributed-search/requirements-of-a-distributed-search-systems-design.html">
+            
+                <a href="../distributed-search/requirements-of-a-distributed-search-systems-design.html">
+            
+                    
+                    Requirements of a Distributed Search System's Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20.3" data-path="../distributed-search/indexing-in-a-distributed-search.html">
+            
+                <a href="../distributed-search/indexing-in-a-distributed-search.html">
+            
+                    
+                    Indexing in a Distributed Search
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20.4" data-path="../distributed-search/design-of-a-distributed-search.html">
+            
+                <a href="../distributed-search/design-of-a-distributed-search.html">
+            
+                    
+                    Design of a Distributed Search
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20.5" data-path="../distributed-search/scaling-search-and-indexing.html">
+            
+                <a href="../distributed-search/scaling-search-and-indexing.html">
+            
+                    
+                    Scaling Search and Indexing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.20.6" data-path="../distributed-search/evaluation-of-a-distributed-searchs-design.html">
+            
+                <a href="../distributed-search/evaluation-of-a-distributed-searchs-design.html">
+            
+                    
+                    Evaluation of a Distributed Search's Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21" data-path="../distributed-logging.html">
+            
+                <a href="../distributed-logging.html">
+            
+                    
+                    Distributed Logging
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.21.1" data-path="../distributed-logging/system-design-distributed-logging.html">
+            
+                <a href="../distributed-logging/system-design-distributed-logging.html">
+            
+                    
+                    System Design: Distributed Logging
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21.2" data-path="../distributed-logging/introduction-to-distributed-logging.html">
+            
+                <a href="../distributed-logging/introduction-to-distributed-logging.html">
+            
+                    
+                    Introduction to Distributed Logging
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.21.3" data-path="../distributed-logging/design-of-a-distributed-logging-service.html">
+            
+                <a href="../distributed-logging/design-of-a-distributed-logging-service.html">
+            
+                    
+                    Design of a Distributed Logging Service
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22" data-path="../distributed-task-scheduler.html">
+            
+                <a href="../distributed-task-scheduler.html">
+            
+                    
+                    Distributed Task Scheduler
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.22.1" data-path="../distributed-task-scheduler/system-design-the-distributed-task-scheduler.html">
+            
+                <a href="../distributed-task-scheduler/system-design-the-distributed-task-scheduler.html">
+            
+                    
+                    System Design: The Distributed Task Scheduler
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22.2" data-path="../distributed-task-scheduler/requirements-of-a-distributed-task-schedulers-design.html">
+            
+                <a href="../distributed-task-scheduler/requirements-of-a-distributed-task-schedulers-design.html">
+            
+                    
+                    Requirements of a Distributed Task Scheduler's Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22.3" data-path="../distributed-task-scheduler/design-of-a-distributed-task-scheduler.html">
+            
+                <a href="../distributed-task-scheduler/design-of-a-distributed-task-scheduler.html">
+            
+                    
+                    Design of a Distributed Task Scheduler
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22.4" data-path="../distributed-task-scheduler/design-considerations-of-a-distributed-task-scheduler.html">
+            
+                <a href="../distributed-task-scheduler/design-considerations-of-a-distributed-task-scheduler.html">
+            
+                    
+                    Design Considerations of a Distributed Task Scheduler
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.22.5" data-path="../distributed-task-scheduler/evaluation-of-a-distributed-task-schedulers-design.html">
+            
+                <a href="../distributed-task-scheduler/evaluation-of-a-distributed-task-schedulers-design.html">
+            
+                    
+                    Evaluation of a Distributed Task Scheduler's Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.23" data-path="../sharded-counters.html">
+            
+                <a href="../sharded-counters.html">
+            
+                    
+                    Sharded Counters
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.23.1" data-path="../sharded-counters/system-design-the-sharded-counters.html">
+            
+                <a href="../sharded-counters/system-design-the-sharded-counters.html">
+            
+                    
+                    System Design: The Sharded Counters
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.23.2" data-path="../sharded-counters/high-level-design-of-sharded-counters.html">
+            
+                <a href="../sharded-counters/high-level-design-of-sharded-counters.html">
+            
+                    
+                    High-level Design of Sharded Counters
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.23.3" data-path="../sharded-counters/detailed-design-of-sharded-counters.html">
+            
+                <a href="../sharded-counters/detailed-design-of-sharded-counters.html">
+            
+                    
+                    Detailed Design of Sharded Counters
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.23.4" data-path="../sharded-counters/quiz-on-the-sharded-counters-design.html">
+            
+                <a href="../sharded-counters/quiz-on-the-sharded-counters-design.html">
+            
+                    
+                    Quiz on the Sharded Counters' Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.24" data-path="../concluding-the-building-blocks-discussion.html">
+            
+                <a href="../concluding-the-building-blocks-discussion.html">
+            
+                    
+                    Concluding the Building Blocks Discussion
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.24.1" data-path="../concluding-the-building-blocks-discussion/wrapping-up-the-building-blocks-discussion.html">
+            
+                <a href="../concluding-the-building-blocks-discussion/wrapping-up-the-building-blocks-discussion.html">
+            
+                    
+                    Wrapping Up the Building Blocks Discussion
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.24.2" data-path="../concluding-the-building-blocks-discussion/the-reshaded-approach-for-system-design.html">
+            
+                <a href="../concluding-the-building-blocks-discussion/the-reshaded-approach-for-system-design.html">
+            
+                    
+                    The RESHADED Approach for System Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25" data-path="../design-youtube.html">
+            
+                <a href="../design-youtube.html">
+            
+                    
+                    Design YouTube
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.25.1" data-path="../design-youtube/system-design-youtube.html">
+            
+                <a href="../design-youtube/system-design-youtube.html">
+            
+                    
+                    System Design: YouTube
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25.2" data-path="../design-youtube/requirements-of-youtubes-design.html">
+            
+                <a href="../design-youtube/requirements-of-youtubes-design.html">
+            
+                    
+                    Requirements of YouTube's Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25.3" data-path="../design-youtube/design-of-youtube.html">
+            
+                <a href="../design-youtube/design-of-youtube.html">
+            
+                    
+                    Design of YouTube
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25.4" data-path="../design-youtube/evaluation-of-youtubes-design.html">
+            
+                <a href="../design-youtube/evaluation-of-youtubes-design.html">
+            
+                    
+                    Evaluation of YouTube's Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25.5" data-path="../design-youtube/the-reality-is-more-complicated.html">
+            
+                <a href="../design-youtube/the-reality-is-more-complicated.html">
+            
+                    
+                    The Reality Is More Complicated
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.25.6" data-path="../design-youtube/quiz-on-youtubes-design.html">
+            
+                <a href="../design-youtube/quiz-on-youtubes-design.html">
+            
+                    
+                    Quiz on YouTube's Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.26" data-path="../design-quora.html">
+            
+                <a href="../design-quora.html">
+            
+                    
+                    Design Quora
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.26.1" data-path="../design-quora/system-design-quora.html">
+            
+                <a href="../design-quora/system-design-quora.html">
+            
+                    
+                    System Design: Quora
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.26.2" data-path="../design-quora/requirements-of-quoras-design.html">
+            
+                <a href="../design-quora/requirements-of-quoras-design.html">
+            
+                    
+                    Requirements of Quora's Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.26.3" data-path="../design-quora/initial-design-of-quora.html">
+            
+                <a href="../design-quora/initial-design-of-quora.html">
+            
+                    
+                    Initial Design of Quora
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.26.4" data-path="../design-quora/final-design-of-quora.html">
+            
+                <a href="../design-quora/final-design-of-quora.html">
+            
+                    
+                    Final Design of Quora
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.26.5" data-path="../design-quora/evaluation-of-quoras-design.html">
+            
+                <a href="../design-quora/evaluation-of-quoras-design.html">
+            
+                    
+                    Evaluation of Quora’s Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.27" data-path="../design-google-maps.html">
+            
+                <a href="../design-google-maps.html">
+            
+                    
+                    Design Google Maps
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.27.1" data-path="../design-google-maps/system-design-google-maps.html">
+            
+                <a href="../design-google-maps/system-design-google-maps.html">
+            
+                    
+                    System Design: Google Maps
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.27.2" data-path="../design-google-maps/requirements-of-google-maps-design.html">
+            
+                <a href="../design-google-maps/requirements-of-google-maps-design.html">
+            
+                    
+                    Requirements of Google Maps' Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.27.3" data-path="../design-google-maps/design-of-google-maps.html">
+            
+                <a href="../design-google-maps/design-of-google-maps.html">
+            
+                    
+                    Design of Google Maps
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.27.4" data-path="../design-google-maps/challenges-of-google-maps-design.html">
+            
+                <a href="../design-google-maps/challenges-of-google-maps-design.html">
+            
+                    
+                    Challenges of Google Maps' Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.27.5" data-path="../design-google-maps/detailed-design-of-google-maps.html">
+            
+                <a href="../design-google-maps/detailed-design-of-google-maps.html">
+            
+                    
+                    Detailed Design of Google Maps
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.27.6" data-path="../design-google-maps/evaluation-of-google-maps-design.html">
+            
+                <a href="../design-google-maps/evaluation-of-google-maps-design.html">
+            
+                    
+                    Evaluation of Google Maps' Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.28" data-path="../design-a-proximity-service-yelp.html">
+            
+                <a href="../design-a-proximity-service-yelp.html">
+            
+                    
+                    Design a Proximity Service / Yelp
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.28.1" data-path="../design-a-proximity-service-yelp/system-design-yelp.html">
+            
+                <a href="../design-a-proximity-service-yelp/system-design-yelp.html">
+            
+                    
+                    System Design: Yelp
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.28.2" data-path="../design-a-proximity-service-yelp/requirements-of-yelps-design.html">
+            
+                <a href="../design-a-proximity-service-yelp/requirements-of-yelps-design.html">
+            
+                    
+                    Requirements of Yelp’s Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.28.3" data-path="../design-a-proximity-service-yelp/design-of-yelp.html">
+            
+                <a href="../design-a-proximity-service-yelp/design-of-yelp.html">
+            
+                    
+                    Design of Yelp
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.28.4" data-path="../design-a-proximity-service-yelp/design-considerations-of-yelp.html">
+            
+                <a href="../design-a-proximity-service-yelp/design-considerations-of-yelp.html">
+            
+                    
+                    Design Considerations of Yelp
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.28.5" data-path="../design-a-proximity-service-yelp/quiz-on-yelps-design.html">
+            
+                <a href="../design-a-proximity-service-yelp/quiz-on-yelps-design.html">
+            
+                    
+                    Quiz on Yelp's Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.29" data-path="../design-uber.html">
+            
+                <a href="../design-uber.html">
+            
+                    
+                    Design Uber
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.29.1" data-path="../design-uber/system-design-uber.html">
+            
+                <a href="../design-uber/system-design-uber.html">
+            
+                    
+                    System Design: Uber
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.29.2" data-path="../design-uber/requirements-of-ubers-design.html">
+            
+                <a href="../design-uber/requirements-of-ubers-design.html">
+            
+                    
+                    Requirements of Uber’s Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.29.3" data-path="../design-uber/high-level-design-of-uber.html">
+            
+                <a href="../design-uber/high-level-design-of-uber.html">
+            
+                    
+                    High-level Design of Uber
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.29.4" data-path="../design-uber/detailed-design-of-uber.html">
+            
+                <a href="../design-uber/detailed-design-of-uber.html">
+            
+                    
+                    Detailed Design of Uber
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.29.5" data-path="../design-uber/payment-service-and-fraud-detection-in-uber-design.html">
+            
+                <a href="../design-uber/payment-service-and-fraud-detection-in-uber-design.html">
+            
+                    
+                    Payment Service and Fraud Detection in Uber Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.29.6" data-path="../design-uber/evaluation-of-ubers-design.html">
+            
+                <a href="../design-uber/evaluation-of-ubers-design.html">
+            
+                    
+                    Evaluation of Uber’s Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.29.7" data-path="../design-uber/quiz-on-ubers-design.html">
+            
+                <a href="../design-uber/quiz-on-ubers-design.html">
+            
+                    
+                    Quiz on Uber's Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.30" data-path="../design-twitter.html">
+            
+                <a href="../design-twitter.html">
+            
+                    
+                    Design Twitter
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.30.1" data-path="system-design-twitter.html">
+            
+                <a href="system-design-twitter.html">
+            
+                    
+                    System Design: Twitter
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.30.2" data-path="requirements-of-twitters-design.html">
+            
+                <a href="requirements-of-twitters-design.html">
+            
+                    
+                    Requirements of Twitter’s Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.30.3" data-path="high-level-design-of-twitter.html">
+            
+                <a href="high-level-design-of-twitter.html">
+            
+                    
+                    High-level Design of Twitter
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.30.4" data-path="detailed-design-of-twitter.html">
+            
+                <a href="detailed-design-of-twitter.html">
+            
+                    
+                    Detailed Design of Twitter
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.30.5" data-path="client-side-load-balancer-for-twitter.html">
+            
+                <a href="client-side-load-balancer-for-twitter.html">
+            
+                    
+                    Client-side Load Balancer for Twitter
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.30.6" data-path="quiz-on-twitters-design.html">
+            
+                <a href="quiz-on-twitters-design.html">
+            
+                    
+                    Quiz on Twitter's Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.31" data-path="../design-newsfeed-system.html">
+            
+                <a href="../design-newsfeed-system.html">
+            
+                    
+                    Design Newsfeed System
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.31.1" data-path="../design-newsfeed-system/system-design-newsfeed-system.html">
+            
+                <a href="../design-newsfeed-system/system-design-newsfeed-system.html">
+            
+                    
+                    System Design: Newsfeed System
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.31.2" data-path="../design-newsfeed-system/requirements-of-a-newsfeed-systems-design.html">
+            
+                <a href="../design-newsfeed-system/requirements-of-a-newsfeed-systems-design.html">
+            
+                    
+                    Requirements of a Newsfeed System’s Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.31.3" data-path="../design-newsfeed-system/design-of-a-newsfeed-system.html">
+            
+                <a href="../design-newsfeed-system/design-of-a-newsfeed-system.html">
+            
+                    
+                    Design of a Newsfeed System
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.31.4" data-path="../design-newsfeed-system/evaluation-of-a-newsfeed-systems-design.html">
+            
+                <a href="../design-newsfeed-system/evaluation-of-a-newsfeed-systems-design.html">
+            
+                    
+                    Evaluation of a Newsfeed System’s Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.32" data-path="../design-instagram.html">
+            
+                <a href="../design-instagram.html">
+            
+                    
+                    Design Instagram
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.32.1" data-path="../design-instagram/system-design-instagram.html">
+            
+                <a href="../design-instagram/system-design-instagram.html">
+            
+                    
+                    System Design: Instagram
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.32.2" data-path="../design-instagram/requirements-of-instagrams-design.html">
+            
+                <a href="../design-instagram/requirements-of-instagrams-design.html">
+            
+                    
+                    Requirements of Instagram’s Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.32.3" data-path="../design-instagram/design-of-instagram.html">
+            
+                <a href="../design-instagram/design-of-instagram.html">
+            
+                    
+                    Design of Instagram
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.32.4" data-path="../design-instagram/detailed-design-of-instagram.html">
+            
+                <a href="../design-instagram/detailed-design-of-instagram.html">
+            
+                    
+                    Detailed Design of Instagram
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.32.5" data-path="../design-instagram/quiz-on-instagrams-design.html">
+            
+                <a href="../design-instagram/quiz-on-instagrams-design.html">
+            
+                    
+                    Quiz on Instagram’s Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.33" data-path="../design-a-url-shortening-service-tinyurl.html">
+            
+                <a href="../design-a-url-shortening-service-tinyurl.html">
+            
+                    
+                    Design a URL Shortening Service / TinyURL
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.33.1" data-path="../design-a-url-shortening-service-tinyurl/system-design-tinyurl.html">
+            
+                <a href="../design-a-url-shortening-service-tinyurl/system-design-tinyurl.html">
+            
+                    
+                    System Design: TinyURL
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.33.2" data-path="../design-a-url-shortening-service-tinyurl/requirements-of-tinyurls-design.html">
+            
+                <a href="../design-a-url-shortening-service-tinyurl/requirements-of-tinyurls-design.html">
+            
+                    
+                    Requirements of TinyURL's Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.33.3" data-path="../design-a-url-shortening-service-tinyurl/design-and-deployment-of-tinyurl.html">
+            
+                <a href="../design-a-url-shortening-service-tinyurl/design-and-deployment-of-tinyurl.html">
+            
+                    
+                    Design and Deployment of TinyURL
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.33.4" data-path="../design-a-url-shortening-service-tinyurl/encoder-for-tinyurl.html">
+            
+                <a href="../design-a-url-shortening-service-tinyurl/encoder-for-tinyurl.html">
+            
+                    
+                    Encoder for TinyURL
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.33.5" data-path="../design-a-url-shortening-service-tinyurl/evaluation-of-tinyurls-design.html">
+            
+                <a href="../design-a-url-shortening-service-tinyurl/evaluation-of-tinyurls-design.html">
+            
+                    
+                    Evaluation of TinyURL's Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.33.6" data-path="../design-a-url-shortening-service-tinyurl/quiz-on-tinyurls-design.html">
+            
+                <a href="../design-a-url-shortening-service-tinyurl/quiz-on-tinyurls-design.html">
+            
+                    
+                    Quiz on TinyURL's Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.34" data-path="../design-a-web-crawler.html">
+            
+                <a href="../design-a-web-crawler.html">
+            
+                    
+                    Design a Web Crawler
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.34.1" data-path="../design-a-web-crawler/system-design-web-crawler.html">
+            
+                <a href="../design-a-web-crawler/system-design-web-crawler.html">
+            
+                    
+                    System Design: Web Crawler
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.34.2" data-path="../design-a-web-crawler/requirements-of-a-web-crawlers-design.html">
+            
+                <a href="../design-a-web-crawler/requirements-of-a-web-crawlers-design.html">
+            
+                    
+                    Requirements of a Web Crawler's Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.34.3" data-path="../design-a-web-crawler/design-of-a-web-crawler.html">
+            
+                <a href="../design-a-web-crawler/design-of-a-web-crawler.html">
+            
+                    
+                    Design of a Web Crawler
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.34.4" data-path="../design-a-web-crawler/design-improvements-of-a-web-crawler.html">
+            
+                <a href="../design-a-web-crawler/design-improvements-of-a-web-crawler.html">
+            
+                    
+                    Design Improvements of a Web Crawler
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.34.5" data-path="../design-a-web-crawler/evaluation-of-web-crawlers-design.html">
+            
+                <a href="../design-a-web-crawler/evaluation-of-web-crawlers-design.html">
+            
+                    
+                    Evaluation of Web Crawler's Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.35" data-path="../design-whatsapp.html">
+            
+                <a href="../design-whatsapp.html">
+            
+                    
+                    Design WhatsApp
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.35.1" data-path="../design-whatsapp/system-design-whatsapp.html">
+            
+                <a href="../design-whatsapp/system-design-whatsapp.html">
+            
+                    
+                    System Design: WhatsApp
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.35.2" data-path="../design-whatsapp/requirements-of-whatsapps-design.html">
+            
+                <a href="../design-whatsapp/requirements-of-whatsapps-design.html">
+            
+                    
+                    Requirements of WhatsApp’s Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.35.3" data-path="../design-whatsapp/high-level-design-of-whatsapp.html">
+            
+                <a href="../design-whatsapp/high-level-design-of-whatsapp.html">
+            
+                    
+                    High-level Design of WhatsApp
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.35.4" data-path="../design-whatsapp/detailed-design-of-whatsapp.html">
+            
+                <a href="../design-whatsapp/detailed-design-of-whatsapp.html">
+            
+                    
+                    Detailed Design of WhatsApp
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.35.5" data-path="../design-whatsapp/evaluation-of-whatsapps-design.html">
+            
+                <a href="../design-whatsapp/evaluation-of-whatsapps-design.html">
+            
+                    
+                    Evaluation of WhatsApp’s Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.35.6" data-path="../design-whatsapp/quiz-on-whatsapps-design.html">
+            
+                <a href="../design-whatsapp/quiz-on-whatsapps-design.html">
+            
+                    
+                    Quiz on WhatsApp’s Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.36" data-path="../design-typeahead-suggestion.html">
+            
+                <a href="../design-typeahead-suggestion.html">
+            
+                    
+                    Design Typeahead Suggestion
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.36.1" data-path="../design-typeahead-suggestion/system-design-the-typeahead-suggestion-system.html">
+            
+                <a href="../design-typeahead-suggestion/system-design-the-typeahead-suggestion-system.html">
+            
+                    
+                    System Design: The Typeahead Suggestion System
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.36.2" data-path="../design-typeahead-suggestion/requirements-of-the-typeahead-suggestion-systems-design.html">
+            
+                <a href="../design-typeahead-suggestion/requirements-of-the-typeahead-suggestion-systems-design.html">
+            
+                    
+                    Requirements of the Typeahead Suggestion System’s Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.36.3" data-path="../design-typeahead-suggestion/high-level-design-of-the-typeahead-suggestion-system.html">
+            
+                <a href="../design-typeahead-suggestion/high-level-design-of-the-typeahead-suggestion-system.html">
+            
+                    
+                    High-level Design of the Typeahead Suggestion System
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.36.4" data-path="../design-typeahead-suggestion/data-structure-for-storing-prefixes.html">
+            
+                <a href="../design-typeahead-suggestion/data-structure-for-storing-prefixes.html">
+            
+                    
+                    Data Structure for Storing Prefixes
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.36.5" data-path="../design-typeahead-suggestion/detailed-design-of-the-typeahead-suggestion-system.html">
+            
+                <a href="../design-typeahead-suggestion/detailed-design-of-the-typeahead-suggestion-system.html">
+            
+                    
+                    Detailed Design of the Typeahead Suggestion System
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.36.6" data-path="../design-typeahead-suggestion/evaluation-of-the-typeahead-suggestion-systems-design.html">
+            
+                <a href="../design-typeahead-suggestion/evaluation-of-the-typeahead-suggestion-systems-design.html">
+            
+                    
+                    Evaluation of the Typeahead Suggestion System’s Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.36.7" data-path="../design-typeahead-suggestion/quiz-on-the-typeahead-suggestion-systems-design.html">
+            
+                <a href="../design-typeahead-suggestion/quiz-on-the-typeahead-suggestion-systems-design.html">
+            
+                    
+                    Quiz on the Typeahead Suggestion System’s Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.37" data-path="../design-a-collaborative-document-editing-service-google-docs.html">
+            
+                <a href="../design-a-collaborative-document-editing-service-google-docs.html">
+            
+                    
+                    Design a Collaborative Document Editing Service / Google Docs
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.37.1" data-path="../design-a-collaborative-document-editing-service-google-docs/system-design-google-docs.html">
+            
+                <a href="../design-a-collaborative-document-editing-service-google-docs/system-design-google-docs.html">
+            
+                    
+                    System Design: Google Docs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.37.2" data-path="../design-a-collaborative-document-editing-service-google-docs/requirements-of-google-docs-design.html">
+            
+                <a href="../design-a-collaborative-document-editing-service-google-docs/requirements-of-google-docs-design.html">
+            
+                    
+                    Requirements of Google Docs’ Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.37.3" data-path="../design-a-collaborative-document-editing-service-google-docs/design-of-google-docs.html">
+            
+                <a href="../design-a-collaborative-document-editing-service-google-docs/design-of-google-docs.html">
+            
+                    
+                    Design of Google Docs
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.37.4" data-path="../design-a-collaborative-document-editing-service-google-docs/concurrency-in-collaborative-editing.html">
+            
+                <a href="../design-a-collaborative-document-editing-service-google-docs/concurrency-in-collaborative-editing.html">
+            
+                    
+                    Concurrency in Collaborative Editing
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.37.5" data-path="../design-a-collaborative-document-editing-service-google-docs/evaluation-of-google-docs-design.html">
+            
+                <a href="../design-a-collaborative-document-editing-service-google-docs/evaluation-of-google-docs-design.html">
+            
+                    
+                    Evaluation of Google Docs’ Design
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.38" data-path="../spectacular-failures.html">
+            
+                <a href="../spectacular-failures.html">
+            
+                    
+                    Spectacular Failures
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.38.1" data-path="../spectacular-failures/introduction-to-distributed-system-failures.html">
+            
+                <a href="../spectacular-failures/introduction-to-distributed-system-failures.html">
+            
+                    
+                    Introduction to Distributed System Failures
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.38.2" data-path="../spectacular-failures/facebook-whatsapp-instagram-oculus-outage.html">
+            
+                <a href="../spectacular-failures/facebook-whatsapp-instagram-oculus-outage.html">
+            
+                    
+                    Facebook, WhatsApp, Instagram, Oculus Outage
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.38.3" data-path="../spectacular-failures/aws-kinesis-outage-affecting-many-organizations.html">
+            
+                <a href="../spectacular-failures/aws-kinesis-outage-affecting-many-organizations.html">
+            
+                    
+                    AWS Kinesis Outage Affecting Many Organizations
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.38.4" data-path="../spectacular-failures/aws-wide-spread-outage.html">
+            
+                <a href="../spectacular-failures/aws-wide-spread-outage.html">
+            
+                    
+                    AWS Wide Spread Outage
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.39" data-path="../conclusions.html">
+            
+                <a href="../conclusions.html">
+            
+                    
+                    Conclusions
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >High-level Design of Twitter</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="high-level-design-of-twitter">High-level Design of Twitter</h1>
+<h3 id="user-system-interaction-">User-system interaction <a href="#user-system-interaction-0" id="user-system-interaction-0"></a></h3>
+<p>Let&#x2019;s begin with the high-level design of our Twitter system. We&#x2019;ll initially highlight and discuss the building blocks, as well as other components, in the context of the Twitter problem briefly. Later on, we&#x2019;ll dive deep into a few components in this chapter.</p>
+<figure><img src="../.gitbook/assets/Screenshot 2023-09-05 at 11.37.17 PM.png" alt=""><figcaption></figcaption></figure>
+
+<ul>
+<li><strong>Users</strong> post Tweets delivered to the server through the load balancer. Then, the system stores it in persistent storage.</li>
+<li><strong>DNS</strong> provides the specified IP address to the end user to start communication with the requested service.</li>
+<li><strong>CDN</strong> is situated near the users to provide requested data with low latency. When users search for a specified term or tag, the system first searches in the CDN proxy servers containing the most frequently requested content.</li>
+<li><strong>Load balancer</strong> chooses the operational application server based on traffic load on the available servers and the user requests.</li>
+<li><strong>Storage system</strong> represents the various types of storage (SQL-based and NoSQL-based) in the above illustration. We&#x2019;ll discuss significant storage systems later in this chapter.</li>
+<li><strong>Application servers</strong> provide various services and have business logic to orchestrate between different components to meet our functional requirements.</li>
+</ul>
+<p>We have detailed chapters on <a href="../domain-name-system/introduction-to-domain-name-system-dns.html">DNS</a>, <a href="../content-delivery-network-cdn/system-design-the-content-delivery-network-cdn.html">CDN</a>, specified storage systems (<a href="../databases/introduction-to-databases.html">Databases</a>, <a href="../key-value-store/system-design-the-key-value-store.html">Key-value store</a>, <a href="../blob-store/system-design-a-blob-store.html">Blob store</a>), and <a href="../load-balancers/introduction-to-load-balancers.html">Load balancers</a> in our building blocks section. We&#x2019;ll focus on further details specific to the Twitter service in the coming lessons. Let&#x2019;s first understand the service API.</p>
+<h3 id="api-design-">API design <a href="#api-design-0" id="api-design-0"></a></h3>
+<p>This section will focus on designing various APIs regarding the functionalities we are providing. We learn how users request various services through APIs. We&#x2019;ll only concentrate on the significant parameters of the APIs that are relevant to our design. Although the front-end server can call another API or add more parameters in the API received from the end users to fulfill the given request, we consider all relevant arguments specified for the particular request in a single API. Let&#x2019;s develop APIs for each of the following features:</p>
+<ul>
+<li>Post Tweet</li>
+<li>Like or dislike Tweet</li>
+<li>Reply to Tweet</li>
+<li>Search Tweet</li>
+<li>View user or home timeline</li>
+<li>Follow or unfollow the account</li>
+<li>Retweet a Tweet</li>
+</ul>
+<h4 id="post-tweet-">Post Tweet <a href="#post-tweet-1" id="post-tweet-1"></a></h4>
+<p>The POST method is used to send the Tweet to the server from the user through the <code>/postTweet</code> API.</p>
+<pre><code>postTweet(user_id, access_type, tweet_type, content, tweet_length, media_field, post_time, tweet_location, list_of_used_hashtags, list_of_tagged_people)
+</code></pre><p>Let&#x2019;s discuss a few of the parameters:</p>
+<h2 id="">#</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Parameter</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>user_id</code></td>
+<td>It indicates the unique ID of the user who posted the Tweet.</td>
+</tr>
+<tr>
+<td><code>access_type</code></td>
+<td>It tells us whether the Tweet is protected (that is, only visible to followers) or public.</td>
+</tr>
+<tr>
+<td><code>tweet_type</code></td>
+<td>It indicates whether the Tweet is text-based, video-clip based, image(s)-based, or consisting of different types.</td>
+</tr>
+<tr>
+<td><code>content</code></td>
+<td>It specifies the Tweet&#x2019;s actual content (text).</td>
+</tr>
+<tr>
+<td><code>tweet_length</code></td>
+<td>It represents the text length in the Tweet. In the case of video, it tells us the duration and size of a video.</td>
+</tr>
+<tr>
+<td><code>media_field</code></td>
+<td>It specifies the type of media (image, video, GIF, and so on) delivered in each Tweet.</td>
+</tr>
+</tbody>
+</table>
+<p>The rest of the parameters are self-explanatory.</p>
+<blockquote>
+<p><strong>Note:</strong> Twitter uses the <strong>Snowflake</strong> service to generate unique IDs for Tweets. We have a detailed chapter (<a href="../sequencer/system-design-sequencer.html">Sequencer</a>) that explains this service.</p>
+</blockquote>
+<p><strong>Question 1</strong></p>
+<p>At most, how many hashtags can a Tweet have?</p>
+<p>The text limit is 280 characters in a Tweet. So, users can use the hashtag(s) such that text length (including plain text, any links, and hashtags) does not exceed the limit of 280 characters.</p>
+<p><strong>Question 2</strong></p>
+<p>What is the need for the <code>list_of_tagged_people</code> in the <code>/postTweet</code> API?</p>
+<p>Hide Answer</p>
+<p>The system has to notify the people tagged in the Tweet.</p>
+<p>------------------------</p>
+<h4 id="like-or-dislike-tweet-">Like or dislike Tweet <a href="#like-or-dislike-tweet-0" id="like-or-dislike-tweet-0"></a></h4>
+<p>The <code>/likeTweet</code> API is used when users like public Tweets.</p>
+<pre><code>likeTweet(user_id, tweet_id, tweeted_user_id, user_location)
+</code></pre><h2 id="">#</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Parameter</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>user_id</code></td>
+<td>It indicates the unique ID of the user who liked the Tweet.</td>
+</tr>
+<tr>
+<td><code>tweet_id</code></td>
+<td>It indicates the Tweet&apos;s unique ID.</td>
+</tr>
+<tr>
+<td><code>tweeted_user_id</code></td>
+<td>This is the unique ID of the user who posted the Tweet.</td>
+</tr>
+<tr>
+<td><code>user_location</code></td>
+<td>It denotes the location of the user who liked the Tweet.</td>
+</tr>
+</tbody>
+</table>
+<p>The parameters above are also used in the <code>/dislikeTweet</code> API when users dislike others&#x2019; Tweets.</p>
+<h4 id="reply-to-tweet-">Reply to Tweet <a href="#reply-to-tweet-0" id="reply-to-tweet-0"></a></h4>
+<p>The <code>/replyTweet</code> API is used when users reply to public Tweets.</p>
+<pre><code>replyTweet(user_id, tweet_id, tweeted_user_id, reply_type, reply_length)
+</code></pre><p>The <code>reply_type</code> and <code>reply_length</code> parameters are the same as <code>tweet_type</code> and <code>tweet_length</code> respectively.</p>
+<h4 id="search-tweet-">Search Tweet <a href="#search-tweet-0" id="search-tweet-0"></a></h4>
+<p>When the user searches any keyword in the home timeline, the GET method is used. The following is the <code>/searchTweet</code> API:</p>
+<pre><code>searchTweet(user_id, search_term, max_result, exclude, media_field, expansions, sort_order, next_token, user_location)
+</code></pre><p>Some new parameters introduced in this case are:</p>
+<h2 id="">#</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Parameter</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>search_term</code></td>
+<td>It is a string containing the search keyword or phrase.</td>
+</tr>
+<tr>
+<td><code>max_result</code></td>
+<td>It is the number of Tweets returned per response page. By default, the Tweets per response is 10.</td>
+</tr>
+<tr>
+<td><code>exclude</code></td>
+<td>It specifies what to exclude from the returned Tweets, that is, replies and retweets. The maximum limit on returned Tweets is 3200, but when we exclude replies, the maximum limit is reduced to 800 Tweets.</td>
+</tr>
+<tr>
+<td><code>media_field</code></td>
+<td>It specifies the media (image, video, GIF) delivered in each returned Tweet.</td>
+</tr>
+<tr>
+<td><code>expansions</code></td>
+<td>It enables us to request additional data objects in the returned Tweets, such as any mentioned user, referenced Tweet, attached media, attached places objects, and so on.</td>
+</tr>
+<tr>
+<td><code>sort_order</code></td>
+<td>It specifies the order in which Tweets are returned. By default, it will return the most recent Tweets first.</td>
+</tr>
+<tr>
+<td><code>next_token</code></td>
+<td>It is used to get the next page of results. For instance, if <code>max_result</code> is set to 100 Tweets, and the result set contains 200 Tweets, then the value of <code>next_token</code> is directly pulled from the response to request the next page containing the following 100 Tweets. The last result (page) will not have a <code>next_token</code>.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Response</strong></p>
+<p>Let&#x2019;s look at a sample response in JSON format. The <strong>id</strong> is the user&#x2019;s unique ID who posted the Tweet and the <strong>text</strong> is the Tweet&#x2019;s content. The <strong>result_count</strong> is the count of the returned Tweet, which we set in the <code>max_result</code> in the request. Here, we&#x2019;re displaying the default fields only.</p>
+<p>Click to see response in JSON</p>
+<blockquote>
+<p><strong>Note:</strong> Twitter performs various types of searches. The following are two of them:</p>
+<ul>
+<li>One search type returns the result of the last seven days, which all registered users usually use.</li>
+<li>The other type returns all matching results on all Tweets ever posted (remind that service does not delete a posted Tweet). Indeed, matches can contain the first Tweet on Twitter. This search is usually used for academic research.</li>
+</ul>
+</blockquote>
+<h4 id="view-hometimeline-">View home_timeline <a href="#view-home_timeline-0" id="view-home_timeline-0"></a></h4>
+<p>The GET method is suitable when users view their home timelines through the <code>/viewHome_timeline</code> API.</p>
+<pre><code>viewHome_timeline(user_id, tweets_count, max_result, exclude, next_token, user_location)
+</code></pre><p>In the <code>/viewUser_timeline</code> API, we&#x2019;ll exclude the <code>user_location</code> to get the user timeline.</p>
+<p>The <code>max_rsult</code> parameter determines the number of tweets a client application can show the user. The server sends the <code>max_result</code> number of tweets in each response. Further, the server will also send a paginated <code>list_of_followers</code> to reduce the client latency.</p>
+<p><strong>Question</strong></p>
+<p>Which parameter in the <code>viewHome_timeline</code> method is the most relevant when deciding which promoted ads (Tweets) to be returned in response?</p>
+<p>The decision to send specified promoted ads is made on the <code>user_location</code> parameter. For example, the user belongs to the <code>NewYork</code> city, so most probably it gets promoted ads associated or originated in that region.</p>
+<p>---------------------</p>
+<h4 id="follow-the-account-">Follow the account <a href="#follow-the-account-0" id="follow-the-account-0"></a></h4>
+<p>The <code>/followAccount</code> API is used when users follow someone&#x2019;s account on Twitter.</p>
+<pre><code>followAccount(account_id, followed_account_id)
+</code></pre><h2 id="">#</h2>
+<table>
+<thead>
+<tr>
+<th><strong>Parameter</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>account_id</code></td>
+<td>It specifies the unique ID of a user who follows that account on Twitter.</td>
+</tr>
+<tr>
+<td><code>followed_account_id</code></td>
+<td>It indicates the unique ID of the account that the user follows.</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>/unfollowAccount</code> API will use the same parameters when a user unfollows someone&#x2019;s account on Twitter.</p>
+<h4 id="retweet-a-tweet-">Retweet a Tweet <a href="#retweet-a-tweet-0" id="retweet-a-tweet-0"></a></h4>
+<p>When a registered user Retweets (re-posts) someone&#x2019;s Tweet on Twitter, the following <code>/retweet</code> API is called:</p>
+<pre><code>retweet(user_id, tweet_id, retweet_user_id)
+</code></pre><p>The same parameters will be required in the <code>/undoRetweet</code> API when users undo a Retweet of someone&#x2019;s Tweet.</p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="requirements-of-twitters-design.html" class="navigation navigation-prev " aria-label="Previous page: Requirements of Twitter’s Design">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="detailed-design-of-twitter.html" class="navigation navigation-next " aria-label="Next page: Detailed Design of Twitter">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"High-level Design of Twitter","level":"1.30.3","depth":2,"next":{"title":"Detailed Design of Twitter","level":"1.30.4","depth":2,"path":"design-twitter/detailed-design-of-twitter.md","ref":"design-twitter/detailed-design-of-twitter.md","articles":[]},"previous":{"title":"Requirements of Twitter’s Design","level":"1.30.2","depth":2,"path":"design-twitter/requirements-of-twitters-design.md","ref":"design-twitter/requirements-of-twitters-design.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-twitter/high-level-design-of-twitter.md","mtime":"2023-09-27T03:37:14.520Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T03:37:51.488Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-page-toc/anchor-3.1.1.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-page-toc/page-toc.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
