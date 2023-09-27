@@ -3375,7 +3375,7 @@
                                 <h1 id="design-of-youtube">Design of YouTube</h1>
 <h3 id="high-level-design-">High-level design <a href="#high-level-design-0" id="high-level-design-0"></a></h3>
 <p>The high-level design shows how we&#x2019;ll interconnect the various components we identified in the previous lesson. We have started developing a solution to support the functional and non-functional requirements with this design.</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.25.39 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 3.25.39 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>The workflow for the abstract design is provided below:</p>
 <ol>
@@ -3404,7 +3404,7 @@
 <li>Like or dislike videos</li>
 <li>Comment on videos</li>
 </ul>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.27.41 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 3.27.41 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="upload-video-">Upload video <a href="#upload-video-0" id="upload-video-0"></a></h4>
 <p>The POST method can upload a video to the <code>/uploadVideo</code> API:</p>
@@ -3555,7 +3555,7 @@
 </table>
 <h3 id="storage-schema-">Storage schema <a href="#storage-schema-0" id="storage-schema-0"></a></h3>
 <p>Each of the above features in the API design requires support from the database&#x2014;we&#x2019;ll need to store the details above in our storage schema to provide services to the API gateway.</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.30.53 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 3.30.53 AM.png" alt=""><figcaption></figcaption></figure>
 
 <blockquote>
 <p><strong>Note:</strong> Much of the underlying details regarding database tables that can be mapped to services provided by YouTube have been omitted for simplicity. For example, one video can have different qualities and that is not mentioned in the &#x201C;Video&#x201D; table.</p>
@@ -3580,7 +3580,7 @@
 <li><strong>Encoders</strong>: Each uploaded video requires compression and transcoding into various formats. Thumbnail generation service is also obtained from the encoders.</li>
 <li><strong>CDN and colocation sites</strong>: CDNs and colocation sites store popular and moderately popular content that is closer to the user for easy access. Colocation centers are used where it&#x2019;s not possible to invest in a data center facility due to business reasons.</li>
 </ul>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.31.30 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 3.31.30 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="design-flow-and-technology-usage-">Design flow and technology usage <a href="#design-flow-and-technology-usage-0" id="design-flow-and-technology-usage-0"></a></h4>
 <p>Now that we understand the purpose of every component, let&#x2019;s discuss the flow and technology used in different components in the following steps:</p>
@@ -3611,7 +3611,7 @@
 <li>Categories.</li>
 </ul>
 <p>Each of the JSON files can be referred to as a document. Next, keywords will be extracted from the documents and stored in a key-value store. The <em>key</em> in the key-value store will hold all the keywords searched by the users, while the <em>value</em> in the key-value store will contain the occurrence of each key, its frequency, and the location of the occurrence in the different documents. When a user searches for a keyword, the videos with the most relevant keywords will be returned.</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.32.07 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 3.32.07 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>The approach above is simplistic, and the relevance of keywords is not the only factor affecting search in YouTube. In reality, a number of other factors will matter. The processing engine will improve the search results by filtering and ranking videos. It will make use of other factors like view count, the watch time of videos, and the context, along with the history of the user, to improve search results.</p>
 
@@ -3657,7 +3657,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Design of YouTube","level":"1.25.3","depth":2,"next":{"title":"Evaluation of YouTube's Design","level":"1.25.4","depth":2,"path":"design-youtube/evaluation-of-youtubes-design.md","ref":"design-youtube/evaluation-of-youtubes-design.md","articles":[]},"previous":{"title":"Requirements of YouTube's Design","level":"1.25.2","depth":2,"path":"design-youtube/requirements-of-youtubes-design.md","ref":"design-youtube/requirements-of-youtubes-design.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-youtube/design-of-youtube.md","mtime":"2023-09-27T05:00:25.426Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:01:00.962Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Design of YouTube","level":"1.25.3","depth":2,"next":{"title":"Evaluation of YouTube's Design","level":"1.25.4","depth":2,"path":"design-youtube/evaluation-of-youtubes-design.md","ref":"design-youtube/evaluation-of-youtubes-design.md","articles":[]},"previous":{"title":"Requirements of YouTube's Design","level":"1.25.2","depth":2,"path":"design-youtube/requirements-of-youtubes-design.md","ref":"design-youtube/requirements-of-youtubes-design.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-youtube/design-of-youtube.md","mtime":"2023-09-27T05:12:52.219Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:13:42.952Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

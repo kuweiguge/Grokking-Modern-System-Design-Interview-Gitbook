@@ -3380,7 +3380,7 @@
 <li>Redirecting a short URL</li>
 <li>Deleting a short URL</li>
 </ul>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.56.25 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.56.25 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="shortening-a-url-">Shortening a URL <a href="#shortening-a-url-0" id="shortening-a-url-0"></a></h4>
 <p>We can create new short URLs with the following definition:</p>
@@ -3494,7 +3494,7 @@
 </ul>
 <p>We built a sequencer in our building blocks section to generate 64-bit unique <em>numeric</em> IDs. However, our proposed design requires 64-bit <em>alphanumeric</em> short URLs in base-58. To convert the numeric (base-10) IDs to alphanumeric (base-58), we&#x2019;ll need a base-10 for the base-58 encoder. We&#x2019;ll explore the rationale behind these decisions alongside the internal working of the base-58 encoder in the next lesson.</p>
 <p>Take a look at the diagram below to understand how the overall short URL generation unit will work.</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.57.17 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.57.17 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Other building blocks</strong>: Beside the elements mentioned above, we&#x2019;ll also incorporate other building blocks like load balancers, cache, and rate limiters.</p>
 <ul>
@@ -3517,7 +3517,7 @@
 <p>We ask the sequencer for a unique ID and by the definition of our sequencer&#x2019;s design, there will never be duplication in IDs. We then encode those IDs, which also ensures no duplication. Hence, the regular short URL generation process ensures no duplication in records.</p>
 <p>Now let&#x2019;s consider the case of custom short URLs. Since the user is providing the short URL, there can be a duplication. We can easily calculate the probability of this collision by taking into account the size of the database containing short URL records.</p>
 <p>Let&#x2019;s assume there are <code>n</code> already generated short URLs in the database. The probability that the user-provided custom short URL will be similar to an already existing one can be given by:</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.58.42 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.58.42 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>With growing <code>n</code>, the collision probability would increase, ranging from 0 when <code>n=0</code> and 1 when <code>n=total number of combinations</code>.</p>
 <blockquote>
@@ -3525,7 +3525,7 @@
 </blockquote>
 <h4 id="design-diagram-">Design diagram <a href="#design-diagram-0" id="design-diagram-0"></a></h4>
 <p>A simple design diagram of the URL shortening system is given below.</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.59.10 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.59.10 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="workflow-">Workflow <a href="#workflow-0" id="workflow-0"></a></h4>
 <p>Let&#x2019;s analyze the system in-depth and how the individual pieces fit together to provide the overall functionality.</p>
@@ -3561,11 +3561,11 @@
 <p>Both of these approaches ensure smooth traffic handling and mitigate the risk of the data store becoming a bottleneck.</p>
 <p>--------------</p>
 <p>The illustration below depicts how URL shortening, redirection, and deletion work.</p>
-<p><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.01.56 AM.png" alt=""></p>
-<p><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.02.16 AM.png" alt=""></p>
-<p><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.02.34 AM.png" alt=""></p>
-<p><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.03.13 AM.png" alt=""></p>
-<p><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.02.53 AM.png" alt=""></p>
+<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.01.56 AM.png" alt=""></p>
+<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.02.16 AM.png" alt=""></p>
+<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.02.34 AM.png" alt=""></p>
+<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.03.13 AM.png" alt=""></p>
+<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.02.53 AM.png" alt=""></p>
 <p><strong>Question</strong></p>
 <p>Upon successful allocation of a custom short URL, how does the system modify its records?</p>
 <p>Since the custom short URL is the base-58 encoding of an available base-10 unique ID, marking that unique ID as unavailable for future use is necessary for the system&#x2019;s integrity.</p>
@@ -3620,7 +3620,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Design and Deployment of TinyURL","level":"1.33.3","depth":2,"next":{"title":"Encoder for TinyURL","level":"1.33.4","depth":2,"path":"design-a-url-shortening-service-tinyurl/encoder-for-tinyurl.md","ref":"design-a-url-shortening-service-tinyurl/encoder-for-tinyurl.md","articles":[]},"previous":{"title":"Requirements of TinyURL's Design","level":"1.33.2","depth":2,"path":"design-a-url-shortening-service-tinyurl/requirements-of-tinyurls-design.md","ref":"design-a-url-shortening-service-tinyurl/requirements-of-tinyurls-design.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-a-url-shortening-service-tinyurl/design-and-deployment-of-tinyurl.md","mtime":"2023-09-27T05:00:25.418Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:01:00.962Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Design and Deployment of TinyURL","level":"1.33.3","depth":2,"next":{"title":"Encoder for TinyURL","level":"1.33.4","depth":2,"path":"design-a-url-shortening-service-tinyurl/encoder-for-tinyurl.md","ref":"design-a-url-shortening-service-tinyurl/encoder-for-tinyurl.md","articles":[]},"previous":{"title":"Requirements of TinyURL's Design","level":"1.33.2","depth":2,"path":"design-a-url-shortening-service-tinyurl/requirements-of-tinyurls-design.md","ref":"design-a-url-shortening-service-tinyurl/requirements-of-tinyurls-design.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-a-url-shortening-service-tinyurl/design-and-deployment-of-tinyurl.md","mtime":"2023-09-27T05:12:52.211Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:13:42.952Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -3411,12 +3411,12 @@
 <p>Let&#x2019;s estimate the storage required for our system:</p>
 <p><strong>Rider&#x2019;s metadata</strong></p>
 <p>Let&#x2019;s assume we need around 1,000 Bytes to store each rider&#x2019;s information, including ID, name, email, and so on, when the rider registers in our application. To store the 500 million riders, we require 500 GB of storage:</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 7.01.43 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 7.01.43 PM.png" alt=""><figcaption></figcaption></figure>
 
 <p>Additionally, if we have around 500,000 new riders registered daily, we&#x2019;ll need a further 500 MB to store them.</p>
 <p><strong>Driver&#x2019;s metadata</strong></p>
 <p>Let&#x2019;s assume we need around 1,000 Bytes to store each driver&#x2019;s information, including ID, name, email, vehicle type, and so on, when the driver registers in our application. To store the five million drivers, we require 5 GB of storage:</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 7.01.55 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 7.01.55 PM.png" alt=""><figcaption></figcaption></figure>
 
 <p>Additionally, if we have around 100,00 new drivers registered daily, we&#x2019;ll need around 100 MB to store them.</p>
 <p><strong>Driver location metadata</strong></p>
@@ -3467,13 +3467,13 @@
 </tr>
 </tbody>
 </table>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 7.02.25 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 7.02.25 PM.png" alt=""><figcaption></figcaption></figure>
 
 <blockquote>
 <p><strong>Note:</strong> We can adjust the values in the table to see how the estimations change.</p>
 </blockquote>
 <h4 id="bandwidth-estimation-">Bandwidth estimation <a href="#bandwidth-estimation-0" id="bandwidth-estimation-0"></a></h4>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 7.02.48 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 7.02.48 PM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Bandwidth Requirements</strong></p>
 <table>
@@ -3510,7 +3510,7 @@
 </tr>
 </tbody>
 </table>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 7.03.05 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 7.03.05 PM.png" alt=""><figcaption></figcaption></figure>
 
 <blockquote>
 <p><strong>Note:</strong> We can adjust the values in the table to see how the requirements change.</p>
@@ -3518,7 +3518,7 @@
 <p>We&#x2019;ve ignored the bandwidth from the Uber service to users because it was very small. More bandwidth will be required for sending map data from the Uber service to users, which we&#x2019;ve also discussed in the <a href="../design-google-maps/system-design-google-maps.html">Google Maps</a> chapter.</p>
 <h4 id="number-of-servers-estimation-">Number of servers estimation <a href="#number-of-servers-estimation-0" id="number-of-servers-estimation-0"></a></h4>
 <p>We need to handle concurrent requests coming from 20 million daily active users. We&#x2019;ll use the following formula to estimate a pragmatic number of servers. We established this formula in the <a href="../back-of-the-envelope-calculations/put-back-of-the-envelope-numbers-in-perspective.html">Back-of-the-envelope Calculations</a> chapter:</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 7.03.49 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 7.03.49 PM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Estimating the Number of Servers</strong></p>
 <table>
@@ -3544,7 +3544,7 @@
 </blockquote>
 <h3 id="building-blocks-we-will-use-">Building blocks we will use <a href="#building-blocks-we-will-use-0" id="building-blocks-we-will-use-0"></a></h3>
 <p>The design of Uber utilizes the following building blocks:</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 7.04.04 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 7.04.04 PM.png" alt=""><figcaption></figcaption></figure>
 
 <ul>
 <li><a href="../databases/introduction-to-databases.html"><strong>Databases</strong></a> store the metadata of riders, drivers, and trips.</li>
@@ -3599,7 +3599,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Requirements of Uber’s Design","level":"1.29.2","depth":2,"next":{"title":"High-level Design of Uber","level":"1.29.3","depth":2,"path":"design-uber/high-level-design-of-uber.md","ref":"design-uber/high-level-design-of-uber.md","articles":[]},"previous":{"title":"System Design: Uber","level":"1.29.1","depth":2,"path":"design-uber/system-design-uber.md","ref":"design-uber/system-design-uber.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-uber/requirements-of-ubers-design.md","mtime":"2023-09-27T05:00:25.422Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:01:00.962Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Requirements of Uber’s Design","level":"1.29.2","depth":2,"next":{"title":"High-level Design of Uber","level":"1.29.3","depth":2,"path":"design-uber/high-level-design-of-uber.md","ref":"design-uber/high-level-design-of-uber.md","articles":[]},"previous":{"title":"System Design: Uber","level":"1.29.1","depth":2,"path":"design-uber/system-design-uber.md","ref":"design-uber/system-design-uber.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-uber/requirements-of-ubers-design.md","mtime":"2023-09-27T05:12:52.215Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:13:42.952Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

@@ -3380,28 +3380,28 @@
 <p><strong>Note:</strong> The scenario described above can also be handled by assigning a unique ID and encoding the dependence of events using a social graph. We might also use a separate time data structure and a simple unique ID. However, we want a unique ID to do double duty&#x2014;provide unique identification and also help with the causality of events.</p>
 </blockquote>
 <p>The following slides provide a visualization of concurrent and nonconcurrent events.</p>
-<p><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.31.40 PM.png" alt=""></p>
-<p><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.31.53 PM.png" alt=""></p>
-<p><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.32.05 PM.png" alt=""></p>
-<p><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.32.22 PM.png" alt=""></p>
-<p><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.32.36 PM.png" alt=""></p>
+<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.31.40 PM.png" alt=""></p>
+<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.31.53 PM.png" alt=""></p>
+<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.32.05 PM.png" alt=""></p>
+<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.32.22 PM.png" alt=""></p>
+<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.32.36 PM.png" alt=""></p>
 <p>Some applications need the events to have unique identifiers and carry any relevant causality information. An example of this is giving an identifier to the concurrent writes of a key into a key-value store to implement the last-write-wins strategy.</p>
 <p>We can either use logical or physical clocks to infer causality. Some systems have additional requirements where we want event identifiers&#x2019; causality to map wall-clock time. An example of this is a financial application that complies with the European MiFID regulations. MiFID requires clocks to be within 100 microseconds of UTC to detect anomalies during high-volume/high-speed market trades.</p>
 <blockquote>
 <p><strong>Note:</strong> There are many subtleties associated with logical or physical clocks. We can refer to the text below titled &#x201C;Time in a Distributed System&#x201D; to refresh our concepts of time.</p>
 </blockquote>
 <p>We use time to determine the sequence of events in our life. For example, if Sam took a bath at 6 a.m. and ate breakfast at 7:00 a.m., we can determine that Sam took a bath before breakfast by the time stamps of each event. Time stamps, therefore, can be used to maintain causality.</p>
-<p><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.33.27 PM.png" alt=""></p>
-<p><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.33.48 PM.png" alt=""></p>
-<p><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.34.04 PM.png" alt=""></p>
-<p><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.34.27 PM.png" alt=""></p>
+<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.33.27 PM.png" alt=""></p>
+<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.33.48 PM.png" alt=""></p>
+<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.34.04 PM.png" alt=""></p>
+<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.34.27 PM.png" alt=""></p>
 <h3 id="use-unix-time-stamps-">Use UNIX time stamps <a href="#use-unix-time-stamps-0" id="use-unix-time-stamps-0"></a></h3>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.34.52 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.34.52 PM.png" alt=""><figcaption></figcaption></figure>
 
 <p>Terminal 1Terminal</p>
 <p>Click to Connect...</p>
 <p>Our system works well with generating IDs, but it poses a crucial problem. The ID-generating server is a single point of failure (SPOF), and we need to handle it. To cater to SPOF, we can add more servers. Each server generates a unique ID for every millisecond. To make the overall identifier unique across the system, we attach the server ID with the UNIX time stamp. Then, we add a load balancer to distribute the traffic more efficiently. The design of a unique ID generator using a UNIX time stamps is given below:</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.35.27 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.35.27 PM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="pros-">Pros <a href="#pros-0" id="pros-0"></a></h4>
 <p>This approach is simple, scalable, and easy to implement. It also enables multiple servers to handle concurrent requests.</p>
@@ -3456,22 +3456,22 @@
 </table>
 <h3 id="twitter-snowflake-">Twitter Snowflake <a href="#twitter-snowflake-0" id="twitter-snowflake-0"></a></h3>
 <p>Let&#x2019;s try to use time efficiently. We can use some bits out of our targetted 64 bits for storing time and the remaining for other information. An overview of division is below:</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.36.14 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.36.14 PM.png" alt=""><figcaption></figcaption></figure>
 
 <p>The explanation of the bits division is as follows:</p>
 <p>&#x2022; <strong>Sign bit</strong>: A single bit is assigned as a sign bit, and its value will always be zero. It makes the overall number positive. Doing so helps to ensure that any programming environment using these identifiers interprets them as positive integers.</p>
 <p>&#x2022; <strong>Time stamp</strong>: 41 bits are assigned for milliseconds. The Twitter Snowflake default epoch will be used. Its value is 12888349746571288834974657, which is equivalent to November 4, 2010, 01:42:54 UTC. We can initiate our own epoch when our system will be deployed, say January 1, 2022, at 12 midnight can be the start of our epoch from zero. The maximum time to deplete this range is shown below:</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.36.49 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.36.49 PM.png" alt=""><figcaption></figcaption></figure>
 
 <p>The above calculations give us 69 years before we need a new algorithm to generate IDs. As we saw earlier, if we can generate 1,000 identifiers per second, we aren&#x2019;t able to get our target of a billion identifiers per day. Though now, in the Snowflake proposal, we have ample identifiers available when we utilize worker ID and machine local sequence numbers.</p>
 <p>&#x2022; <strong>Worker number</strong>: The worker number is 10 bits. It gives us 210210 = 1,024 worker IDs. The server creating the unique ID for its events will attach its ID.</p>
 <p>&#x2022; <strong>Sequence number</strong>: The sequence number is 12 bits. For every ID generated on the server, the sequence number is incremented by one. It gives us 212212 = 4,096 unique sequence numbers. We&#x2019;ll reset it to zero when it reaches 4,096. This number adds a layer to avoid duplication.</p>
 <p>The following slides show the conversion of the time stamp to UTC.</p>
-<p><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.40.14 PM.png" alt=""></p>
-<p><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.40.30 PM.png" alt=""></p>
-<p><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.40.42 PM.png" alt=""></p>
-<p><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.41.02 PM.png" alt=""></p>
-<p><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.41.16 PM.png" alt=""></p>
+<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.40.14 PM.png" alt=""></p>
+<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.40.30 PM.png" alt=""></p>
+<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.40.42 PM.png" alt=""></p>
+<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.41.02 PM.png" alt=""></p>
+<p><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.41.16 PM.png" alt=""></p>
 <h4 id="pros-">Pros <a href="#pros-0" id="pros-0"></a></h4>
 <p>Twitter Snowflake uses the time stamp as the first component. Therefore, they&#x2019;re time sortable. The ID generator is highly available as well.</p>
 <h4 id="cons-">Cons <a href="#cons-1" id="cons-1"></a></h4>
@@ -3559,7 +3559,7 @@
 <p><strong>Note:</strong> In the following slides, we haven&#x2019;t converted the data to bits for the sake of understanding. The pattern we&#x2019;ll use for the unique ID is the following:</p>
 <pre><code>[vector-clock][worker-id]
 </code></pre></blockquote>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.42.00 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.42.00 PM.png" alt=""><figcaption></figcaption></figure>
 
 <p>Our approach with vector clocks works. However, in order to completely capture causality, a vector clock must be at least &#xFFFD;n nodes in size. As a result, when the total number of participating nodes is enormous, vector clocks require a significant amount of storage. Some systems nowadays, such as web applications, treat every browser as a client of the system. Such information increases the ID length significantly, making it difficult to handle, store, use, and scale.</p>
 <h3 id="requirements-fulfilled-by-each-approach">Requirements Fulfilled by Each Approach</h3>
@@ -3625,7 +3625,7 @@
 </tr>
 </tbody>
 </table>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.42.28 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.42.28 PM.png" alt=""><figcaption></figcaption></figure>
 
 <h3 id="truetime-api-">TrueTime API <a href="#truetime-api-0" id="truetime-api-0"></a></h3>
 <p>Google&#x2019;s TrueTime API in Spanner is an interesting option. Instead of a particular time stamp, it reports an interval of time. When asking for the current time, we get back two values: the earliest and latest ones. These are the earliest possible and latest possible time stamps.</p>
@@ -3633,18 +3633,18 @@
 <p>Google deploys a GPS receiver or atomic clock in each data center, and clocks are synchronized within about 7 ms. This allows Spanner to keep the clock uncertainty to a minimum. The uncertainty of the interval is represented as epsilon.</p>
 <p>The following slides explain how TrueTime&#x2019;s time master servers work with GPS and atomic clocks in multiple data centers.</p>
 <p>In every data center, we have time handlers. GPS timemasters have GPS receivers attached, and few of them have atomic clocks<strong>1</strong> of 5</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.42.53 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.42.53 PM.png" alt=""><figcaption></figcaption></figure>
 
 <p>The following slides explain how time is calculated when the client asks to give TrueTime.</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.44.19 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.44.19 PM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.44.37 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.44.37 PM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.45.04 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.45.04 PM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.46.11 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.46.11 PM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.46.39 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.46.39 PM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="pros-">Pros <a href="#pros-0" id="pros-0"></a></h4>
 <p>TrueTime satisfies all the requirements. We&#x2019;re able to generate a globally unique 64-bit identifier. The causality of events is maintained. The approach is scalable and highly available.</p>
@@ -3779,7 +3779,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Unique IDs with Causality","level":"1.11.3","depth":2,"next":{"title":"Distributed Monitoring","level":"1.12","depth":1,"path":"distributed-monitoring/README.md","ref":"distributed-monitoring/README.md","articles":[{"title":"System Design: Distributed Monitoring","level":"1.12.1","depth":2,"path":"distributed-monitoring/system-design-distributed-monitoring.md","ref":"distributed-monitoring/system-design-distributed-monitoring.md","articles":[]},{"title":"Introduction to Distributed Monitoring","level":"1.12.2","depth":2,"path":"distributed-monitoring/introduction-to-distributed-monitoring.md","ref":"distributed-monitoring/introduction-to-distributed-monitoring.md","articles":[]},{"title":"Prerequisites of a Monitoring System","level":"1.12.3","depth":2,"path":"distributed-monitoring/prerequisites-of-a-monitoring-system.md","ref":"distributed-monitoring/prerequisites-of-a-monitoring-system.md","articles":[]}]},"previous":{"title":"Design of a Unique ID Generator","level":"1.11.2","depth":2,"path":"sequencer/design-of-a-unique-id-generator.md","ref":"sequencer/design-of-a-unique-id-generator.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"sequencer/unique-ids-with-causality.md","mtime":"2023-09-27T05:00:25.430Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:01:00.962Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Unique IDs with Causality","level":"1.11.3","depth":2,"next":{"title":"Distributed Monitoring","level":"1.12","depth":1,"path":"distributed-monitoring/README.md","ref":"distributed-monitoring/README.md","articles":[{"title":"System Design: Distributed Monitoring","level":"1.12.1","depth":2,"path":"distributed-monitoring/system-design-distributed-monitoring.md","ref":"distributed-monitoring/system-design-distributed-monitoring.md","articles":[]},{"title":"Introduction to Distributed Monitoring","level":"1.12.2","depth":2,"path":"distributed-monitoring/introduction-to-distributed-monitoring.md","ref":"distributed-monitoring/introduction-to-distributed-monitoring.md","articles":[]},{"title":"Prerequisites of a Monitoring System","level":"1.12.3","depth":2,"path":"distributed-monitoring/prerequisites-of-a-monitoring-system.md","ref":"distributed-monitoring/prerequisites-of-a-monitoring-system.md","articles":[]}]},"previous":{"title":"Design of a Unique ID Generator","level":"1.11.2","depth":2,"path":"sequencer/design-of-a-unique-id-generator.md","ref":"sequencer/design-of-a-unique-id-generator.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"sequencer/unique-ids-with-causality.md","mtime":"2023-09-27T05:12:52.227Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:13:42.952Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

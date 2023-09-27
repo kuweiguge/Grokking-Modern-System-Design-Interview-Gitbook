@@ -3392,7 +3392,7 @@
 <p>Let&#x2019;s assume the platform for which the newsfeed system is designed has 1 billion users per day, out of which, on average, 500 million are daily active users. Also, each user has 300 friends and follows 250 pages on average. Based on the assumed statistics, let&#x2019;s look at the traffic, storage, and servers estimation.</p>
 <h4 id="traffic-estimation-">Traffic estimation <a href="#traffic-estimation-0" id="traffic-estimation-0"></a></h4>
 <p>Let&#x2019;s assume that each daily active user opens the application (or social media page) 10 times a day. The total number of requests per day would be:</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.13.51 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.13.51 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="storage-estimation-">Storage estimation <a href="#storage-estimation-0" id="storage-estimation-0"></a></h4>
 <p>Let&#x2019;s assume that the feed will be generated offline and rendered upon a request. Also, we&#x2019;ll precompute the top 200 posts for each user. Let&#x2019;s calculate storage estimates for users&#x2019; metadata, posts containing text, and media content.</p>
@@ -3425,7 +3425,7 @@
 <p>200&#xD7;500M&#xD7;50KB=5PB</p>
 </li>
 </ol>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.15.01 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.15.01 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Storage Estimation of Posts Containing Text and Media Content.</strong></p>
 <table>
@@ -3456,7 +3456,7 @@
 </table>
 <h4 id="number-of-servers-estimation-">Number of servers estimation <a href="#number-of-servers-estimation-0" id="number-of-servers-estimation-0"></a></h4>
 <p>Considering the above traffic and storage estimation, let&#x2019;s estimate the required number of servers for smooth operations. Recall that a single typical server can serve 8000 requests per second (RPS). Since our system will have approximately 500 million daily active users (DAU). Therefore, according to estimation in <a href="../back-of-the-envelope-calculations/page-2.html">Back-of-the-Envelope Calculations</a> chapter, the number of servers we would require is:</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.15.52 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.15.52 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Servers Estimation</strong></p>
 <table>
@@ -3479,7 +3479,7 @@
 </table>
 <h3 id="building-blocks-we-will-use-">Building blocks we will use <a href="#building-blocks-we-will-use-0" id="building-blocks-we-will-use-0"></a></h3>
 <p>The design of newsfeed system utilizes the following building blocks:</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.16.14 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.16.14 AM.png" alt=""><figcaption></figcaption></figure>
 
 <ul>
 <li><a href="../databases/introduction-to-databases.html"><strong>Database(s)</strong></a> is required to store the posts from different entities and the generated personalized newsfeed. It is also used to store users&#x2019; metadata and their relationships with other entities, such as friends and followers.</li>
@@ -3532,7 +3532,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Requirements of a Newsfeed System’s Design","level":"1.31.2","depth":2,"next":{"title":"Design of a Newsfeed System","level":"1.31.3","depth":2,"path":"design-newsfeed-system/design-of-a-newsfeed-system.md","ref":"design-newsfeed-system/design-of-a-newsfeed-system.md","articles":[]},"previous":{"title":"System Design: Newsfeed System","level":"1.31.1","depth":2,"path":"design-newsfeed-system/system-design-newsfeed-system.md","ref":"design-newsfeed-system/system-design-newsfeed-system.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-newsfeed-system/requirements-of-a-newsfeed-systems-design.md","mtime":"2023-09-27T05:00:25.422Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:01:00.962Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Requirements of a Newsfeed System’s Design","level":"1.31.2","depth":2,"next":{"title":"Design of a Newsfeed System","level":"1.31.3","depth":2,"path":"design-newsfeed-system/design-of-a-newsfeed-system.md","ref":"design-newsfeed-system/design-of-a-newsfeed-system.md","articles":[]},"previous":{"title":"System Design: Newsfeed System","level":"1.31.1","depth":2,"path":"design-newsfeed-system/system-design-newsfeed-system.md","ref":"design-newsfeed-system/system-design-newsfeed-system.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-newsfeed-system/requirements-of-a-newsfeed-systems-design.md","mtime":"2023-09-27T05:12:52.215Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:13:42.952Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

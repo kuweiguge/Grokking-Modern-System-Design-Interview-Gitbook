@@ -3381,7 +3381,7 @@
 <li><strong>Feed publishing:</strong> When a feed is published, the relevant data is written into the cache and database. This data could be textual or any media content. A post containing the data from friends and followers is populated to a user&#x2019;s newsfeed.</li>
 </ol>
 <p>Let&#x2019;s move to the high-level design of our newsfeed system. It consists of the above two essential parts, shown in the following figure:</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.17.16 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.17.16 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>Let&#x2019;s discuss the main components shown in the high-level design:</p>
 <ol>
@@ -3447,7 +3447,7 @@
 <li><strong>Feed_item:</strong> The data about posts created by users is stored in this relation.</li>
 <li><strong>Media:</strong> The information about the media content is stored in this relation.</li>
 </ul>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.18.23 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.18.23 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>We use a graph database to store relationships between users, friends, and followers. For this purpose, we follow the property graph model. We can think of a graph database consisting of two relational tables:</p>
 <ol>
@@ -3456,10 +3456,10 @@
 </ol>
 <p>Therefore, we follow a relational schema for the graph store, as shown in the following figure. The schema uses the PostgreSQL JSON data type to store the properties of each vertex (user) or edge (relationship).</p>
 <p>An alternative representation of a <strong>User</strong> can be shown in the graph database below. Where the <code>Users_ID</code> remains the same and attributes are stored in a JSON file format.</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.18.56 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.18.56 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>The following figure demonstrates how graph can be represented using the relational schema:</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.19.58 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.19.58 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h3 id="detailed-design-">Detailed design <a href="#detailed-design-0" id="detailed-design-0"></a></h3>
 <p>Let&#x2019;s explore the design of the newsfeed system in detail.</p>
@@ -3481,7 +3481,7 @@
 <li>In the end, whenever Alice reaches the end of her timeline, the next top &#xFFFD;N posts are fetched to her screen from the newsfeed cache.</li>
 </ol>
 <p>The process is illustrated in the following figure:</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.20.28 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.20.28 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Question</strong></p>
 <p><strong>Question</strong></p>
@@ -3496,7 +3496,7 @@
 <p>What is the problem with generating a newsfeed upon a user&apos;s request (also called live updates)?</p>
 <p>Suppose if our service receives billions of requests at once and the system starts generating live newsfeeds. This situation would put an enormous number of users on hold and could crash servers. To avoid this, we can assign dedicated servers that will continuously rank and generate newsfeeds and store them in the newsfeed database and memory. Therefore, upon a request for new posts from a user, our system will provide the pre-generated feeds.</p>
 <p>----------------</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.22.20 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.22.20 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Question</strong></p>
 <p>How is the newsfeed of the friends and followers updated when a user creates a new post?</p>
@@ -3512,7 +3512,7 @@
 <li>Choose topics on which a user spent more time.</li>
 </ul>
 <p>The ranking system considers all the above points to predict relevant and important posts for a user.</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.23.17 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.23.17 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="posts-ranking-and-newsfeed-construction-">Posts ranking and newsfeed construction <a href="#posts-ranking-and-newsfeed-construction-0" id="posts-ranking-and-newsfeed-construction-0"></a></h4>
 <p>The post database contains posts published by different users. Assume that there are 10 posts in the database published by 5 different users. We aim to rank only 4 posts out of 10 for a user (say Bob) who follows those five different users. We perform the following to rank each post and create a newsfeed for Bob:</p>
@@ -3524,7 +3524,7 @@
 <li>The top 4 posts are combined and presented on Bob&#x2019;s timeline in decreasing order of the score assigned.</li>
 </ol>
 <p>The following figure shows the top 4 posts published on Bob&#x2019;s timeline:</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.24.40 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.24.40 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>Newsfeed ranking with various machine learning and ranking algorithms is a computationally intensive task. In our design, the <strong>ranking service</strong> ranks posts and constructs newsfeeds. This service consists of big-data processing systems that might utilize specialized hardware like graphics processing units (GPUs) and tensor processing units (TPUs).</p>
 <blockquote>
@@ -3534,7 +3534,7 @@
 </blockquote>
 <h3 id="putting-everything-together-">Putting everything together <a href="#putting-everything-together-0" id="putting-everything-together-0"></a></h3>
 <p>The following figure combines all the services related to the detailed design of the newsfeed system:</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.25.30 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.25.30 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>In this lesson, we discussed the design of the newsfeed system, its database schema, and the newsfeed ranking system. In the next lesson, we&#x2019;ll evaluate our system&#x2019;s requirements.</p>
 
@@ -3580,7 +3580,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Design of a Newsfeed System","level":"1.31.3","depth":2,"next":{"title":"Evaluation of a Newsfeed System’s Design","level":"1.31.4","depth":2,"path":"design-newsfeed-system/evaluation-of-a-newsfeed-systems-design.md","ref":"design-newsfeed-system/evaluation-of-a-newsfeed-systems-design.md","articles":[]},"previous":{"title":"Requirements of a Newsfeed System’s Design","level":"1.31.2","depth":2,"path":"design-newsfeed-system/requirements-of-a-newsfeed-systems-design.md","ref":"design-newsfeed-system/requirements-of-a-newsfeed-systems-design.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-newsfeed-system/design-of-a-newsfeed-system.md","mtime":"2023-09-27T05:00:25.422Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:01:00.962Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Design of a Newsfeed System","level":"1.31.3","depth":2,"next":{"title":"Evaluation of a Newsfeed System’s Design","level":"1.31.4","depth":2,"path":"design-newsfeed-system/evaluation-of-a-newsfeed-systems-design.md","ref":"design-newsfeed-system/evaluation-of-a-newsfeed-systems-design.md","articles":[]},"previous":{"title":"Requirements of a Newsfeed System’s Design","level":"1.31.2","depth":2,"path":"design-newsfeed-system/requirements-of-a-newsfeed-systems-design.md","ref":"design-newsfeed-system/requirements-of-a-newsfeed-systems-design.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-newsfeed-system/design-of-a-newsfeed-system.md","mtime":"2023-09-27T05:12:52.215Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:13:42.952Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

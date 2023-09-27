@@ -3383,7 +3383,7 @@
 <li><strong>Recommend the fastest route</strong>: Given the source and destination (place names in text), the system should recommend the optimal route by distance and time, depending on the type of transportation.</li>
 <li><strong>Give directions</strong>: Once the user has chosen the route, the system should list directions in text format, where each item in the list guides the user to turn or continue in a specific direction to reach the destination.</li>
 </ul>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 11.42.29 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 11.42.29 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="non-functional-requirements-">Non-functional requirements <a href="#non-functional-requirements-0" id="non-functional-requirements-0"></a></h4>
 <p>The non-functional requirements of our system are as follows.</p>
@@ -3393,7 +3393,7 @@
 <li><strong>Less response time</strong>: It shouldn&#x2019;t take more than two or three seconds to calculate the ETA and the route, given the source and the destination points.</li>
 <li><strong>Accuracy</strong>: The ETA we predict should not deviate too much from the actual travel time.</li>
 </ul>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 11.42.54 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 11.42.54 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Note:</strong> We&#x2019;re not getting into the details of how we get the data on roads and layout. Government agencies provide maps, and in some places, Google itself drives mapping vehicles to find roads and their intersection points. Road networks are modeled with a graph data structure, where intersection points are the <strong>vertices</strong>, and the roads between intersections are the <strong>weighted edges</strong>.</p>
 <h3 id="challenges-">Challenges <a href="#challenges-0" id="challenges-0"></a></h3>
@@ -3405,7 +3405,7 @@
 <ul>
 <li><strong>ETA computation</strong>: In an ideal situation with empty roads, it&#x2019;s straightforward to compute ETA using the distance and the speed of the vehicle we want to ride on. However, we cannot ignore factors like the amount of traffic on the roads and road conditions, which affect the ETA directly. For example, a road under construction, collisions, and rush hours all might slow down traffic. Quantifying the factors above to design our system is not trivial. Therefore, we&#x2019;ll, categorize the factors above in terms of traffic load to complete our design.</li>
 </ul>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 11.43.09 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 11.43.09 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h3 id="resource-estimation-">Resource estimation <a href="#resource-estimation-0" id="resource-estimation-0"></a></h3>
 <p>Let&#x2019;s estimate the total number of servers, storage, and bandwidth required by the system.</p>
@@ -3416,13 +3416,13 @@
 <li>Number of requests a single server can handle per second: 8,000.</li>
 </ul>
 <p>The number of servers required has been calculated using the below formula:</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 11.43.42 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 11.43.42 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="storage-estimation-">Storage estimation <a href="#storage-estimation-0" id="storage-estimation-0"></a></h4>
 <p>Google Maps is essentially a system with a one-time storage requirement. The road data from many countries has already been added, which is over 20 petabytes as of 2022. Since there are minimal changes on the road networks, the daily storage requirement is going to be negligible for Google Maps. Also, short-term changes in the road network is a small amount of data as compared to the full network data. Therefore, our storage needs don&#x2019;t change rapidly.</p>
 <h4 id="bandwidth-estimation-">Bandwidth estimation <a href="#bandwidth-estimation-0" id="bandwidth-estimation-0"></a></h4>
 <p>As a standard practice, we have to estimate the bandwidth required for the incoming and outgoing traffic of our system. Most of the bandwidth requirements for Google Maps are due to requests sent by users. Therefore, we&#x2019;ve devised the following formula to calculate bandwidth:</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 11.44.16 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 11.44.16 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Incoming traffic</strong></p>
 <p>To estimate the incoming query traffic bandwidth, we assume the following numbers:</p>
@@ -3431,7 +3431,7 @@
 <li>Request size (source and destination): 200 Bytes.</li>
 </ul>
 <p>Using the assumptions above, we can estimate the total number of requests per second on Google Maps using the following formula:</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 11.44.45 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 11.44.45 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>We can calculate the incoming query traffic bandwidth required by Google Maps by inserting the request per second calculated above and the size of each request in the aforementioned bandwidth formula.</p>
 <p><strong>Bandwidth Required for Incoming Query Traffic</strong></p>
@@ -3480,11 +3480,11 @@
 </tbody>
 </table>
 <p>Show Detailed CalculationsSummarizing the bandwidth requirements for Google Maps</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 11.45.36 AM (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 11.45.36 AM (1).png" alt=""><figcaption></figcaption></figure>
 
 <h3 id="building-blocks-we-will-use-">Building blocks we will use <a href="#building-blocks-we-will-use-0" id="building-blocks-we-will-use-0"></a></h3>
 <p>Now that we&#x2019;ve completed our estimates of resources required, let&#x2019;s identify the building blocks that will be an integral part of our design for the Google Maps system. Below, we have the key building blocks:</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 11.46.46 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 11.46.46 AM.png" alt=""><figcaption></figcaption></figure>
 
 <ul>
 <li><a href="../load-balancers/introduction-to-load-balancers.html"><strong>Load balancers</strong></a> are necessary to distribute user requests among different servers and services.</li>
@@ -3537,7 +3537,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Requirements of Google Maps' Design","level":"1.27.2","depth":2,"next":{"title":"Design of Google Maps","level":"1.27.3","depth":2,"path":"design-google-maps/design-of-google-maps.md","ref":"design-google-maps/design-of-google-maps.md","articles":[]},"previous":{"title":"System Design: Google Maps","level":"1.27.1","depth":2,"path":"design-google-maps/system-design-google-maps.md","ref":"design-google-maps/system-design-google-maps.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-google-maps/requirements-of-google-maps-design.md","mtime":"2023-09-27T05:00:25.422Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:01:00.962Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Requirements of Google Maps' Design","level":"1.27.2","depth":2,"next":{"title":"Design of Google Maps","level":"1.27.3","depth":2,"path":"design-google-maps/design-of-google-maps.md","ref":"design-google-maps/design-of-google-maps.md","articles":[]},"previous":{"title":"System Design: Google Maps","level":"1.27.1","depth":2,"path":"design-google-maps/system-design-google-maps.md","ref":"design-google-maps/system-design-google-maps.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-google-maps/requirements-of-google-maps-design.md","mtime":"2023-09-27T05:12:52.215Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:13:42.952Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

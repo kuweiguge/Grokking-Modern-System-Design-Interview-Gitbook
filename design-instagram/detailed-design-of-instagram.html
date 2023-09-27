@@ -3381,7 +3381,7 @@
 <li><strong>Relational database</strong>: To store our data.</li>
 <li><strong>Blob storage</strong>: To store the photos and videos uploaded by the users.</li>
 </ul>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.45.42 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.45.42 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h3 id="upload-view-and-search-a-photo-">Upload, view, and search a photo <a href="#upload-view-and-search-a-photo-0" id="upload-view-and-search-a-photo-0"></a></h3>
 <p>The client requests to upload the photo, load balancer passes the request to any of the application servers, which adds an entry to the database. An update that the photo is stored successfully is sent to the user. If an error is encountered, the user is communicated about it as well.</p>
@@ -3389,18 +3389,18 @@
 <p>The read requests are more than write requests and it takes time to upload the content in the system. It is efficient if we separate the write (uploads) and read services. The multiple services operated by many servers handle the relevant requests. The read service performs the tasks of fetching the required content for the user, while the write service helps upload content to the system.</p>
 <p>We also need to cache the data to handle millions of reads. It improves the user experience by making the fetching process fast. We&#x2019;ll also opt for lazy loading, which minimizes the client&#x2019;s waiting time. It allows us to load the content when the user scrolls and therefore save the bandwidth and focus on loading the content the user is currently viewing. It improves the latency to view or search a particular photo or video on Instagram.</p>
 <p>The updated design is as follows:</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.45.56 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.45.56 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h3 id="generate-a-timeline-">Generate a timeline <a href="#generate-a-timeline-0" id="generate-a-timeline-0"></a></h3>
 <p>Now our task is to generate a user-specific timeline. Let&#x2019;s explore various approaches and the advantages and disadvantages to opt for the appropriate strategy.</p>
 <h4 id="the-pull-approach-">The pull approach <a href="#the-pull-approach-1" id="the-pull-approach-1"></a></h4>
 <p>When a user opens their Instagram, we send a request for timeline generation. First, we fetch the list of people the user follows, get the photos they recently posted, store them in queues, and display them to the user. But this approach is slow to respond as we generate a timeline every time the user opens Instagram.</p>
 <p>We can substantially reduce user-perceived latency by generating the timeline offline. For example, we define a service that fetches the relevant data for the user before, and as the person opens Instagram, it displays the timeline. This decreases the latency rate to show the timeline. Let&#x2019;s take a look at the slides below to understand the problem and its solution.</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.46.56 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.46.56 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.47.55 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.47.55 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.47.21 AM (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.47.21 AM (1).png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Question</strong></p>
 <p>What are the shortcomings of the pull approach?</p>
@@ -3409,7 +3409,7 @@
 <h4 id="the-push-approach-">The push approach <a href="#the-push-approach-0" id="the-push-approach-0"></a></h4>
 <p>In a <strong>push approach</strong>, every user is responsible for pushing the content they posted to the people&#x2019;s timelines who are following them. In the previous approach, we pulled the post from each follower, but in the current approach, we push the post to each follower.</p>
 <p>Now we only need to fetch the data that is pushed towards that particular user to generate the timeline. The push approach has stopped a lot of requests that return empty results when followed users have no post in a specified time.</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.48.46 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.48.46 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p><strong>Question</strong></p>
 <p>What are the shortcomings of the push approach?</p>
@@ -3422,14 +3422,14 @@
 <li><strong>Pull-based users</strong>: The users who are celebrities and have followers count of a hundred thousand or millions.</li>
 </ul>
 <p>The timeline service pulls the data from pull-based followers and adds it to the user&#x2019;s timeline. The push-based users push their posts to the timeline service of their followers so the timeline service can add to the user&#x2019;s timeline.</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.49.15 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.49.15 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>We have used the method which generates the timeline, but where do we store the timeline? We store a user&#x2019;s timeline against a <code>userID</code> in a key-value store. Upon request, we fetch the data from the key-value store and show it to the user. The key is <code>userID</code>, while the value is timeline content (links to photos and videos). Because the storage size of the value is often limited to a few MegaBytes, we can store the timeline data in a blob and put the link to the blob in the value of the key as we approach the size limit.</p>
 <p>We can add a new feature called story to our Instagram. In the story feature, the users can add a photo that stays available for others to view for 24 hours only. We can do this by maintaining an option in the table where we can store a story&#x2019;s duration. We can set it to 24 hours, and the <a href="../distributed-task-scheduler/system-design-the-distributed-task-scheduler.html">task scheduler</a> deletes the entries whose time exceeds the 24 hours limit.</p>
 <h3 id="finalized-design-">Finalized design <a href="#finalized-design-0" id="finalized-design-0"></a></h3>
 <p>We&#x2019;ll also use <strong>CDN (content delivery network)</strong> in our design. We can keep images and videos of celebrities in CDN which make it easier for the followers to fetch them. The load balancer first routes the read request to the nearest CDN, if the requested content is not available there, then it forwards the request to the particular read application server (see the &#x201C;<a href="../load-balancers/introduction-to-load-balancers.html">load balancing chapter</a>&#x201D; for the details). The CDN helps our system to be available to millions of concurrent users and minimizes latency.</p>
 <p>The final design is given below:</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.49.56 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.49.56 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>Point to Ponder</p>
 <p><strong>Question</strong></p>
@@ -3491,7 +3491,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Detailed Design of Instagram","level":"1.32.4","depth":2,"next":{"title":"Quiz on Instagram’s Design","level":"1.32.5","depth":2,"path":"design-instagram/quiz-on-instagrams-design.md","ref":"design-instagram/quiz-on-instagrams-design.md","articles":[]},"previous":{"title":"Design of Instagram","level":"1.32.3","depth":2,"path":"design-instagram/design-of-instagram.md","ref":"design-instagram/design-of-instagram.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-instagram/detailed-design-of-instagram.md","mtime":"2023-09-27T05:00:25.422Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:01:00.962Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Detailed Design of Instagram","level":"1.32.4","depth":2,"next":{"title":"Quiz on Instagram’s Design","level":"1.32.5","depth":2,"path":"design-instagram/quiz-on-instagrams-design.md","ref":"design-instagram/quiz-on-instagrams-design.md","articles":[]},"previous":{"title":"Design of Instagram","level":"1.32.3","depth":2,"path":"design-instagram/design-of-instagram.md","ref":"design-instagram/design-of-instagram.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-instagram/detailed-design-of-instagram.md","mtime":"2023-09-27T05:12:52.215Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:13:42.952Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

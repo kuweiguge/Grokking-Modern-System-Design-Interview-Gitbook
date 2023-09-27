@@ -3417,7 +3417,7 @@ Websites usually host a <code>robot.txt</code> file, which communicates domain-s
 <ul>
 <li><strong>Improved user interface&#x2014;customized scheduling</strong>: Besides the default recrawling, which is a functional requirement, the system should also support the functionality to perform non-routine customized crawling on the system administrator&#x2019;s demands.</li>
 </ul>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.14.31 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.14.31 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h3 id="resource-estimation-">Resource estimation <a href="#resource-estimation-0" id="resource-estimation-0"></a></h3>
 <p>We need to estimate various resource requirements for our design.</p>
@@ -3429,19 +3429,19 @@ Websites usually host a <code>robot.txt</code> file, which communicates domain-s
 <li>The metadata for one web page is 500 Bytes.</li>
 </ul>
 <h4 id="storage-estimation-">Storage estimation <a href="#storage-estimation-1" id="storage-estimation-1"></a></h4>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.17.24 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.17.24 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>It&#x2019;ll take approximately 9.5 years to traverse the whole Internet while using one instance of crawling, but we want to achieve our goal in one day. We can accomplish this by designing our system to support multi-worker architecture and divide the tasks among multiple workers running on different servers.</p>
 <h4 id="number-of-servers-estimation-for-multi-worker-architecture-">Number of servers estimation for multi-worker architecture <a href="#number-of-servers-estimation-for-multi-worker-architecture-1" id="number-of-servers-estimation-for-multi-worker-architecture-1"></a></h4>
 <p>Let&#x2019;s calculate the number of servers required to finish crawling in one day. Assume that there is only one worker per server.</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.22.12 AM (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.22.12 AM (1).png" alt=""><figcaption></figcaption></figure>
 
 <p>Case for multi-threaded server!</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.22.41 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.22.41 AM.png" alt=""><figcaption></figcaption></figure>
 
 <h4 id="bandwidth-estimation-">Bandwidth estimation <a href="#bandwidth-estimation-0" id="bandwidth-estimation-0"></a></h4>
 <p>Since we want to process 10.35PB of data per day the total bandwidth required would be:</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.23.07 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.23.07 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>Let&apos;s play around with the initial assumptions and see how the estimates change in the following calculator:</p>
 <p><strong>Estimates Calculator for the Web Crawler</strong></p>
@@ -3488,7 +3488,7 @@ Websites usually host a <code>robot.txt</code> file, which communicates domain-s
 </table>
 <h3 id="building-blocks-we-will-use-">Building blocks we will use <a href="#building-blocks-we-will-use-0" id="building-blocks-we-will-use-0"></a></h3>
 <p>Here is the list of the main building blocks we&#x2019;ll use in our design:</p>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.23.07 AM (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.23.07 AM (1).png" alt=""><figcaption></figcaption></figure>
 
 <ul>
 <li><a href="../distributed-task-scheduler/system-design-the-distributed-task-scheduler.html"><strong>Scheduler</strong></a> is used to schedule crawling events on the URLs that are stored in its database.</li>
@@ -3503,7 +3503,7 @@ Websites usually host a <code>robot.txt</code> file, which communicates domain-s
 <li>The <strong>extractor</strong> extracts the embedded URLs and the document from the web page.</li>
 <li>The <strong>duplicate eliminator</strong> performs dedup testing on the incoming URLs and the documents.</li>
 </ul>
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.24.09 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.24.09 AM.png" alt=""><figcaption></figcaption></figure>
 
 <p>In the next lesson, we&#x2019;ll focus on the high-level and detailed design of a web crawler.</p>
 
@@ -3549,7 +3549,7 @@ Websites usually host a <code>robot.txt</code> file, which communicates domain-s
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Requirements of a Web Crawler's Design","level":"1.34.2","depth":2,"next":{"title":"Design of a Web Crawler","level":"1.34.3","depth":2,"path":"design-a-web-crawler/design-of-a-web-crawler.md","ref":"design-a-web-crawler/design-of-a-web-crawler.md","articles":[]},"previous":{"title":"System Design: Web Crawler","level":"1.34.1","depth":2,"path":"design-a-web-crawler/system-design-web-crawler.md","ref":"design-a-web-crawler/system-design-web-crawler.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-a-web-crawler/requirements-of-a-web-crawlers-design.md","mtime":"2023-09-27T05:00:25.422Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:01:00.962Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Requirements of a Web Crawler's Design","level":"1.34.2","depth":2,"next":{"title":"Design of a Web Crawler","level":"1.34.3","depth":2,"path":"design-a-web-crawler/design-of-a-web-crawler.md","ref":"design-a-web-crawler/design-of-a-web-crawler.md","articles":[]},"previous":{"title":"System Design: Web Crawler","level":"1.34.1","depth":2,"path":"design-a-web-crawler/system-design-web-crawler.md","ref":"design-a-web-crawler/system-design-web-crawler.md","articles":[]},"dir":"ltr"},"config":{"plugins":["expandable-chapters-small","page-toc","-lunr","-search","search-plus","code"],"root":".","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"expandable-chapters-small":{},"page-toc":{"position":"before-first","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4","showByDefault":true},"search-plus":{},"code":{"copyButtons":true},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","author":"changhanxie","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Grokking Modern System Design Interview","language":"zh-hans","links":{"sidebar":{"github":"https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook"}},"gitbook":">= 3.2.2","description":"Grokking Modern System Design Interview"},"file":{"path":"design-a-web-crawler/requirements-of-a-web-crawlers-design.md","mtime":"2023-09-27T05:12:52.211Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2023-09-27T05:13:42.952Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
