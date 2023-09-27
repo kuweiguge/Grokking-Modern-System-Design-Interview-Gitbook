@@ -6,9 +6,9 @@ In today’s world, an increasing number of designs are moving to microservice a
 
 Moreover, it is also not necessary that a microservice is deployed on only one node. It can be deployed on thousands of nodes. Consider the following example, where hundreds of microservices are interdependent, and failure of one service can result in failures of other services. And if we do not have logs, we might not determine the root cause of failure. This emphasizes the need for logging.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 2.33.50 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 2.33.50 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 2.34.19 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 2.34.19 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### Restrain the log size <a href="#restrain-the-log-size-0" id="restrain-the-log-size-0"></a>
 

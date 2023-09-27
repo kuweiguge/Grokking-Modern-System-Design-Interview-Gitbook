@@ -6,7 +6,7 @@
 
 The expansion in the number of users requires more resources (servers, databases, and so on) over time. Knowing the users’ growth rate helps us predict the resources to scale our system accordingly. The following illustration shows the Instagram user base in different countries as of January 2022 (source: Statista).
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.40.24 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.40.24 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### How will we design Instagram? <a href="#how-will-we-design-instagram-0" id="how-will-we-design-instagram-0"></a>
 

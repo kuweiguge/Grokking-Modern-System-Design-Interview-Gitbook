@@ -12,7 +12,7 @@ Memcached has a client and server component, each of which is necessary to run t
 
 Due to the disconnected design, Memcached is able to achieve almost a deterministic query speed (O(1) serving millions of keys per second using a high-end system. Therefore, Memcached offers a high throughput and low latency.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 12.37.34 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 12.37.34 AM.png" alt=""><figcaption></figcaption></figure>
 
 As evident from the design of a typical Memcached cluster, Memcached scales well horizontally. The client process is usually maintained with the service host that also interacts with the authoritative storage (back-end database).
 
@@ -36,7 +36,7 @@ At Facebook, Memcached sits between the MySQL database and the web layer that us
 
 The following illustration shows the high-level design of caching architecture at Facebook. As we can see, out of a total of 50 million requests made by the web layer, only 2.5 million requests reach the persistence layer.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 12.38.53 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 12.38.53 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### Redis <a href="#redis-0" id="redis-0"></a>
 
@@ -48,7 +48,7 @@ The following illustration shows the high-level design of caching architecture a
 
 Redis provides a built-in replication mechanism, automatic failover, and different levels of persistence. Apart from that, Redis understands Memcached protocols, and therefore, solutions using Memcached can translate to Redis. A particularly good aspect of Redis is that it separates data access from cluster management. It decouples data and controls the plane. This results in increased reliability and performance. Finally, Redis doesn’t provide strong consistency due to the use of asynchronous replication.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 12.39.24 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 12.39.24 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Redis cluster <a href="#redis-cluster-0" id="redis-cluster-0"></a>
 
@@ -56,7 +56,7 @@ Redis has built-in cluster support that provides high availability. This is call
 
 Each Redis cluster is maintained by a cluster manager whose job is to detect failures and perform automatic failovers. The management layer consists of monitoring and configuration software components.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 12.39.51 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 12.39.51 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Pipelining in Redis <a href="#pipelining-in-redis-0" id="pipelining-in-redis-0"></a>
 
@@ -64,7 +64,7 @@ Since Redis uses a client-server model, each request blocks the client until the
 
 Redis uses **pipelining** to speed up the process. **Pipelining** is the process of combining multiple requests from the client side without waiting for a response from the server. As a result, it reduces the number of RTT spans for multiple requests.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 12.40.10 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 12.40.10 AM.png" alt=""><figcaption></figcaption></figure>
 
 The process of pipelining reduces the latency through RTT and the time to do socket level I/O. Also, mode switching through system calls in the operating system is an expensive operation that’s reduced significantly via pipelining. Pipelining the commands from the client side has no impact on how the server processes these requests.
 

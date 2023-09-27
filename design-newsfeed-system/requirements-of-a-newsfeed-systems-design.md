@@ -25,7 +25,7 @@ Let’s assume the platform for which the newsfeed system is designed has 1 bill
 
 Let’s assume that each daily active user opens the application (or social media page) 10 times a day. The total number of requests per day would be:
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.13.51 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.13.51 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Storage estimation <a href="#storage-estimation-0" id="storage-estimation-0"></a>
 
@@ -46,7 +46,7 @@ Let’s assume that the feed will be generated offline and rendered upon a reque
 
     200×500M×50KB=5PB
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.15.01 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.15.01 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Storage Estimation of Posts Containing Text and Media Content.**
 
@@ -61,7 +61,7 @@ Let’s assume that the feed will be generated offline and rendered upon a reque
 
 Considering the above traffic and storage estimation, let’s estimate the required number of servers for smooth operations. Recall that a single typical server can serve 8000 requests per second (RPS). Since our system will have approximately 500 million daily active users (DAU). Therefore, according to estimation in [Back-of-the-Envelope Calculations](../back-of-the-envelope-calculations/page-2.md) chapter, the number of servers we would require is:
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.15.52 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.15.52 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Servers Estimation**
 
@@ -74,7 +74,7 @@ Considering the above traffic and storage estimation, let’s estimate the requi
 
 The design of newsfeed system utilizes the following building blocks:
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.16.14 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.16.14 AM.png" alt=""><figcaption></figcaption></figure>
 
 * [**Database(s)**](../databases/introduction-to-databases.md) is required to store the posts from different entities and the generated personalized newsfeed. It is also used to store users’ metadata and their relationships with other entities, such as friends and followers.
 * [**Cache**](../distributed-cache/system-design-the-distributed-cache.md) is an important building block to keep the frequently accessed data, whether posts and newsfeeds or users’ metadata.

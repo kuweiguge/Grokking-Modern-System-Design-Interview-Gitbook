@@ -20,7 +20,7 @@ The load balancing layer is the first point of contact within a data center afte
 
 Here’s an abstract depiction of how load balancers work:
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-08-21 at 1.54.12 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 1.54.12 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### Placing load balancers <a href="#placing-load-balancers" id="placing-load-balancers"></a>
 

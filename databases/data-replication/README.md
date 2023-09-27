@@ -31,7 +31,7 @@ Additional complexities that could arise due to replication are as follows:
 
 We’ll explore the answer to these questions in this lesson.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-08-21 at 4.39.30 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 4.39.30 AM.png" alt=""><figcaption></figcaption></figure>
 
 Before we explain the different types of replication, let’s understand the synchronous and asynchronous approaches of replication.
 
@@ -50,7 +50,7 @@ On the other hand, the advantage of asynchronous replication is that the primary
 
 The above paragraph explains a trade-off between data consistency and availability when different components of the system can fail.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-08-21 at 4.41.30 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 4.41.30 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### Data replication models <a href="#data-replication-models" id="data-replication-models"></a>
 
@@ -70,7 +70,7 @@ Another advantage of primary-secondary replication is that it’s read resilient
 
 Replication via this approach comes with inconsistency if we use asynchronous replication. Clients reading from different replicas may see inconsistent data in the case of failure of the primary node that couldn’t propagate updated data to the secondary nodes. So, if the primary node fails, any missed updates not passed on to the secondary nodes can be lost.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-08-21 at 4.42.12 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 4.42.12 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Question**
 
@@ -114,7 +114,7 @@ As discussed above, single leader replication using asynchronous replication has
 
 This kind of replication is quite useful in applications in which we can continue work even if we’re offline—for example, a calendar application in which we can set our meetings even if we don’t have access to the internet. Once we’re online, it replicates its changes from our local database (our mobile phone or laptop acts as a primary node) to other nodes.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-08-21 at 4.42.37 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 4.42.37 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Conflict**
 
@@ -124,7 +124,7 @@ Multi-leader replication gives better performance and scalability than single le
 
 Conflicts can result in different data at different nodes. These should be handled efficiently without losing any data. Let’s discuss some of the approaches to handle conflicts:
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-08-21 at 4.43.09 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 4.43.09 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Conflict avoidance**
 
@@ -150,7 +150,7 @@ There are many topologies through which multi-leader replication is implemented,
 
 In primary-secondary replication, the primary node is a bottleneck and a single point of failure. Moreover, it helps to achieve read scalability but fails in providing write scalability. The **peer-to-peer replication** model resolves these problems by not having a single primary node. All the nodes have equal weightage and can accept reads and writes requests. Amazon popularized such a scheme in their DynamoDB data store.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-08-21 at 4.44.12 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 4.44.12 AM.png" alt=""><figcaption></figcaption></figure>
 
 Like primary-secondary replication, this replication can also yield inconsistency. This is because when several nodes accept write requests, it may lead to concurrent writes. A helpful approach used for solving write-write inconsistency is called **quorums**.
 
@@ -158,7 +158,7 @@ Like primary-secondary replication, this replication can also yield inconsistenc
 
 Let’s suppose we have three nodes. If at least two out of three nodes are guaranteed to return successful updates, it means only one node has failed. This means that if we read from two nodes, at least one of them will have the updated version, and our system can continue working.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2023-08-21 at 4.44.52 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 4.44.52 AM.png" alt=""><figcaption></figcaption></figure>
 
 > For more details on the topic of Quorum, refer to the following links:
 >

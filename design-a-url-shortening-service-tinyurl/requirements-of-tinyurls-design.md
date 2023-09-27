@@ -42,7 +42,7 @@ Hence, randomly assigning unique IDs deprives the attackers of such system insig
 
 \----------------
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.52.44 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.52.44 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### Resource estimation <a href="#resource-estimation-0" id="resource-estimation-0"></a>
 
@@ -60,7 +60,7 @@ It’s better to have realistic estimations at the start. For instance, we might
 
 Since entries are saved for a time period of 5 years and there are a total of 200 million entries per month, the total entries will be approximately 12 billion.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.53.17 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.53.17 AM.png" alt=""><figcaption></figcaption></figure>
 
 **URL Shortening Service Storage Estimation Calculator**
 
@@ -71,23 +71,23 @@ Since entries are saved for a time period of 5 years and there are a total of 20
 | Total number of requests | f12 | Billion |
 | Total storage            | f6  | TB      |
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.53.35 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.53.35 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Query rate estimation <a href="#query-rate-estimation-0" id="query-rate-estimation-0"></a>
 
 Based on the estimations above, we can expect 20 billion redirection requests per month.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.54.02 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.54.02 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Bandwidth estimation <a href="#bandwidth-estimation-1" id="bandwidth-estimation-1"></a>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.54.29 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.54.29 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Memory estimation <a href="#memory-estimation-0" id="memory-estimation-0"></a>
 
 We need memory estimates in case we want to cache some of the frequently accessed URL redirection requests. Let’s assume a split of 80-20 in the incoming requests. 20 percent of redirection requests generate 80 percent of the traffic.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.54.52 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.54.52 AM.png" alt=""><figcaption></figcaption></figure>
 
 **URL Shortening Service Estimates Calculator**
 
@@ -105,7 +105,7 @@ We need memory estimates in case we want to cache some of the frequently accesse
 
 We adopt the same approximation discussed in the [back-of-the-envelope calculations](../back-of-the-envelope-calculations/put-back-of-the-envelope-numbers-in-perspective.md) to calculate the number of servers needed: the number of daily active users and the daily user handling limit of a server are the two main factors in depicting the total number of servers required. According to the approximation, we need to divide the Daily Active Users (DAU) by 8000 to calculate the approximated number of servers.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.55.21 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.55.21 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Summarizing estimation <a href="#summarizing-estimation-0" id="summarizing-estimation-0"></a>
 
@@ -125,7 +125,7 @@ Based on the assumption above, the following table summarizes our estimations:
 
 With the estimations done, we can identify the key building blocks in our design. Such a list is given below:
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.55.45 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.55.45 AM.png" alt=""><figcaption></figcaption></figure>
 
 * [**Database(s)**](../databases/introduction-to-databases.md) will be needed to store the mapping of long URLs and the corresponding short URLs.
 * [**Sequencer**](../sequencer/system-design-sequencer.md) will provide unique IDs that will serve as a starting point for each short URL generation.

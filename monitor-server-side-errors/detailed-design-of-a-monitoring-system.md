@@ -10,7 +10,7 @@ We need to store metrics and know which action to perform if a metric has reache
 
 Here, we have identified two more components in our design—that is, a rules and action database and a storage node (a blob store).
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 12.00.53 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 12.00.53 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### Data collector <a href="#data-collector-0" id="data-collector-0"></a>
 
@@ -32,7 +32,7 @@ The data collector is responsible for fetching metrics from the services it moni
 
 Let’s add our newly identified component to our existing design.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 12.01.32 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 12.01.32 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### Querying service <a href="#querying-service-0" id="querying-service-0"></a>
 
@@ -48,7 +48,7 @@ We can set dashboards by using the collected metrics to display the required inf
 
 Let’s add the components discussed above, which completes our design of the monitoring system.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 12.01.56 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 12.01.56 AM.png" alt=""><figcaption></figcaption></figure>
 
 Our all-in-one monitoring service works for actively tracking systems and services. It collects and stores data, and it supports searches, graphs, and alerts.
 
@@ -69,7 +69,7 @@ Let’s think of a way to overcome the problems with our monitoring service.
 
 We want to improve our design so that our system can scale better and decide what data to keep and what to delete. Let’s see how the push-based approach works. In a push-based approach, the application pushes its data to the monitoring system.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 12.02.14 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 12.02.14 AM.png" alt=""><figcaption></figcaption></figure>
 
 We used a pull-based strategy to avoid network congestion. This also allows the applications to be free of the aspect that they have to send the relevant monitoring data of to the system. Instead, the monitoring system fetches or pulls the data itself. To cater to scaling needs, we need to apply a push-based approach too. We’ll use a hybrid approach by combining our pull-based strategy with the push-based strategy.
 
@@ -81,9 +81,9 @@ We’ll use blob storage to store our excessive data, apply elastic search, and 
 
 > **Note**: Using a hierarchy of systems for scaling is a common design pattern in system design. By increasing nodes on a level or introducing additional levels in the hierarchy, we get the ability to scale according to our current needs.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 12.02.45 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 12.02.45 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 12.02.45 AM (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 12.02.45 AM (1).png" alt=""><figcaption></figcaption></figure>
 
 
 

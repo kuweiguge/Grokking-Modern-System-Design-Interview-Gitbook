@@ -21,7 +21,7 @@ In the next lesson, we’ll also learn how GSLB offers automatic zonal failover.
 
 The illustration below shows that the GSLB can forward requests to three different data centers. Each local load balancing layer within a data center will maintain a control plane connection with the GSLB providing information about the health of the LBs and the server farm. GSLB uses this information to drive traffic decisions and forward traffic load based on each region’s configuration and monitoring information.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-08-21 at 2.03.19 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 2.03.19 AM.png" alt=""><figcaption></figcaption></figure>
 
 Now, we’ll discuss how the domain name system (DNS) can perform GSLB.
 
@@ -29,13 +29,13 @@ Now, we’ll discuss how the domain name system (DNS) can perform GSLB.
 
 We understand that DNS can respond with multiple IP addresses for a DNS query. In the lesson on [DNS](https://www.educative.io/collection/page/10370001/4941429335392256/5728619204182016), we discussed that it’s possible to do load balancing through DNS while looking at the output of `nslookup`. DNS uses a simple technique of reordering the list of IP addresses in response to each DNS query. Therefore, different users get a reordered IP address list. It results in users visiting a different server to entertain their requests. In this way, DNS distributes the load of requests on different data centers. This is performing GSLB. In particular, DNS uses round-robin to perform load balancing as shown below:
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-08-21 at 2.06.19 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 2.06.19 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-08-21 at 2.05.57 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 2.05.57 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-08-21 at 2.05.37 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 2.05.37 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-08-21 at 2.04.29 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 2.04.29 AM.png" alt=""><figcaption></figcaption></figure>
 
 As shown above, round-robin in DNS forwards clients to data centers in a strict circular order. However, round-robin has the following limitations:
 

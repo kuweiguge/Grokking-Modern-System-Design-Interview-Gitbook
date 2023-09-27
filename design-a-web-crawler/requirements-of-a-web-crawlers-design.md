@@ -60,7 +60,7 @@ Websites usually host a `robot.txt` file, which communicates domain-specified li
 
 
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.14.31 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.14.31 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### Resource estimation <a href="#resource-estimation-0" id="resource-estimation-0"></a>
 
@@ -76,7 +76,7 @@ These are the assumptions we’ll use when estimating our resource requirements:
 
 #### Storage estimation <a href="#storage-estimation-1" id="storage-estimation-1"></a>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.17.24 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.17.24 AM.png" alt=""><figcaption></figcaption></figure>
 
 It’ll take approximately 9.5 years to traverse the whole Internet while using one instance of crawling, but we want to achieve our goal in one day. We can accomplish this by designing our system to support multi-worker architecture and divide the tasks among multiple workers running on different servers.
 
@@ -84,17 +84,17 @@ It’ll take approximately 9.5 years to traverse the whole Internet while using 
 
 Let’s calculate the number of servers required to finish crawling in one day. Assume that there is only one worker per server.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.22.12 AM (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.22.12 AM (1).png" alt=""><figcaption></figcaption></figure>
 
 Case for multi-threaded server!
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.22.41 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.22.41 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Bandwidth estimation <a href="#bandwidth-estimation-0" id="bandwidth-estimation-0"></a>
 
 Since we want to process 10.35PB of data per day the total bandwidth required would be:
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.23.07 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.23.07 AM.png" alt=""><figcaption></figcaption></figure>
 
 Let's play around with the initial assumptions and see how the estimates change in the following calculator:
 
@@ -113,7 +113,7 @@ Let's play around with the initial assumptions and see how the estimates change 
 
 Here is the list of the main building blocks we’ll use in our design:
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.23.07 AM (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.23.07 AM (1).png" alt=""><figcaption></figcaption></figure>
 
 * [**Scheduler**](../distributed-task-scheduler/system-design-the-distributed-task-scheduler.md) is used to schedule crawling events on the URLs that are stored in its database.
 * [**DNS**](../domain-name-system/introduction-to-domain-name-system-dns.md) is needed to get the IP address resolution of the web pages.
@@ -127,6 +127,6 @@ Besides these basic building blocks, our design includes some additional compone
 * The **extractor** extracts the embedded URLs and the document from the web page.
 * The **duplicate eliminator** performs dedup testing on the incoming URLs and the documents.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.24.09 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.24.09 AM.png" alt=""><figcaption></figcaption></figure>
 
 In the next lesson, we’ll focus on the high-level and detailed design of a web crawler.

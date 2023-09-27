@@ -25,23 +25,23 @@ Assume that we have a predefined rate limit of R and the total capacity of the b
 
 The following illustration represents the working of the token bucket algorithm.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.28.09 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.28.09 AM.png" alt=""><figcaption></figcaption></figure>
 
 The following illustration demonstrates how token consumption and rate-limiting logic work. In this example, the capacity of the bucket is three, and it is refilled at a rate of three tokens per minute.
 
-![](<../.gitbook/assets/Screenshot 2023-09-03 at 1.28.56 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.28.56 AM.png>)
 
-![](<../.gitbook/assets/Screenshot 2023-09-03 at 1.29.12 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.29.12 AM.png>)
 
-![](<../.gitbook/assets/Screenshot 2023-09-03 at 1.29.24 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.29.24 AM.png>)
 
-![](<../.gitbook/assets/Screenshot 2023-09-03 at 1.29.35 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.29.35 AM.png>)
 
 **Essential parameters**
 
 We require the following essential parameters to implement the token bucket algorithm:
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.29.50 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.29.50 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Advantages**
 
@@ -68,7 +68,7 @@ However, if we consider the duration from 0.660.66 to 1.331.33 minutes, we’ll 
 
 This example shows that the token bucket can surpass the limit at the edges.
 
-![](<../.gitbook/assets/Screenshot 2023-09-03 at 1.30.33 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.30.33 AM.png>)
 
 \-----------
 
@@ -78,17 +78,17 @@ The **leaking bucket algorithm** is a variant of the token bucket algorithm with
 
 Let’s look at how the leaking bucket algorithm works in the illustration below:
 
-![](<../.gitbook/assets/Screenshot 2023-09-03 at 1.30.53 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.30.53 AM.png>)
 
 **Essential parameters**
 
 The leaking bucket algorithm requires the following parameters.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.29.50 AM (2).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.29.50 AM (2).png" alt=""><figcaption></figcaption></figure>
 
 **Advantages**
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.31.44 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.31.44 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Disadvantages**
 
@@ -101,17 +101,17 @@ This algorithm divides the time into fixed intervals called **windows** and assi
 
 As shown in the below figure, a dotted line represents the limit in each window. If the counter is lower than the limit, forward the request; otherwise, discard the request.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.32.11 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.32.11 AM.png" alt=""><figcaption></figcaption></figure>
 
 There is a significant problem with this algorithm. A burst of traffic greater than the allowed requests can occur at the edges of the window. In the below figure, the system allows a maximum of ten requests per minute. However, the number of requests in the one-minute window from 01:30 to 02:30 is 20, which is greater than the allowed number of requests.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.32.32 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.32.32 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Essential parameters**
 
 The fixed window counter algorithm requires the following parameters:
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.32.53 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.32.53 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Advantages**
 
@@ -130,19 +130,19 @@ The main advantage of this algorithm is that it doesn’t suffer from the edge c
 
 Let’s understand how the sliding window log algorithm works in the illustration below. Assume that we have a maximum rate limit of two requests in a minute.
 
-![](<../.gitbook/assets/Screenshot 2023-09-03 at 1.33.55 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.33.55 AM.png>)
 
-![](<../.gitbook/assets/Screenshot 2023-09-03 at 1.34.08 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.34.08 AM.png>)
 
-![](<../.gitbook/assets/Screenshot 2023-09-03 at 1.34.22 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.34.22 AM.png>)
 
-![](<../.gitbook/assets/Screenshot 2023-09-03 at 1.34.36 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.34.36 AM.png>)
 
 **Essential parameters**
 
 The following parameters are required to implement the sliding window log algorithm:
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.34.52 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.34.52 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Advantages**
 
@@ -156,17 +156,17 @@ The following parameters are required to implement the sliding window log algori
 
 Unlike the previously fixed window algorithm, the **sliding window counter algorithm** doesn’t limit the requests based on fixed time units. This algorithm takes into account both the fixed window counter and sliding window log algorithms to make the flow of requests more smooth. Let’s look at the flow of the algorithm in the below figure.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.35.14 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.35.14 AM.png" alt=""><figcaption></figcaption></figure>
 
 In the above figure, we’ve 88 requests in the previous window while 12 in the current window. We’ve set the rate limit to 100 requests per minute. Further, the rolling window overlaps 15 seconds with the current window. Now assume that a new request arrives at 02:15. We’ll decide which request to accept or reject using the mathematical formulation:
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.35.57 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.35.57 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Essential parameters**
 
 This algorithm is relatively more complex than the other algorithms described above. It requires the following parameters:
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.36.32 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.36.32 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Advantages**
 

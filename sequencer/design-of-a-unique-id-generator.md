@@ -25,7 +25,7 @@ Let’s dive into the possible solutions for the problem mentioned above.
 
 ### First solution: UUID <a href="#first-solution-uuid-0" id="first-solution-uuid-0"></a>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.19.59 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.19.59 PM.png" alt=""><figcaption></figcaption></figure>
 
 Cons
 
@@ -41,9 +41,9 @@ Using 128-bit numbers as primary keys makes the primary-key indexing slower, whi
 
 Let’s try mimicking the auto-increment feature of a database. Consider a central database that provides a current ID and then increments the value by one. We can use the current ID as a unique identifier for our events.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.21.28 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.21.28 PM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.29.03 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.29.03 PM.png" alt=""><figcaption></figcaption></figure>
 
 **Question**
 
@@ -53,9 +53,9 @@ Show Answer
 
 To cater to the problem of a single point of failure, we modify the conventional auto-increment feature that increments by one. Instead of incrementing by one, let’s rely on a value `m`, where `m` equals the number of database servers we have. Each server generates an ID, and the following ID adds `m` to the previous value. This method is scalable and prevents the duplication of IDs. The following image provides a visualization of how a unique ID is generated using a database:
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.22.07 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.22.07 PM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.22.55 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.22.55 PM.png" alt=""><figcaption></figcaption></figure>
 
 #### Pros <a href="#pros-0" id="pros-0"></a>
 
@@ -88,7 +88,7 @@ We use a microservice called **range handler** that keeps a record of all the ta
 
 This microservice can become a single point of failure, but a **failover server** acts as the savior in that case. The failover server hands out ranges when the main server is down. We can recover the state of available and unavailable ranges from the latest checkpoint of the replicated store.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-02 at 11.25.05 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 11.25.05 PM.png" alt=""><figcaption></figcaption></figure>
 
 **Pros**
 

@@ -8,7 +8,7 @@ Assigning a primary key to an entry in a database is another use case of a uniqu
 
 A unique ID helps us identify the flow of an event in the logs and is useful for debugging. A real-world example of unique ID usage is Facebook’s end-to-end performance tracing and analysis system, Canopy. **Canopy** uses TraceID to identify an event uniquely across the execution path that may potentially perform hundreds of microservices to fulfill one user request.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-02 at 2.42.21 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-02 at 2.42.21 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### How do we design a sequencer? <a href="#how-do-we-design-a-sequencer-0" id="how-do-we-design-a-sequencer-0"></a>
 

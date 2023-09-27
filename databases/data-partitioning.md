@@ -18,7 +18,7 @@ Data partitioning (or sharding) enables us to use multiple nodes where each node
 
 We’ll discuss different ways to partition data, related challenges, and their solutions in this lesson.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-08-21 at 4.52.59 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 4.52.59 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### Sharding <a href="#sharding" id="sharding"></a>
 
@@ -39,7 +39,7 @@ As shown in the figure a couple paragraphs below, the `Employee` table is divide
 
 Vertical sharding has its intricacies and is more amenable to manual partitioning, where stakeholders carefully decide how to partition data. In comparison, horizontal sharding is suitable to automate even under dynamic conditions.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-08-21 at 4.53.33 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 4.53.33 AM.png" alt=""><figcaption></figcaption></figure>
 
 > **Note**: Creating shards by moving specific tables of a database around is also a form of vertical sharding. Usually, those tables are put in the same shard because they often appear together in queries, for example, for joins. We will see an example of such a use-case [ahead in the course](https://www.educative.io/courses/grokking-modern-system-design-interview-for-engineers-managers/JEEyvLglK5J#Vertical-sharding-of-MySQL).
 
@@ -56,11 +56,11 @@ In the **key-range based sharding**, each partition is assigned a continuous ran
 
 In the following figure, horizontal partitioning on the `Invoice` table is performed using the key-range based sharding with `Customer_Id` as the partition key. The two different colored tables represent the partitions.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-08-21 at 4.54.08 AM (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 4.54.08 AM (1).png" alt=""><figcaption></figcaption></figure>
 
 Sometimes, a database consists of multiple tables bound by foreign key relationships. In such a case, the horizontal partition is performed using the same partition key on all tables in a relation. Tables (or subtables) that belong to the same partition key are distributed to one database shard. The following figure shows that several tables with the same partition key are placed in a single database shard:
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-08-21 at 4.54.40 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 4.54.40 AM.png" alt=""><figcaption></figcaption></figure>
 
 The basic design techniques used in multi-table sharding are as follows:
 
@@ -130,7 +130,7 @@ We can apply the following strategies to rebalance partitions.
 
 **Avoid hash mod n**
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-08-21 at 4.57.34 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 4.57.34 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Fixed number of partitions**
 

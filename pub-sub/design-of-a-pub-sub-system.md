@@ -16,7 +16,7 @@ The consumer will subscribe to a topic, and the system will add the subscriber�
 
 > **Note**: We’ll use fail-over services for the message director and subscriber to guard against failures.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.03.32 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.03.32 AM.png" alt=""><figcaption></figcaption></figure>
 
 Using the distributed messaging queues makes our design simple. However, the huge number of queues needed is a significant concern. If we have millions of subscribers for thousands of topics, defining and maintaining millions of queues is expensive. Moreover, we’ll copy the same message for a topic in all subscriber queues, which is unnecessary duplication and takes up space.
 
@@ -54,7 +54,7 @@ Besides these components, we also have the following design considerations:
 * **Acknowledgment**: An acknowledgment is used to notify the producer that the received message has been stored successfully. The system will wait for an acknowledgment from the consumer if it has successfully consumed the message.
 * **Retention time**: The consumers can specify the retention period time of their messages. The default will be seven days, but it is configurable. Some applications like banking applications require the data to be stored for a few weeks as a business requirement, while an analytical application might not need the data after consumption.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.04.59 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.04.59 AM.png" alt=""><figcaption></figcaption></figure>
 
 Let’s understand the role of each component in detail.
 
@@ -62,17 +62,17 @@ Let’s understand the role of each component in detail.
 
 The broker server is the core component of our pub-sub system. It will handle write and read requests. A broker will have multiple topics where each topic can have multiple **partitions** associated with it. We use partitions to store messages in the local storage for persistence. Consequently, this improves availability. Partitions contain messages encapsulated in **segments**. Segments help identify the start and end of a message using an offset address. Using segments, consumers consume the message of their choice from a partition by reading from a specific offset address. The illustration below depicts the concept that has been described above.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.05.17 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.05.17 AM.png" alt=""><figcaption></figcaption></figure>
 
 As we know, a **topic** is a persistent sequence of messages stored in the local storage of the broker. Once the data has been added to the topic, it cannot be modified. Reading and writing a message from or to a topic is an I/O task for computers, and scaling such tasks is challenging. This is the reason we split the topics into multiple partitions. The data belonging to a single topic can be present in numerous partitions. For example, let’s assume have Topic A and we allocate three partitions for it. The producers will send their messages to the relevant topic. The messages received will be sent to various partitions on basis of the round-robin algorithm. We’ll use a variation of round-robin: weighted round-robin. The following slides show how the messages are stored in various partitions belonging to a single topic.
 
-![](<../.gitbook/assets/Screenshot 2023-09-03 at 1.09.24 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.09.24 AM.png>)
 
-![](<../.gitbook/assets/Screenshot 2023-09-03 at 1.09.43 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.09.43 AM.png>)
 
-![](<../.gitbook/assets/Screenshot 2023-09-03 at 1.10.01 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.10.01 AM.png>)
 
-![](<../.gitbook/assets/Screenshot 2023-09-03 at 1.10.17 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.10.17 AM.png>)
 
 **Question 1**
 
@@ -116,17 +116,17 @@ We’ll allocate the partitions to various brokers in the system. This just mean
 
 Consider the slides below. We have various brokers in our system. Each broker has different topics. The topic is divided into multiple partitions.
 
-![](<../.gitbook/assets/Screenshot 2023-09-03 at 1.12.17 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.12.17 AM.png>)
 
-![](<../.gitbook/assets/Screenshot 2023-09-03 at 1.12.33 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.12.33 AM.png>)
 
-![](<../.gitbook/assets/Screenshot 2023-09-03 at 1.12.46 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.12.46 AM.png>)
 
 We discussed that a message will be stored in a segment. We’ll identify each segment using an offset. Since these are immutable records, the readers are independent and they can read messages anywhere from this file using the necessary API functions. The following slides show the segment level detail.
 
-![](<../.gitbook/assets/Screenshot 2023-09-03 at 1.12.58 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.12.58 AM.png>)
 
-![](<../.gitbook/assets/Screenshot 2023-09-03 at 1.13.14 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.13.14 AM.png>)
 
 The broker solved the problems that our first design had. We avoided a large number of queues by partitioning the topic. We introduced parallelism using partitions that avoided bottlenecks while consuming the message.
 
@@ -137,7 +137,7 @@ We’ll have multiple brokers in our cluster. The cluster manager will perform t
 * **Broker and topics registry**: This stores the list of topics for each broker.
 * **Manage replication**: The cluster manager manages replication by using the leader-follower approach. One of the brokers is the leader. If it fails, the manager decides who the next leader is. In case the follower fails, it adds a new broker and makes sure to turn it into an updated follower. It updates the metadata accordingly. We’ll keep three replicas of each partition on different brokers.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.13.23 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.13.23 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### Consumer manager <a href="#consumer-manager-0" id="consumer-manager-0"></a>
 
@@ -154,7 +154,7 @@ The consumer manager will manage the consumers. It has the following responsibil
 
 The finalized design of our pub-sub system is shown below.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.13.54 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.13.54 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### Conclusion <a href="#conclusion-0" id="conclusion-0"></a>
 

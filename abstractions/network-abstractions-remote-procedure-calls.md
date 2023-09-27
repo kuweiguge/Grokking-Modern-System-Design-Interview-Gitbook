@@ -22,7 +22,7 @@ When the procedure execution finishes, the results are returned to the calling e
 
 To see how it works, let’s take an example of a client-server program. There are five main components involved in the RPC program, as shown in the following illustration:
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-08-20 at 4.03.13 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-20 at 4.03.13 AM.png" alt=""><figcaption></figcaption></figure>
 
 The client, the client stub, and one instance of RPC runtime are running on the client machine. The server, the server stub, and one instance of RPC runtime are running on the server machine.
 
@@ -37,7 +37,7 @@ During the RPC process, the following steps occur:
 
 5. The server stub unpacks the message, takes the parameters out of it, and calls the desired server routine, using a local procedure call, to do the required execution.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-08-20 at 4.03.37 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-20 at 4.03.37 AM.png" alt=""><figcaption></figcaption></figure>
 
 6. After the server routine has been executed with the given parameters, the result is returned to the server stub.
 7. The server stub packs the returned result into a message and sends it to the RPC runtime at the server on the transport layer.

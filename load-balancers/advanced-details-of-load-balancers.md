@@ -46,13 +46,13 @@ As the name indicates, **stateful load balancing** involves maintaining a state 
 
 Essentially, the stateful LBs retain a data structure that maps incoming clients to hosting servers. Stateful LBs increase complexity and limit scalability because session information of all the clients is maintained across all the load balancers. That is, load balancers share their state information with each other to make forwarding decisions.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-08-21 at 2.10.24 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 2.10.24 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Stateless load balancing**
 
 **Stateless load balancing** maintains no state and is, therefore, faster and lightweight. Stateless LBs use consistent hashing to make forwarding decisions. However, if infrastructure changes (for example, a new application server joining), stateless LBs may not be as resilient as stateful LBs because consistent hashing alone isn’t enough to route a request to the correct application server. Therefore, a local state may still be required along with consistent hashing.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-08-21 at 2.11.41 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 2.11.41 AM.png" alt=""><figcaption></figcaption></figure>
 
 Therefore, a state maintained across different load balancers is considered as stateful load balancing. Whereas, a state maintained within a load balancer for internal use is assumed as stateless load balancing.
 
@@ -69,7 +69,7 @@ Depending on the requirements, load balancing can be performed at the network/tr
 
 We discussed the trade-offs of load balancing performed at different OSI layers. In practice, however, a single layer LB isn’t enough for a large data center. In fact, multiple layers of load balancers coordinate to take informed forwarding decisions. A traditional data center may have a three-tier LB as shown below:
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-08-21 at 2.12.25 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 2.12.25 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Tier-0 and tier-1 LBs <a href="#tier-0-and-tier-1-lbs" id="tier-0-and-tier-1-lbs"></a>
 
@@ -93,21 +93,21 @@ Layer 7 LBs provide services at tier 3. Since these LBs are in direct contact wi
 
 Let’s look at an example where requests from a client come in and get forwarded to different application servers based on the application data inside the client’s network packets.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-08-21 at 2.14.05 AM.png" alt=""><figcaption><p>Request R2 being routed to the Documents server</p></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 2.14.05 AM.png" alt=""><figcaption><p>Request R2 being routed to the Documents server</p></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-08-21 at 2.14.52 AM.png" alt=""><figcaption><p>Request R2 being routed to the Documents server</p></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 2.14.52 AM.png" alt=""><figcaption><p>Request R2 being routed to the Documents server</p></figcaption></figure>
 
 Let’s look at the illustration above in the following steps:
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-08-21 at 2.15.46 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 2.15.46 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-08-21 at 2.16.42 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 2.16.42 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-08-21 at 2.17.04 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 2.17.04 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-08-21 at 2.17.22 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 2.17.22 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-08-21 at 2.17.43 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 2.17.43 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### Implementation of load balancers <a href="#implementation-of-load-balancers" id="implementation-of-load-balancers"></a>
 
@@ -125,7 +125,7 @@ Software load balancers are becoming increasingly popular because of their flexi
 
 With the advent of the field of cloud computing, Load Balancers as a Service (LBaaS) has been introduced. This is where cloud owners provide load balancing services. Users pay according to their usage or the service-level agreement (SLA) with the cloud provider. Cloud-based LBs may not necessarily replace a local on-premise load balancing facility, but they can perform global traffic management between different zones. Primary advantages of such load balancers include ease of use, management, metered cost, flexibility in terms of usage, auditing, and monitoring services to improve business decisions. An example of how cloud-based LBs can provide GSLB is given below:
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-08-21 at 2.18.06 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 2.18.06 AM.png" alt=""><figcaption></figcaption></figure>
 
 > **Note:** Another interesting implementation of load balancers comes in the form of **client-side load balancing**. Client-side load balancing is suited where there are numerous services, each with many instances (such as [load balancing in Twitter](https://www.educative.io/collection/page/10370001/4941429335392256/5379128533975040)). Our focus, however, is on traditional load balancers because most three-tier applications employ these in their design.
 

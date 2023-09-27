@@ -4,7 +4,7 @@
 
 Let’s begin with the high-level design of our Twitter system. We’ll initially highlight and discuss the building blocks, as well as other components, in the context of the Twitter problem briefly. Later on, we’ll dive deep into a few components in this chapter.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-05 at 11.37.17 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-05 at 11.37.17 PM.png" alt=""><figcaption></figcaption></figure>
 
 * **Users** post Tweets delivered to the server through the load balancer. Then, the system stores it in persistent storage.
 * **DNS** provides the specified IP address to the end user to start communication with the requested service.

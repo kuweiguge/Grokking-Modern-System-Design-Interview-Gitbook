@@ -11,7 +11,7 @@ Our proposed system should do the following:
 
 When a user starts typing a query, every typed character hits one of the application servers. Let’s assume that we have a **suggestions service** that obtains the top ten suggestions from the cache, Redis, and returns them as a response to the client. In addition to this, suppose we have another service known as an **assembler**. An assembler collects the user searches, applies some analytics to rank the searches, and stores them in a NoSQL database that’s distributed across several nodes.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 2.17.01 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 2.17.01 AM.png" alt=""><figcaption></figcaption></figure>
 
 Furthermore, we also need load balancers to distribute the incoming requests evenly. We also add application servers as entry points for clients so that they can forward requests to the appropriate microservices. These web servers encapsulate the internal system architecture and provide other services, such as authentication, monitoring, request shaping, management, and more.
 

@@ -4,15 +4,15 @@
 
 A rate limiter can be deployed as a separate service that will interact with a web server, as shown in the figure below. When a request is received, the rate limiter suggests whether the request should be forwarded to the server or not. The rate limiter consists of rules that should be followed by each incoming request. These rules define the throttling limit for each operation. Let’s go through a rate limiter rule from [Lyft](https://github.com/envoyproxy/ratelimit), which has open-sourced its rate limiting component.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.20.45 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.20.45 AM.png" alt=""><figcaption></figcaption></figure>
 
 In the above rate-limiting rule, the `unit` is set to `day` and the `request_per_unit` is set to `5`. These parameters define that the system can allow five marketing messages per day.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.21.53 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.21.53 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.22.27 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.22.27 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.22.54 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.22.54 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### Detailed design <a href="#detailed-design-0" id="detailed-design-0"></a>
 
@@ -23,7 +23,7 @@ The high-level design given above does not answer the following questions:
 
 In this section, we’ll first expand the high-level architecture into several other essential components. We’ll also explain each component in detail, as shown in the following figure.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 1.23.32 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.23.32 AM.png" alt=""><figcaption></figcaption></figure>
 
 Let’s discuss each component that is present in the detailed design of a rate limiter.
 
@@ -79,13 +79,13 @@ Let’s understand the online and offline updates approach with an example. In t
 
 If the condition is true, the rate limiter will first respond back to the front-end server with an `Allowed` signal. The corresponding `count` and other relevant information are updated offline in the next steps. The rate limiter writes back the updated data in the cache. Following this approach reduces latency and avoids the contention that incoming requests could have caused.
 
-![](<../.gitbook/assets/Screenshot 2023-09-03 at 1.26.02 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.26.02 AM.png>)
 
-![](<../.gitbook/assets/Screenshot 2023-09-03 at 1.26.14 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.26.14 AM.png>)
 
-![](<../.gitbook/assets/Screenshot 2023-09-03 at 1.26.26 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.26.26 AM.png>)
 
-![](<../.gitbook/assets/Screenshot 2023-09-03 at 1.26.39 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 1.26.39 AM.png>)
 
 > **Note:** We’ve seen a form of rate limiting in TCP network protocol, where the recipient can throttle the sender by advertising the size of the window (the outstanding data a recipient is willing to receive). The sender sends the minimum value of either the congestion window or the advertised window. Many network traffic shapers use similar mechanisms to provide preferential treatment to different network flows.
 

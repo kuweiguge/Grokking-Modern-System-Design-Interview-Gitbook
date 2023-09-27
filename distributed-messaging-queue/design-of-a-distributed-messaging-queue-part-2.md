@@ -29,7 +29,7 @@ For example, suppose we have two queues with the identities 101 and 102 residing
 
 As shown in the following illustration, the internal cluster manager is a component that’s responsible for mapping between the primary host, secondary hosts, and queues. Moreover, it also helps in the primary host selection. Therefore, it needs to be reliable, scalable, and performant.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 12.55.01 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 12.55.01 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### A cluster of independent hosts <a href="#a-cluster-of-independent-hosts-0" id="a-cluster-of-independent-hosts-0"></a>
 
@@ -41,7 +41,7 @@ Point to Ponder
 
 How does a random host within a cluster replicate data—that is, messages—in the queues on other hosts within the same cluster?
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 12.55.22 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 12.55.22 AM.png" alt=""><figcaption></figcaption></figure>
 
 The same process is applied to receive message requests from the consumer. Similar to the first approach, the randomly selected host is responsible for message delivery and cleanup upon a successful processing of the message.
 
@@ -49,7 +49,7 @@ Furthermore, another component called an **external cluster manager** is introdu
 
 The following figure illustrates the cluster of independent hosts. There are two clusters, A and B, which consist of several nodes. The external cluster manager has the mapping table between queues and their corresponding cluster. Whenever a front-end receives a request for a queue, it determines the corresponding cluster for the queue and forwards the request to the cluster where the queue resides. The nodes within that cluster are responsible for storing and sending messages accordingly.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 12.56.00 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 12.56.00 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Question**
 

@@ -40,7 +40,7 @@ By now, our application is loaded with multiple features, and everyone loves it.
 
 To implement this, we can use an open-source document-oriented datastore like Elasticsearch. The product is pretty popular in the industry for implementing a scalable search feature on apps. All the search-related data can be streamed to the elastic store from other databases powering different features of our app.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-08-21 at 4.19.35 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-08-21 at 4.19.35 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### Complexity that comes along <a href="#complexity-that-comes-along" id="complexity-that-comes-along"></a>
 

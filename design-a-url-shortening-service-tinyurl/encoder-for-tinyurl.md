@@ -66,7 +66,7 @@ Base-58 = 27qMi57J
 
 Let's see the example above with the help of the following illustration.
 
-![](<../.gitbook/assets/Screenshot 2023-09-06 at 1.05.08 AM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.05.08 AM.png>)
 
 ### Converting base-58 to base-10 <a href="#converting-base-58-to-base-10-0" id="converting-base-58-to-base-10-0"></a>
 
@@ -76,13 +76,13 @@ The decoding process holds equal importance as the encoding process, as we used 
 
 **Example**: Let's reverse engineer the example above to see how decoding works.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.05.48 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.05.48 AM.png" alt=""><figcaption></figcaption></figure>
 
 This is the same unique ID of base-10 from the previous example.
 
 Let's see the example above with the help of the following illustration.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.06.06 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.06.06 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### The scope of the short URL generator <a href="#the-scope-of-the-short-url-generator-0" id="the-scope-of-the-short-url-generator-0"></a>
 
@@ -94,7 +94,7 @@ The short URL generator is the backbone of our URL shortening service. The outpu
 
 These limitations define the scope of our short URL generator. We can define the scope, as shown below:
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.07.05 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.07.05 AM.png" alt=""><figcaption></figcaption></figure>
 
 > **Maximum digits**: The calculations above show that the maximum digits in the sequencer generated ID will be 20 and consequently, the maximum number of characters in the encoded short URL will be 11.  
 
@@ -120,7 +120,7 @@ What should the short URL be for the sequencer’s largest number?
 
 Hide Answer
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.07.55 AM (1).png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.07.55 AM (1).png" alt=""><figcaption></figcaption></figure>
 
 \----------------------
 
@@ -128,13 +128,13 @@ Hide Answer
 
 The number of years that our sequencer can provide us with unique IDs depends on two factors:
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.10.29 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.10.29 AM.png" alt=""><figcaption></figcaption></figure>
 
 &#x20;[_Requirements_](requirements-of-tinyurls-design.md)
 
 So, taking the above two factors into consideration, we can calculate the expected life of our sequencer.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 1.09.16 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 1.09.16 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Life expectancy for sequencer**
 

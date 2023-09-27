@@ -130,7 +130,7 @@ In light of the design factors listed above, let’s look at some problems with 
 
 In a **centralized search system**, all the search system components run on a single node, which is computationally quite capable. The architecture of a centralized search system is shown in the following illustration:
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 2.21.56 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 2.21.56 AM.png" alt=""><figcaption></figcaption></figure>
 
 * The **indexing process** takes the documents as input and converts them into an inverted index, which is stored in the form of a binary file.
 * The **query processing** or **search process** interprets the binary file that contains the inverted index. It also computes the intersection of the inverted lists for a given query to return the search results against the query.

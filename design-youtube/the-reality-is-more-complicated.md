@@ -18,11 +18,11 @@ Until now, we’ve considered encoding one video with different encoding schemes
 
 Let’s understand how the per-segment encoding will work. For any video with dynamic colors and high depth, we’ll encode it differently from a video with fewer colors. This means that a not-so-dynamic segment will be encoded such that it’s compressed more to save additional storage space. Eventually, we’ll have to transfer smaller file sizes and save bandwidth during the deployment and streaming phases.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.44.16 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 3.44.16 AM.png" alt=""><figcaption></figcaption></figure>
 
 Using the strategy above, we’ll have to encode individual shots of a video in various formats. However, the alternative to this would be storing an entire video (using no segmenting) after encoding it in various formats. If we encode on a per-shot basis, we would be able to optimally reduce the size of the entire video by doing the encoding on a granular level. We can also encode audio in various formats to optimally allow streaming for various clients like TVs, mobile phones, and desktop machines. Specifically, for services like Netflix, audio encoding is more useful because audios are offered in various languages.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.44.43 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 3.44.43 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### Deploy <a href="#deploy-0" id="deploy-0"></a>
 
@@ -34,7 +34,7 @@ As discussed in our design and evaluation sections, we have to bring the content
 
 So, instead of streaming from our data centers directly, we can deploy chunks of popular videos in CDNs and point of presence (PoPs) of ISPs. In places where there is no collaboration possible with the ISPs, our content can be placed in internet exchange point (IXPs). We can put content in IXPs that will not only be closer to users, but can also be helpful in filling the cache of ISP PoPs.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.45.05 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 3.45.05 AM.png" alt=""><figcaption></figcaption></figure>
 
 We should keep in mind that the caching at the ISP or IXP is performed only for the popular content or moderately popular content because of limited storage capacity. Since our per-shot encoding scheme saves storage space, we’ll be able to serve out more content using the cache infrastructure closer to end users.
 
@@ -56,7 +56,7 @@ An approximation of the recommendation engine of YouTube is provided below. YouT
 
 YouTube employs machine learning_(Covington, Paul, Jay Adams, and Emre Sargin. “Deep neural networks for youtube recommendations.” Proceedings of the 10th ACM conference on recommender systems. 2016.)_ technology in both phases to provide recommendations to users.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.46.34 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 3.46.34 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Question 1**
 
@@ -68,9 +68,9 @@ Recommendations are specific to users’ profiles and interests, whereas popular
 
 Can you provide some formulaic representation of how the YouTube algorithm for popular content would work?
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.48.09 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 3.48.09 AM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.48.40 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 3.48.40 AM.png" alt=""><figcaption></figcaption></figure>
 
 **Question 3**
 
@@ -91,7 +91,7 @@ Let’s see how the end user gets the content on their device. Since we have the
 
 However, in the case of non-popular content, the user is served from colocation sites or YouTube’s data center where the content is stored initially. We have already learned how YouTube can reduce latency times by having distributed caches at different design layers.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.49.47 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 3.49.47 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Adaptive streaming <a href="#adaptive-streaming-0" id="adaptive-streaming-0"></a>
 
@@ -99,7 +99,7 @@ While the content is being served, the bandwidth of the user is also being monit
 
 As shown below, when the bandwidth is high, a higher quality chunk is sent to the client and vice versa.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.50.19 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 3.50.19 AM.png" alt=""><figcaption></figcaption></figure>
 
 The adaptive bitrate algorithm depends on the following four parameters:
 
@@ -108,7 +108,7 @@ The adaptive bitrate algorithm depends on the following four parameters:
 3. Encoding techniques used.
 4. The buffer space at the client \[source].
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 3.50.51 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 3.50.51 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### Potential follow-up questions <a href="#potential-follow-up-questions-0" id="potential-follow-up-questions-0"></a>
 

@@ -12,7 +12,7 @@ There are many factors that can cause failures that can result in clients being 
 * Any failure in routing along the path from the client to the service provider.
 * Any failures with third-party infrastructure, such as middleboxes and content delivery networks (CDNs).
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 12.20.50 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 12.20.50 AM.png" alt=""><figcaption></figcaption></figure>
 
 ### Failures due to a routing bug <a href="#failures-due-to-a-routing-bug-0" id="failures-due-to-a-routing-bug-0"></a>
 
@@ -22,7 +22,7 @@ One of Google’s peer ISPs accidentally announced Internet routes that it wasn�
 
 > We can learn more about this event by clicking here.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 12.21.10 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 12.21.10 AM.png" alt=""><figcaption></figcaption></figure>
 
 The above leak isn’t unique. Similar issues keep arising. Another such leakage happened on April 16, 2021, when an AS mistakenly announced over 30,000 BGP prefixes. This resulted in a 13 times spike in the inbound traffic to their network. However, an increase in influx was observed, and the problem was solved.
 

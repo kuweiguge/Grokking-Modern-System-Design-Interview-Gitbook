@@ -126,7 +126,7 @@ On a basic level, we need the following tables:
 
 The following illustration visualizes the data model:
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-06 at 12.44.33 AM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-06 at 12.44.33 AM.png" alt=""><figcaption></figcaption></figure>
 
 #### Data estimation <a href="#data-estimation-0" id="data-estimation-0"></a>
 

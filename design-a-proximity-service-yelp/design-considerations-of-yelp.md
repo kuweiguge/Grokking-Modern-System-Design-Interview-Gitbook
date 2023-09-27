@@ -26,7 +26,7 @@ From Google Maps, we were able to connect segments and meet the scalability chal
 
 Each segment will be of the size 5×5 miles and will contain a list of places that exist within it. We only search a few segments to locate destinations that are close by. We can use a given location and defined radius to find all the nearby segments and identify sites that are close.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 5.46.17 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 5.46.17 PM.png" alt=""><figcaption></figcaption></figure>
 
 Points to Ponder
 
@@ -73,7 +73,7 @@ A user may select a radius for searching places that aren’t present in a singl
 
 First, we constrain the number of segments. This reduces the graph size and makes the searching process optimizable. Then, we identify all the relevant locations, compute the distance from the searching point, and show it to the user.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 5.49.16 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 5.49.16 PM.png" alt=""><figcaption></figcaption></figure>
 
 **Question**
 
@@ -104,25 +104,25 @@ We can use the pointers of parent nodes to find the neighboring segments. In eac
 
 In the following illustration, node `F` can find its neighboring node, `G`, by first going to the parent node, `B`, and then to `G`.
 
-![](<../.gitbook/assets/Screenshot 2023-09-03 at 5.51.14 PM.png>)
+![](<https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 5.51.14 PM.png>)
 
 \----------------
 
 The following slides show how the process of searching for a place works. If a node has the places we need, we stop there. Otherwise, we explore more nodes until we reach our search radius. After finding the node, we query the database for information related to the places and return the desired ones.
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 5.51.38 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 5.51.38 PM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 5.52.03 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 5.52.03 PM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 5.52.27 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 5.52.27 PM.png" alt=""><figcaption></figcaption></figure>
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 5.52.45 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 5.52.45 PM.png" alt=""><figcaption></figcaption></figure>
 
 #### Storage space estimation for QuadTrees <a href="#storage-space-estimation-for-quadtrees-0" id="storage-space-estimation-for-quadtrees-0"></a>
 
 Let’s calculate the storage we need for keeping QuadTrees:
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 5.53.18 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 5.53.18 PM.png" alt=""><figcaption></figcaption></figure>
 
 We can easily store a QuadTree on a server.
 
@@ -178,7 +178,7 @@ We added a few new components to our design. We introduced caches to store popul
 
 The updated design of our system is shown below:
 
-<figure><img src="../.gitbook/assets/Screenshot 2023-09-03 at 5.53.59 PM.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="https://kuweiguge.github.io/Grokking-Modern-System-Design-Interview-Gitbook/assets/Screenshot 2023-09-03 at 5.53.59 PM.png" alt=""><figcaption></figcaption></figure>
 
 ### Evaluation <a href="#evaluation-0" id="evaluation-0"></a>
 
